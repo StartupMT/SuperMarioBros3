@@ -131,6 +131,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Mario.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Mario.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sprite.h" />

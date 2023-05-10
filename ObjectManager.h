@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Graphic.h"
 #include "Keyboard.h"
+#include "Mario.h"
 #include "Viewport.h"
 #include "Collision.h"
 #include "GameDefine.h"
@@ -13,10 +14,12 @@ private:
 	static ObjectManager* _objectManager;
 protected:
 	Viewport* viewport;
-
+	Mario* mario;
 
 	vector <RECT> listScene;
 	D3DXVECTOR2 posView;
+
+	Sprite* sprite_mario;
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -28,5 +31,3 @@ public:
 	//Vẽ Object lên màn hình
 	void Render();
 };
-
-
