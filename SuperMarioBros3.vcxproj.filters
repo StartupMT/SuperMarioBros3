@@ -71,6 +71,12 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="InfoMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSet.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -112,6 +118,12 @@
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSet.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
