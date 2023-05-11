@@ -114,4 +114,6 @@ RECT Viewport::GetBoundViewport()
 //Update theo 1 đối tượng
 void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject, std::vector <RECT> SceneZoom)
 {
+	positionWorld.x = posobject.x - GameWidth / 2;
+	positionWorld.y = posobject.y + GameHeight / 2;
 }

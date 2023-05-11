@@ -18,6 +18,7 @@ protected:
 	int Index = 0;
 	float delay;
 	int count = 0;	//bộ đếm
+	bool FlipFlag;  //Cờ lật
 
 	RECT rect;//Hình cần vẽ
 	D3DXVECTOR2 position; //vị trí vẽ
@@ -55,12 +56,12 @@ public:
 	virtual float GetAngle();
 	virtual void SetAngle(float Angle);
 
-
+	virtual void SetFlipFlag(bool flag);
 	virtual void Flip(bool flag);
 
 	virtual void SetData(RECT Rect, D3DXVECTOR2 Center, D3DXVECTOR2 Position, D3DXVECTOR2 Scale, D3DXVECTOR2 Transform, float Angle);
 	virtual void Update(float gameTime, Keyboard* key);
-	virtual void Render(Viewport* viewport);
+	virtual void Render(Viewport* viewport, bool round = false);
 	virtual void Render();
 
 };

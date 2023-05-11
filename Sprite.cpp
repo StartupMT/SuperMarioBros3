@@ -14,6 +14,7 @@ Sprite::Sprite(Graphic* graphic, const char* pathpng)
 	transform = D3DXVECTOR2(0, 0);
 	position = D3DXVECTOR2(0, 0);
 	angle = 0;
+	FlipFlag = false;
 }
 
 Sprite::~Sprite()
@@ -97,6 +98,12 @@ void Sprite::SetAngle(float Angle)
 	angle = Angle;
 }
 
+void Sprite::SetFlipFlag(bool flag)
+{
+	FlipFlag = flag;
+}
+
+
 //Lật hình theo trục y
 void Sprite::Flip(bool flag)
 {
@@ -120,12 +127,15 @@ void Sprite::SetData(RECT Rect, D3DXVECTOR2 Center, D3DXVECTOR2 Position, D3DXVE
 //Vẽ sprite
 void Sprite::Update(float gameTime, Keyboard* key)
 {
+	//Lấy center
+	center.x = (rect.right - rect.left) / 2;
+	center.y = (rect.bottom - rect.top) / 2;
 }
 
 //Vẽ Sprite lên màn hình
-void Sprite::Render(Viewport* viewport)
+void Sprite::Render(Viewport* viewport, bool round)
 {
-	SpriteGraphic->DrawTexture(Texture, rect, center, viewport->GetPositionViewport(position), scale, transform, angle, D3DCOLOR_XRGB(225, 225, 225));
+	SpriteGraphic->DrawTexture(Texture, rect, center, viewport->GetPositionViewport(position, round), scale, transform, angle, D3DCOLOR_XRGB(225, 225, 225));
 }
 
 //Vẽ Sprite lên màn hình

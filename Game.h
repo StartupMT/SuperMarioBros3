@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Graphic.h"
 #include "Keyboard.h"
+#include "SceneManager.h"
 #include "GameDefine.h"
 
 using namespace Define;

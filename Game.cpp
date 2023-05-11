@@ -81,6 +81,7 @@ void Game::InitDT()
 {
 	keyboard = new Keyboard(Hwnd);
 	keyboard->Init();
+	SceneManager::GetInstance()->InitDT(graphic);
 }
 
 // Cập nhật game
@@ -88,11 +89,13 @@ void Game::Update(float gameTime)
 {
 	//Lấy trạng thái bàn phím
 	keyboard->GetStage();
+	SceneManager::GetInstance()->Update(gameTime, keyboard);
 }
 
 // Vẽ các đối tượng trong game
 void Game::Render()
 {
 	graphic->Begin();
+	SceneManager::GetInstance()->Render();
 	graphic->End();
 }
