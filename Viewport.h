@@ -14,7 +14,6 @@ protected:
 	D3DXVECTOR2 positionWorld;
 	float Width;
 	float Height;
-
 public:
 	Viewport();
 	//x và y là tọa độ thế giới left-top
@@ -39,6 +38,6 @@ public:
 	RECT GetBoundViewport();
 
 	//Update View theo 1 đối tượng
-	void Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobjec);
+	void Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject);
 };
 

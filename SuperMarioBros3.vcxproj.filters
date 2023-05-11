@@ -5,24 +5,38 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Map">
+      <UniqueIdentifier>{06250ddd-d096-4707-a466-31c85084f294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{43e5cefe-7663-40d6-a194-d126bf8330bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TinyXMl">
+      <UniqueIdentifier>{5966f949-bf17-4890-9b0b-6a0af42dfa5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Player">
+      <UniqueIdentifier>{5a40fc21-a108-41af-8059-c1456cef771a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{8047e6d6-e6c5-428b-b620-75f37bb1333d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{97a31ab0-793b-4f73-ba79-f6d1ef877705}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Player">
-      <UniqueIdentifier>{0efb1db8-bbb8-4422-948e-2a32d3e66c16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{f3aeab67-f445-44fb-84c8-cd0be185961e}</UniqueIdentifier>
+    <Filter Include="Scence">
+      <UniqueIdentifier>{86ade1ed-2999-426c-a99a-0b02534b1afa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TinyXML\tinystr.cpp">
+      <Filter>TinyXMl</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml.cpp">
+      <Filter>TinyXMl</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
+      <Filter>TinyXMl</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
+      <Filter>TinyXMl</Filter>
+    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Global</Filter>
     </ClCompile>
@@ -41,21 +55,30 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="Viewport.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Mario.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scence</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewport.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TinyXML\tinystr.h">
+      <Filter>TinyXMl</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinyxml.h">
+      <Filter>TinyXMl</Filter>
+    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -74,21 +97,21 @@
     <ClInclude Include="Sprite.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="Viewport.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDefine.h" />
-    <ClInclude Include="SceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Mario.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scence</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDefine.h" />
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

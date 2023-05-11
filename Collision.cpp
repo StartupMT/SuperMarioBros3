@@ -47,9 +47,8 @@ bool Collision::isCollision1(RECT object, RECT other)
 	return !(object.right <= other.left || object.left >= other.right || object.top <= other.bottom || object.bottom >= other.top);
 }
 
-
 //Kiểm tra để lấy thông tin va chạm
-float Collision::CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3DXVECTOR2& side)//distance là khoảng cách tối đa object đi
+float Collision::CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3DXVECTOR2 &side)//distance là khoảng cách tối đa object đi
 {
 	if (distance.y == 0.0f && object.bottom >= other.top || distance.x == 0.0f && object.right <= other.left
 		|| distance.y == 0.0f && object.top <= other.bottom || distance.x == 0.0f && object.left >= other.right)
@@ -67,14 +66,14 @@ float Collision::CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3
 	{
 		dxEntry = other.left - object.right;
 		dxExit = other.right - object.left;
-
+		
 	}
-	else
+	else 
 	{
 		dxEntry = other.right - object.left;
 		dxExit = other.left - object.right;
 	}
-
+	
 	if (distance.y > 0)
 	{
 		dyEntry = other.bottom - object.top;
@@ -114,7 +113,7 @@ float Collision::CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3
 	float Entry = max(xEntry, yEntry);
 	float Exit = min(xExit, yExit);
 
-	if (Entry > Exit || xEntry < 0.0f && yEntry < 0.0f || xEntry > 1.0f || yEntry > 1.0f)
+	if (Entry > Exit || xEntry < 0.0f && yEntry < 0.0f || xEntry > 1.0f || yEntry > 1.0f )
 	{
 		side.x = 0.0f;
 		side.y = 0.0f;

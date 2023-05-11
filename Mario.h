@@ -16,7 +16,7 @@ protected:
 	D3DXVECTOR2 position; //vị trí vẽ
 	D3DXVECTOR2 velocity;//Vector vận tốc
 public:
-	Mario();
+	Mario(); 
 	~Mario();
 	const char* pathPNG;
 

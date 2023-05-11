@@ -65,8 +65,14 @@ D3DXVECTOR2 Viewport::GetPositionViewport_Left_Top(D3DXVECTOR2 Position)
 D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position, int round)
 {
 	//int để vị trí ViewPort không lệch pixel
-	float x = positionWorld.x - (int)positionWorld.x;
-	float y = positionWorld.y - (int)positionWorld.y;
+	float x = 0;
+	float y = 0;
+	if (round)
+	{
+		x = positionWorld.x - (int)positionWorld.x;
+		y = positionWorld.y - (int)positionWorld.y;
+	}
+	
 	D3DXVECTOR3* position = &D3DXVECTOR3(Position.x + x, Position.y + y, 0);
 
 	D3DXMATRIX mt;

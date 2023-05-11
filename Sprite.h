@@ -56,6 +56,7 @@ public:
 	virtual float GetAngle();
 	virtual void SetAngle(float Angle);
 
+
 	virtual void SetFlipFlag(bool flag);
 	virtual void Flip(bool flag);
 

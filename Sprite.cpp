@@ -98,6 +98,8 @@ void Sprite::SetAngle(float Angle)
 	angle = Angle;
 }
 
+
+
 void Sprite::SetFlipFlag(bool flag)
 {
 	FlipFlag = flag;

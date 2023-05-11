@@ -36,11 +36,11 @@ void Animation::SetIndex(int index)
 	Index = index;
 }
 
-
 bool Animation::GetFlipFlag()
 {
 	return FlipFlag;
 }
+
 int Animation::GetDelay()
 {
 	return delay;
@@ -75,7 +75,6 @@ void Animation::Update(float gameTime, Keyboard* key)
 		Index++;
 	}
 	else TimeCurrent += gameTime;
-
 	//Lấy giá trị Index để vẽ Rect
 	if (Index < start || Index > end)
 	{
@@ -89,11 +88,9 @@ void Animation::Update(float gameTime, Keyboard* key)
 	//Kiểm tra Flip
 	Flip(FlipFlag);
 
-
 	//Lấy center
 	center.x = (rect.right - rect.left)/2;
 	center.y = (rect.bottom - rect.top) / 2;
-
 	////Kiểm tra center flip chỉnh transform
 	transform.x = 0;
 	transform.y = 0;

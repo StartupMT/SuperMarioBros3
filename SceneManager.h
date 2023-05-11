@@ -8,7 +8,7 @@ using namespace Define;
 
 class SceneManager
 {
-	static SceneManager* _sceneManager;
+static SceneManager* _sceneManager;
 public:
 	SceneManager();
 	~SceneManager();
