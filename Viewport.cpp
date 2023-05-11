@@ -62,7 +62,7 @@ D3DXVECTOR2 Viewport::GetPositionViewport_Left_Top(D3DXVECTOR2 Position)
 }
 
 //Lấy vị trí của ViewPort từ vị trị object cần vẽ theo hệ đề các
-D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position)
+D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position, int round)
 {
 	//int để vị trí ViewPort không lệch pixel
 	float x = positionWorld.x - (int)positionWorld.x;
@@ -112,8 +112,17 @@ RECT Viewport::GetBoundViewport()
 }
 
 //Update theo 1 đối tượng
-void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject, std::vector <RECT> SceneZoom)
+void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject)
 {
-	positionWorld.x = posobject.x - GameWidth / 2;
-	positionWorld.y = posobject.y + GameHeight / 2;
+	//trục X
+	if (posobject.x - positionWorld.x <= 112)
+		positionWorld.x = posobject.x - 112;
+	else if (posobject.x - positionWorld.x >= 144)
+		positionWorld.x = posobject.x - 144;
+
+	//trục Y
+	if (positionWorld.y - posobject.y <= 112)
+		positionWorld.y = posobject.y + 112;
+	else if (positionWorld.y - posobject.y >= 144)
+		positionWorld.y = posobject.y + 144;
 }

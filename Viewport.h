@@ -31,7 +31,7 @@ public:
 	float GetHeight();
 
 	D3DXVECTOR2 GetPositionViewport_Left_Top(D3DXVECTOR2 Position);
-	D3DXVECTOR2 GetPositionViewport(D3DXVECTOR2 Position);
+	D3DXVECTOR2 GetPositionViewport(D3DXVECTOR2 Position, int round = false);
 
 	//Kiểm tra 1 rect còn trong màn hình không
 	bool isContains(RECT rect);
@@ -39,6 +39,6 @@ public:
 	RECT GetBoundViewport();
 
 	//Update View theo 1 đối tượng
-	void Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject, std::vector <RECT> SceneZoom);
+	void Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobjec);
 };
 

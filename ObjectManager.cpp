@@ -18,6 +18,7 @@ ObjectManager::ObjectManager()
 }
 ObjectManager::~ObjectManager()
 {
+	delete map;
 	delete viewport;
 	delete mario;
 
@@ -30,6 +31,10 @@ void ObjectManager::InitDT(Graphic* graphic)
 	//load sprite
 	sprite_mario = new Sprite(graphic, MarioPNG);
 	viewport = new Viewport(0, 0);
+
+	//load Objecct
+	map = new Map(graphic);
+
 	//Mario bắt đầu 
 	mario = Mario::GetInstance();
 	mario->Init(sprite_mario);
@@ -51,5 +56,6 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 //Vẽ
 void ObjectManager::Render()
 {
+	map->Render(viewport);
 	mario->Render(viewport);
 }

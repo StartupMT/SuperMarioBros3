@@ -19,7 +19,7 @@ public:
 	//Đã lồng vào nhau
 	static bool isCollision1(RECT object, RECT other);
 
-	static float CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3DXVECTOR2& side);
+	static float CollisionAABB(RECT object, RECT other, D3DXVECTOR2 distance, D3DXVECTOR2 &side);
 
 };
 

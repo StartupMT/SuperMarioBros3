@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Graphic.h"
 #include "Keyboard.h"
+#include "Map.h"
 #include "Mario.h"
 #include "Viewport.h"
 #include "Collision.h"
@@ -15,6 +16,7 @@ private:
 protected:
 	Viewport* viewport;
 	Mario* mario;
+	Map* map;
 
 	vector <RECT> listScene;
 	D3DXVECTOR2 posView;
