@@ -16,6 +16,7 @@ public:
 
 	int GetIndex();
 	void SetIndex(int index);
+	bool GetFlipFlag();
 	int GetDelay();
 	int GetStart();
 	int GetEnd();
