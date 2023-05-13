@@ -1,25 +1,19 @@
 ﻿#pragma once
 #include <d3dx9.h>
 #include "Graphic.h"
-#include "Keyboard.h"
 #include "Viewport.h"
-#include "InfoSprite.h"
 
 class Sprite
 {
 protected:
 	Graphic* SpriteGraphic;//Tạo graphic
 	LPDIRECT3DTEXTURE9 Texture;
-	InfoSprite* InfoTexture;
 	char* Pathpng;
 	float Width;//Sprite width
 	float Height;
 	float WidthFrame;
 	float HeightFrame;
 
-	int Index = 0;
-	float delay;
-	int count = 0;	//bộ đếm
 	bool FlipFlag;  //Cờ lật
 
 	RECT rect;//Hình cần vẽ
@@ -31,16 +25,14 @@ protected:
 
 public:
 	Sprite();
-	Sprite(Graphic* graphic, const char* pathsprite);
+	Sprite(const char* pathsprite);
 	~Sprite();
-
 
 	virtual void SetTexture(const char* pathpng);
 
 	virtual float GetWidthFrame();
 	virtual float GetHeightFrame();
 
-	virtual RECT GetRect(int index);
 	virtual RECT GetRect();
 	virtual void SetRect(RECT Rect);
 
@@ -64,8 +56,7 @@ public:
 	virtual void Flip(bool flag);
 
 	virtual void SetData(RECT Rect, D3DXVECTOR2 Center, D3DXVECTOR2 Position, D3DXVECTOR2 Scale, D3DXVECTOR2 Transform, float Angle);
-	virtual void Update(float gameTime, Keyboard* key);
-	virtual void Render(Viewport* viewport, bool round = false);
+	virtual void Update(float gameTime);
+	virtual void Render(Viewport* viewport);
 	virtual void Render();
-
 };

@@ -12,11 +12,10 @@ protected:
 	int WidthMap, HeightMap;
 	TileSet* tileset;
 	D3DXVECTOR2 position;
-	InfoMap *info;
+	InfoMap* info;
+
 public:
-	
 	Map();
-	Map(Graphic* graphic);
 	~Map();
 	InfoMap *GetInfoMap();
 	int GetData(D3DXVECTOR2 pos);

@@ -141,7 +141,7 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="MarioAnimation.cpp">
+    <ClCompile Include="MarioCollision.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
@@ -198,7 +198,7 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="MarioAnimation.h">
+    <ClInclude Include="MarioCollision.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
   </ItemGroup>

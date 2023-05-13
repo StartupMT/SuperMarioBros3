@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "Object.h"
 #include "Graphic.h"
 #include <d3dx9.h>
 

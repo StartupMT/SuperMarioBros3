@@ -8,7 +8,6 @@ Game::Game(HINSTANCE Hins, int width, int height, char* name)
 	this->Height = height;
 	this->Hwnd = NULL;
 	strcpy_s(this->WindowName, name);
-
 }
 
 Game::~Game()
@@ -41,7 +40,7 @@ bool Game::InitWD()
 	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	Wndclass.hInstance = this->Hinsantance;
 	Wndclass.lpfnWndProc = (WNDPROC)WindowProc;
-	Wndclass.lpszClassName = "SuperMarioBros3";
+	Wndclass.lpszClassName = this->WindowName;
 	Wndclass.lpszMenuName = NULL;
 	Wndclass.style = CS_HREDRAW | CS_VREDRAW;
 
@@ -51,8 +50,8 @@ bool Game::InitWD()
 	}
 
 	this->Hwnd = CreateWindow(
-		"SuperMarioBros3", 
-		this->WindowName, 
+		this->WindowName,
+		this->WindowName,
 		WS_OVERLAPPEDWINDOW, 
 		CW_USEDEFAULT, 
 		CW_USEDEFAULT, 
@@ -68,7 +67,9 @@ bool Game::InitWD()
 	UpdateWindow(this->Hwnd);
 
 	//Tạo màn hình vẽ
-	graphic = new Graphic(this->Hwnd, GameWidth, GameHeight);
+
+	graphic = Graphic::GetInstance();
+	graphic->Init(this->Hwnd, GameWidth, GameHeight);
 	if (!graphic->InitD3D())
 	{
 		return false;
@@ -81,7 +82,7 @@ void Game::InitDT()
 {
 	keyboard = new Keyboard(Hwnd);
 	keyboard->Init();
-	SceneManager::GetInstance()->InitDT(graphic);
+	SceneManager::GetInstance()->InitDT();
 }
 
 // Cập nhật game

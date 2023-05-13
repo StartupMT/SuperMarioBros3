@@ -1,5 +1,4 @@
 ﻿#include "Animation.h"
-#include "Object.h"
 
 Animation::Animation(InfoSprite* info)
 {
@@ -20,6 +19,7 @@ Animation::Animation()
 
 Animation::~Animation()
 {
+	delete _infoAnim;
 }
 
 void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, int End)
@@ -31,14 +31,40 @@ void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, 
 	end = End;
 }
 
+void Animation::SetDataAnimation(DataAnim dataList[])
+{
+	int i = 0;
+	while (true)
+	{
+		if (dataList[i].state >= 0 && dataList[i].state < 100)
+			_dataAnim[dataList[i].state] = dataList[i];
+		else
+			break;
+		++i;
+	}
+}
+
+void Animation::NewAnimationByIndex(int index)
+{
+	DataAnim data = _dataAnim[index];
+	start = data.start;
+	end = data.end;
+	delay = data.delay;
+}
+
 int Animation::GetIndex()
 {
 	return Index;
 }
-
 void Animation::SetIndex(int index)
 {
 	Index = index;
+}
+
+//Rect
+RECT Animation::GetRectByIndex(int index)
+{
+	return _infoAnim->GetRect(index);
 }
 
 bool Animation::GetFlipFlag()
@@ -71,7 +97,7 @@ void Animation::SetPause(bool pause, int index)
 	Pause = pause;
 }
 
-void Animation::Update(float gameTime, Keyboard* key)
+void Animation::Update(float gameTime)
 {
 	//Chuyển frame tiếp theo
 	if (TimeCurrent*100 >= delay )
@@ -93,7 +119,7 @@ void Animation::Update(float gameTime, Keyboard* key)
 	//Kiểm tra Flip
 	Flip(FlipFlag);
 	//Set rect mới
-	SetRect(GetRect(Index));
+	SetRect(GetRectByIndex(Index));
 	//Lấy center
 	center.x = (rect.right - rect.left)/2;
 	center.y = (rect.bottom - rect.top) / 2;

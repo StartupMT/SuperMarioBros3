@@ -17,9 +17,9 @@ SceneManager::~SceneManager()
 }
 
 //Load Data Game
-void SceneManager::InitDT(Graphic* graphic)
+void SceneManager::InitDT()
 {
-	ObjectManager::GetInstance()->InitDT(graphic);
+	ObjectManager::GetInstance()->InitDT();
 }
 
 //Update các scene game Update lớn nhất

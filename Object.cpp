@@ -173,16 +173,7 @@ int Object::GetDamage()
 	return Damage;
 }
 
-void Object::ChangeSkin(const char* pathpng)
-{
-	sprite->SetTexture(pathpng);
-}
-
 void Object::LockAnimation(bool Lock, int index)
-{
-
-}
-void Object::ChangeAnimation()
 {
 
 }

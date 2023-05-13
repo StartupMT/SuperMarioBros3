@@ -30,7 +30,7 @@ public:
 	float GetHeight();
 
 	D3DXVECTOR2 GetPositionViewport_Left_Top(D3DXVECTOR2 Position);
-	D3DXVECTOR2 GetPositionViewport(D3DXVECTOR2 Position, int round = false);
+	D3DXVECTOR2 GetPositionViewport(D3DXVECTOR2 Position);
 
 	//Kiểm tra 1 rect còn trong màn hình không
 	bool isContains(RECT rect);

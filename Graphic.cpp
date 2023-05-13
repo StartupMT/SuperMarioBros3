@@ -1,5 +1,10 @@
 ﻿#include "Graphic.h"
 
+Graphic* Graphic::_graphic = nullptr;
+
+Graphic::Graphic()
+{
+}
 
 Graphic::Graphic(HWND hind, int width, int height)
 {
@@ -14,6 +19,14 @@ Graphic::Graphic(HWND hind, int width, int height)
 
 Graphic::~Graphic()
 {
+}
+
+Graphic* Graphic::GetInstance()
+{
+	if (nullptr == _graphic) {
+		_graphic = new Graphic();
+	}
+	return _graphic;
 }
 
 //Cài đặt thiết kế vẽ

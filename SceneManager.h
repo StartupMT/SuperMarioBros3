@@ -14,7 +14,7 @@ public:
 	~SceneManager();
 
 	//Load Data Game
-	void InitDT(Graphic* graphic);
+	void InitDT();
 
 	//Update Game sau khoảng thời gian gameTime
 	void Update(float gameTime, Keyboard* key);

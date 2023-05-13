@@ -1,11 +1,13 @@
 ﻿#pragma once
 #include "Viewport.h"
-#include "Sprite.h"
+#include "Animation.h"
 #include "Collision.h"
+
+
 class Object
 {
 protected:
-	Sprite* sprite;
+	Animation* _anim;
 	float Width, Height;
 	bool FlipFlag, AllowDraw, lock;
 	D3DXVECTOR2 position; //vị trí vẽ
@@ -31,14 +33,15 @@ public:
 	enum Stateobject
 	{
 		Standing,
-		Moving,
+		Running,
 		Jumping,
 		Attacking,
 		Sitting,
-		Dying
+		Dying,
 	};
 	Stateobject State;
 	Stateobject oldState = Stateobject::Standing;
+	Stateobject nextState = Stateobject::Standing;
 	Object();
 	~Object();
 	static tag GetTag(string name);
@@ -96,9 +99,7 @@ public:
 	virtual void SetDamage(int damage);
 	virtual int GetDamage();
 
-	virtual void ChangeSkin(const char* pathpng);
 	virtual void LockAnimation(bool lock, int index);
-	virtual void ChangeAnimation();
 
 	virtual bool Die();
 	virtual void Update(float gameTime, Keyboard* key);

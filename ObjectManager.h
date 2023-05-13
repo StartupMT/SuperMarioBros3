@@ -20,15 +20,13 @@ protected:
 	Map* map;
 
 	D3DXVECTOR2 posView;
-
-	Sprite* sprite_mario;
 public:
 	ObjectManager();
 	~ObjectManager();
 
 	static ObjectManager* GetInstance();
 	//Load Data Game
-	void InitDT(Graphic* graphic);
+	void InitDT();
 
 	void Update(float gameTime, Keyboard* key);
 

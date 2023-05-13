@@ -8,10 +8,9 @@ Map::Map()
 
 Map::Map(Graphic* graphic)
 {
-	
 	//load tileset lên
 	info = new InfoMap(MapXML);
-	this->tileset = new TileSet(graphic,info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
+	this->tileset = new TileSet(info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
 	position = D3DXVECTOR2(0, 0);
 }
 

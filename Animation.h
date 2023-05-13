@@ -1,27 +1,38 @@
 ﻿#pragma once
 #include "Sprite.h"
+#include "InfoSprite.h"
+#include "map"
 
 class Animation : public Sprite
 {
-protected:
-	float TimeCurrent;
-	int start, end, IndexPause;
-	bool Pause;
-
 public:
-	Animation(InfoSprite* info);
+	struct DataAnim { int state, start, end, delay; };
+
+protected:
+	InfoSprite* _infoAnim;
+	DataAnim _dataAnim[10];
+	float TimeCurrent;
+	int delay, start, end, IndexPause;
+	bool Pause;
+	int Index = 0;
+public:
+	Animation(const char* pathInfo, const char* pathPNG);
 	Animation();
 	~Animation();
 	//Set thông số để vẽ 
 	void SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, int End);
 
+	void SetDataAnimation(DataAnim dataAnim[]);
+	void NewAnimationByIndex(int index);
+
 	int GetIndex();
 	void SetIndex(int index);
+	RECT GetRectByIndex(int index);
 	bool GetFlipFlag();
 	int GetDelay();
 	int GetStart();
 	int GetEnd();
 	void SetPause(bool pause);
 	void SetPause(bool, int);
-	void Update(float gameTime, Keyboard* key);
+	void Update(float gameTime);
 };

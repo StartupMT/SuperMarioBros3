@@ -7,6 +7,8 @@ using namespace std;
 class Graphic
 {
 private:
+	static Graphic* _graphic;
+private:
 	//Object directx
 	LPDIRECT3D9 D3D;
 	//
@@ -29,7 +31,8 @@ private:
 
 public:
 	//Contructor
-	Graphic(HWND hwnd, int width, int height);
+	Graphic();
+	void Init(HWND hwnd, int width, int height);
 	~Graphic();
 	//Cài đặt thiết kế vẽ
 	bool InitD3D();
@@ -51,5 +54,6 @@ public:
 	LPDIRECT3DDEVICE9 GetDevice();
 	HWND GetHwnd();
 	LPD3DXSPRITE GetSprite();
+	static Graphic* GetInstance();
 };
 

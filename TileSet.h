@@ -14,7 +14,7 @@ protected:
 	int Id, TileColunms,TileCount;
 public:
 	TileSet();
-	TileSet(Graphic* graphic,int tilecount, int tilecolunm, float widthtile, float heighttile);
+	TileSet(int tilecount, int tilecolunm, float widthtile, float heighttile);
 	~TileSet();
 
 	int GetId();

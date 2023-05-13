@@ -62,18 +62,9 @@ D3DXVECTOR2 Viewport::GetPositionViewport_Left_Top(D3DXVECTOR2 Position)
 }
 
 //Lấy vị trí của ViewPort từ vị trị object cần vẽ theo hệ đề các
-D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position, int round)
+D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position)
 {
-	//int để vị trí ViewPort không lệch pixel
-	float x = 0;
-	float y = 0;
-	if (round)
-	{
-		x = positionWorld.x - (int)positionWorld.x;
-		y = positionWorld.y - (int)positionWorld.y;
-	}
-	
-	D3DXVECTOR3* position = &D3DXVECTOR3(Position.x + x, Position.y + y, 0);
+	D3DXVECTOR3* position = &D3DXVECTOR3(Position.x, Position.y, 0);
 
 	D3DXMATRIX mt;
 	D3DXVECTOR4 posViewport;
@@ -101,7 +92,7 @@ bool Viewport::isContains(RECT rect)
 	if (rect.top < positionWorld.y - Height)
 		return false;
 
-	return true;
+	return D3DXVECTOR2((int)posViewport.x, (int)posViewport.y);
 }
 
 //Kích thước RECT màn hình tính trong World

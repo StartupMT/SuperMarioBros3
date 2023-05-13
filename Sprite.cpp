@@ -5,9 +5,9 @@ Sprite::Sprite()
 }
 
 //Contructor
-Sprite::Sprite(Graphic* graphic, const char* pathpng)
+Sprite::Sprite(const char* pathpng)
 {
-	SpriteGraphic = graphic;
+	SpriteGraphic = Graphic::GetInstance();
 	Texture = SpriteGraphic->LoadTexture(pathpng, D3DCOLOR_XRGB(156, 252, 240));
 	this->scale = D3DXVECTOR2(1, 1);
 	transform = D3DXVECTOR2(0, 0);
@@ -38,10 +38,6 @@ float Sprite::GetHeightFrame()
 }
 
 //Rect
-RECT Sprite::GetRect(int index)
-{
-	return InfoTexture->GetRect(index);
-}
 RECT Sprite::GetRect()
 {
 	return this->rect;
@@ -134,9 +130,9 @@ void Sprite::Update(float gameTime, Keyboard* key)
 }
 
 //Vẽ Sprite lên màn hình
-void Sprite::Render(Viewport* viewport, bool round)
+void Sprite::Render(Viewport* viewport)
 {
-	SpriteGraphic->DrawTexture(Texture, rect, center, viewport->GetPositionViewport(position, round), scale, transform, angle, D3DCOLOR_XRGB(225, 225, 225));
+	SpriteGraphic->DrawTexture(Texture, rect, center, viewport->GetPositionViewport(position), scale, transform, angle, D3DCOLOR_XRGB(225, 225, 225));
 }
 
 //Vẽ Sprite lên màn hình

@@ -21,22 +21,18 @@ ObjectManager::~ObjectManager()
 	delete map;
 	delete viewport;
 	delete mario;
-
-	delete sprite_mario;
 }
 
 //Load Data Game
-void ObjectManager::InitDT(Graphic* graphic)
+void ObjectManager::InitDT()
 {
-	//load sprite
-	sprite_mario = new Sprite(graphic, MarioPNG);
 	//load Objecct
-	map = new Map(graphic);
+	map = new Map();
 	viewport = new Viewport(0, 0);
 	//Mario bắt đầu 
 	mario = Mario::GetInstance();
-	mario->Init(sprite_mario);
-	mario->SetPosition(D3DXVECTOR2(300, 300));
+	mario->Init();
+	mario->SetPosition(D3DXVECTOR2(300, 254));
 
 	posView = viewport->GetPosition();
 }
