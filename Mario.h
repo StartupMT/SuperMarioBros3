@@ -1,33 +1,26 @@
 ﻿#pragma once
-#include "Keyboard.h"
-#include "Viewport.h"
-#include "Animation.h"
+#include "Object.h"
+#include "MarioAnimation.h"
 #include "GameDefine.h"
 
 using namespace Define;
 
-class Mario
+class Mario : public Object
 {
 private:
 	static Mario* _mario;
 protected:
-	Sprite* sprite;
-	bool FlipFlag;
-	D3DXVECTOR2 position; //vị trí vẽ
-	D3DXVECTOR2 velocity;//Vector vận tốc
+	MarioAnimation* _marioAnim;
 public:
 	Mario(); 
 	~Mario();
 	const char* pathPNG;
 
+	InfoSprite* info_mario;
+
 	void Init(Sprite* sprite_mario);
 	void Update(float gameTime, Keyboard* key);
 	void Render(Viewport* viewport);
 	static Mario* GetInstance();
-
-	D3DXVECTOR2 GetPosition();
-	void SetPosition(D3DXVECTOR2 Position);
-	D3DXVECTOR2 GetVelocity();
-	void SetVelocity(D3DXVECTOR2 Velocity);
 };
 

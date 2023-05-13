@@ -4,7 +4,15 @@ Mario* Mario::_mario;
 
 Mario::Mario()
 {
+	AllowDraw = true;
+	Tag = Object::Player;
 	pathPNG = MarioPNG;
+	//Tạo Animation
+	info_mario = new InfoSprite(MarioXML);
+	_marioAnim = new MarioAnimation(info_mario);
+
+	position = D3DXVECTOR2(0, 0);
+	velocity = D3DXVECTOR2(0, 0);
 }
 
 Mario* Mario::GetInstance()
@@ -17,67 +25,51 @@ Mario* Mario::GetInstance()
 
 Mario::~Mario()
 {
-	delete sprite;
 }
 
 void Mario::Init(Sprite* sprite_mario)
 {
 	sprite = sprite_mario;
+	sprite->SetTexture(pathPNG);
+
+	SetState(Object::Standing);
+	HP = 1;
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
 {
 	if (key->IsKeyDown(Dik_RIGHT))
 	{
-		velocity.x = RunSpeed;
+		SetVelocityX(RunSpeed);
 		FlipFlag = true;
 	}
 	else if (key->IsKeyDown(Dik_LEFT))
 	{
-		velocity.x = -RunSpeed;
+		SetVelocityX(-RunSpeed);
 		FlipFlag = false;
 	}
-	else velocity.x = 0.0f;
-
-	if (key->IsKeyDown(Dik_UP))
-	{
-		velocity.y = RunSpeed;
-	}
-	else if (key->IsKeyDown(Dik_DOWN))
-	{
-		velocity.y = -RunSpeed;
-	}
-	else velocity.y = 0.0f;
-
-	position += velocity * gameTime * 100;
-
+	else SetVelocityX(0.0f);
+	//Chỉnh lại vị trí sau khi xét va chạm
+	Object::Update(gameTime, key);
 	//Update Animation
-	RECT marioRect = { 0, 0, 12, 15 };
-	sprite->SetRect(marioRect);
-	sprite->SetPosition(position);
-	sprite->Flip(FlipFlag);
-	sprite->Update(gameTime, key);
-}
-
-D3DXVECTOR2 Mario::GetPosition()
-{
-	return position;
-}
-void Mario::SetPosition(D3DXVECTOR2 Position)
-{
-	position = Position;
-}
-
-D3DXVECTOR2 Mario::GetVelocity()
-{
-	return velocity;
-}
-void Mario::SetVelocity(D3DXVECTOR2 Velocity)
-{
-	velocity = Velocity;
+	_marioAnim->SetPosition(D3DXVECTOR2( position.x , position.y - Height / 2));
+	_marioAnim->SetFlipFlag(FlipFlag);
+	_marioAnim->Update(gameTime, key);
 }
 
 void Mario::Render(Viewport* viewport)
 {
-	sprite->Render(viewport);
+	//Vẽ Mario
+	if (AllowDraw)
+	{
+		sprite->SetData(
+			_marioAnim->GetRect(),
+			_marioAnim->GetCenter(),
+			_marioAnim->GetPosition(),
+			_marioAnim->GetScale(),
+			_marioAnim->GetTransform(),
+			_marioAnim->GetAngle()
+		);
+		sprite->Render(viewport);
+	}
 }

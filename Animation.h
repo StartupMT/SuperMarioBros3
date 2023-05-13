@@ -9,6 +9,7 @@ protected:
 	bool Pause;
 
 public:
+	Animation(InfoSprite* info);
 	Animation();
 	~Animation();
 	//Set thông số để vẽ 

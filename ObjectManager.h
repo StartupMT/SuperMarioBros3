@@ -5,6 +5,7 @@
 #include "Mario.h"
 #include "Viewport.h"
 #include "Collision.h"
+#include <vector>
 #include "GameDefine.h"
 
 using namespace Define;
@@ -18,7 +19,6 @@ protected:
 	Mario* mario;
 	Map* map;
 
-	vector <RECT> listScene;
 	D3DXVECTOR2 posView;
 
 	Sprite* sprite_mario;
@@ -29,7 +29,9 @@ public:
 	static ObjectManager* GetInstance();
 	//Load Data Game
 	void InitDT(Graphic* graphic);
+
 	void Update(float gameTime, Keyboard* key);
+
 	//Vẽ Object lên màn hình
 	void Render();
 };

@@ -38,7 +38,7 @@ RECT Object::GetBound(float width, float height)
 	Height = height;
 	bound.left = position.x - width / 2;
 	bound.right = bound.left + width;
-	bound.top = position.y + height / 2;
+	bound.top = position.y + height/2;
 	bound.bottom = bound.top - height;
 	return bound;
 }
@@ -198,9 +198,9 @@ bool Object::Die()
 
 void Object::Update(float gameTime, Keyboard* key)
 {
-	position += velocity * gameTime * 100;
+	position += velocity *gameTime * 100;
 }
-void Object::OnCollision(Object* obj, D3DXVECTOR2 distance)
+void Object::OnCollision(Object *obj, D3DXVECTOR2 distance)
 {
 
 }

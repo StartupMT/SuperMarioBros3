@@ -1,8 +1,9 @@
 ﻿#include "Animation.h"
+#include "Object.h"
 
-
-Animation::Animation()
+Animation::Animation(InfoSprite* info)
 {
+	InfoTexture = info;
 	delay = 0;
 	start = 0;
 	end = 0;
@@ -11,6 +12,10 @@ Animation::Animation()
 	FlipFlag = false;
 	angle = 0;
 	Pause = false;
+}
+
+Animation::Animation()
+{
 }
 
 Animation::~Animation()
@@ -87,7 +92,8 @@ void Animation::Update(float gameTime, Keyboard* key)
 	}
 	//Kiểm tra Flip
 	Flip(FlipFlag);
-
+	//Set rect mới
+	SetRect(GetRect(Index));
 	//Lấy center
 	center.x = (rect.right - rect.left)/2;
 	center.y = (rect.bottom - rect.top) / 2;

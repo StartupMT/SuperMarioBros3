@@ -24,12 +24,14 @@ namespace Define
 		//Mario
 	const char MarioPNG[] = "./Resource Files/mario_png.png";
 	const char MarioXML[] = "./Resource Files/mario_info.xml";
+
 		//Map
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";
 	const char MapXML[] = "./Resource Files/Map_1.tmx";
 
+	//Delay 
+	const float RunDelay = 3;
+
 	//Speed
 	const float RunSpeed = 0.75f;
-	const float JumpSpeed = 1.0f;
-	const float Gravity = 1.0f;
 }

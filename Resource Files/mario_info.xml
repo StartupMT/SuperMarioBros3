@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:937267e52a87649b1e54d7646d5f301e:2a1e21978a0a6586134d72e0797ee6b5:784a671cf2dcf5f85d72de39515f11f6$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="mario_png" width="51" height="32">
+    <sprite n="0" x="37" y="0" w="14" h="16"/>
+    <sprite n="1" x="24" y="0" w="13" h="16"/>
+    <sprite n="2" x="0" y="0" w="12" h="15"/>
+    <sprite n="3" x="15" y="16" w="16" h="16"/>
+    <sprite n="4" x="0" y="16" w="15" h="16"/>
+    <sprite n="5" x="31" y="16" w="16" h="16"/>
+    <sprite n="6" x="12" y="0" w="12" h="15"/>
+</TextureAtlas>

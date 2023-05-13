@@ -30,7 +30,6 @@ void ObjectManager::InitDT(Graphic* graphic)
 {
 	//load sprite
 	sprite_mario = new Sprite(graphic, MarioPNG);
-
 	//load Objecct
 	map = new Map(graphic);
 	viewport = new Viewport(0, 0);
@@ -39,22 +38,29 @@ void ObjectManager::InitDT(Graphic* graphic)
 	mario->Init(sprite_mario);
 	mario->SetPosition(D3DXVECTOR2(300, 300));
 
-
 	posView = viewport->GetPosition();
 }
 
 //Update Game
 void ObjectManager::Update(float gameTime, Keyboard* key)
 {
+	//Kiểm tra va chạm xong mới update
 	mario->Update(gameTime, key);
+
 	//Update Viewport theo vị trí Mario
 	D3DXVECTOR2 posMario = mario->GetPosition();
 	viewport->Update(gameTime, key, posMario);
+	//Kiểm tra xem có rơi ra Scene không
+	if (posMario != mario->GetPosition())
+	{
+		mario->SetPosition(posMario);
+	}
 }
 
 //Vẽ
 void ObjectManager::Render()
 {
+	//Vẽ map
 	map->Render(viewport);
 	mario->Render(viewport);
 }

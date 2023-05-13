@@ -3,12 +3,14 @@
 #include "Graphic.h"
 #include "Keyboard.h"
 #include "Viewport.h"
+#include "InfoSprite.h"
 
 class Sprite
 {
 protected:
 	Graphic* SpriteGraphic;//Tạo graphic
 	LPDIRECT3DTEXTURE9 Texture;
+	InfoSprite* InfoTexture;
 	char* Pathpng;
 	float Width;//Sprite width
 	float Height;
@@ -38,6 +40,7 @@ public:
 	virtual float GetWidthFrame();
 	virtual float GetHeightFrame();
 
+	virtual RECT GetRect(int index);
 	virtual RECT GetRect();
 	virtual void SetRect(RECT Rect);
 

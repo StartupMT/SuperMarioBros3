@@ -123,15 +123,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Image Include="Resource Files\Bullet.png" />
+    <Image Include="Resource Files\Enemy.png" />
+    <Image Include="Resource Files\Items.png" />
+    <Image Include="Resource Files\MetriodTileMap.png" />
+    <Image Include="Resource Files\Port.png" />
+    <Image Include="Resource Files\SamusAranNormal.png" />
+    <Image Include="Resource Files\SamusAranRocket.png" />
+    <Image Include="Resource Files\SamusAranVaria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resource Files\Bullet.xml" />
+    <Xml Include="Resource Files\Enemy.xml" />
+    <Xml Include="Resource Files\Items.xml" />
+    <Xml Include="Resource Files\SuperMarioBros3Map.xml" />
+    <Xml Include="Resource Files\Port.xml" />
+    <Xml Include="Resource Files\SamusAran.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\SuperMarioBros3Map.tmx" />
+    <None Include="Resource Files\Test.tmx" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="InfoMap.cpp" />
+    <ClCompile Include="InfoSprite.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="MarioAnimation.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Mario.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -150,10 +174,12 @@
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="InfoMap.h" />
+    <ClInclude Include="InfoSprite.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="Mario.h" />
+    <ClInclude Include="MarioAnimation.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Mario.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sprite.h" />

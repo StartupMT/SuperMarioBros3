@@ -37,6 +37,11 @@ float Sprite::GetHeightFrame()
 	return rect.bottom - rect.top;
 }
 
+//Rect
+RECT Sprite::GetRect(int index)
+{
+	return InfoTexture->GetRect(index);
+}
 RECT Sprite::GetRect()
 {
 	return this->rect;
@@ -126,9 +131,6 @@ void Sprite::SetData(RECT Rect, D3DXVECTOR2 Center, D3DXVECTOR2 Position, D3DXVE
 //Vẽ sprite
 void Sprite::Update(float gameTime, Keyboard* key)
 {
-	//Lấy center
-	center.x = (rect.right - rect.left) / 2;
-	center.y = (rect.bottom - rect.top) / 2;
 }
 
 //Vẽ Sprite lên màn hình

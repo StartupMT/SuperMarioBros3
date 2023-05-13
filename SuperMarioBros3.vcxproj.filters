@@ -5,6 +5,10 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{06250ddd-d096-4707-a466-31c85084f294}</UniqueIdentifier>
     </Filter>
@@ -23,6 +27,60 @@
     <Filter Include="Global">
       <UniqueIdentifier>{8047e6d6-e6c5-428b-b620-75f37bb1333d}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Bullet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\Enemy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\Items.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\MetriodTileMap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\Port.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\SamusAranNormal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\SamusAranRocket.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource Files\SamusAranVaria.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resource Files\Bullet.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resource Files\Enemy.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resource Files\Items.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resource Files\SuperMarioBros3Map.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resource Files\Port.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="Resource Files\SamusAran.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\SuperMarioBros3Map.tmx">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resource Files\Test.tmx">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -49,6 +107,9 @@
     <ClCompile Include="Graphic.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="InfoSprite.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Global</Filter>
     </ClCompile>
@@ -57,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="InfoMap.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Mario.cpp">
       <Filter>Object\Player</Filter>
@@ -77,8 +141,8 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Object</Filter>
+    <ClCompile Include="MarioAnimation.cpp">
+      <Filter>Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +164,9 @@
     <ClInclude Include="Graphic.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="InfoSprite.h">
+      <Filter>Global</Filter>
+    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -108,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="InfoMap.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Mario.h">
       <Filter>Object\Player</Filter>
@@ -128,8 +198,8 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Object</Filter>
+    <ClInclude Include="MarioAnimation.h">
+      <Filter>Object\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
