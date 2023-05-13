@@ -1,6 +1,5 @@
 ﻿#include "Sprite.h"
 
-
 Sprite::Sprite()
 {
 }
@@ -99,12 +98,10 @@ void Sprite::SetAngle(float Angle)
 }
 
 
-
 void Sprite::SetFlipFlag(bool flag)
 {
 	FlipFlag = flag;
 }
-
 
 //Lật hình theo trục y
 void Sprite::Flip(bool flag)

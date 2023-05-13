@@ -3,7 +3,7 @@
 TileSet::TileSet()
 {
 }
-TileSet::TileSet(Graphic* graphic, int tilecount, int tilecolunm, float widthtile, float heighttile)
+TileSet::TileSet(Graphic* graphic,int tilecount, int tilecolunm, float widthtile, float heighttile)
 {
 	TileCount = tilecount;
 
@@ -13,9 +13,9 @@ TileSet::TileSet(Graphic* graphic, int tilecount, int tilecolunm, float widthtil
 
 	sprite = new Sprite(graphic, TileSetPNG);
 	for (int i = 0; i < TileCount; i++)
-	{
-		rect_tile[i].left = ((i % TileColunms) * WidthTile);
-		rect_tile[i].top = (i / TileColunms) * HeightTile;
+	{	
+		rect_tile[i].left = ((i % TileColunms)*WidthTile);
+		rect_tile[i].top = (i / TileColunms)*HeightTile;
 		rect_tile[i].right = rect_tile[i].left + WidthTile;
 		rect_tile[i].bottom = rect_tile[i].top + HeightTile;
 	}

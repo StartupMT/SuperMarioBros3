@@ -9,11 +9,11 @@ class InfoMap
 public:
 	string layerName;
 	int data[50][200];
-	int width, height, tileCount, tileColumns, numObjectGroups;
+	int width, height,tileCount,tileColumns,numObjectGroups;
 	float tileWidth, tileHeight;
-	InfoMap(const char* path);
+	InfoMap(const char *path);
 	~InfoMap();
-	void ReadXMl(const char* path);
+	void ReadXMl(const char *path);
 
 	int GetData(D3DXVECTOR2 pos);
 	void SetData(D3DXVECTOR2 position, int Data);

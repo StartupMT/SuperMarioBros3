@@ -11,10 +11,10 @@ protected:
 	Sprite* sprite;
 	RECT rect_tile[200];
 	float WidthTile, HeightTile;
-	int Id, TileColunms, TileCount;
+	int Id, TileColunms,TileCount;
 public:
 	TileSet();
-	TileSet(Graphic* graphic, int tilecount, int tilecolunm, float widthtile, float heighttile);
+	TileSet(Graphic* graphic,int tilecount, int tilecolunm, float widthtile, float heighttile);
 	~TileSet();
 
 	int GetId();

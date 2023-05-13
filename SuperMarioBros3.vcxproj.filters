@@ -11,6 +11,9 @@
     <Filter Include="Object">
       <UniqueIdentifier>{43e5cefe-7663-40d6-a194-d126bf8330bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sences">
+      <UniqueIdentifier>{86ade1ed-2999-426c-a99a-0b02534b1afa}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TinyXMl">
       <UniqueIdentifier>{5966f949-bf17-4890-9b0b-6a0af42dfa5a}</UniqueIdentifier>
     </Filter>
@@ -19,9 +22,6 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{8047e6d6-e6c5-428b-b620-75f37bb1333d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scence">
-      <UniqueIdentifier>{86ade1ed-2999-426c-a99a-0b02534b1afa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,14 +55,20 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="InfoMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
     <ClCompile Include="Mario.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Scence</Filter>
+      <Filter>Sences</Filter>
     </ClCompile>
     <ClCompile Include="Viewport.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSet.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Map</Filter>
@@ -71,11 +77,8 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="InfoMap.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileSet.cpp">
-      <Filter>Map</Filter>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,14 +106,20 @@
     <ClInclude Include="Sprite.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="InfoMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
     <ClInclude Include="Mario.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Scence</Filter>
+      <Filter>Sences</Filter>
     </ClInclude>
     <ClInclude Include="Viewport.h">
       <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSet.h">
+      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Map</Filter>
@@ -119,11 +128,8 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="InfoMap.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileSet.h">
-      <Filter>Map</Filter>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
