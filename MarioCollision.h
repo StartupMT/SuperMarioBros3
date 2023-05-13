@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Collision.h"
 #include "Object.h"
-#include "map"
 #include "GameDefine.h"
 
 using namespace Define;

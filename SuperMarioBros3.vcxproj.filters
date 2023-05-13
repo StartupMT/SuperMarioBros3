@@ -144,6 +144,9 @@
     <ClCompile Include="MarioCollision.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="MarioController.cpp">
+      <Filter>Object\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -199,6 +202,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="MarioCollision.h">
+      <Filter>Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioController.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
   </ItemGroup>

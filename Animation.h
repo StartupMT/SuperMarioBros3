@@ -3,14 +3,19 @@
 #include "InfoSprite.h"
 #include "map"
 
+
 class Animation : public Sprite
 {
 public:
-	struct DataAnim { int state, start, end, delay; };
+	struct DataAnim {
+		int start, end, state;
+		int delay = 10;
+	};
+	typedef map<int, DataAnim> DataAnimMap;
 
 protected:
 	InfoSprite* _infoAnim;
-	DataAnim _dataAnim[10];
+	DataAnimMap _dataAnim;
 	float TimeCurrent;
 	int delay, start, end, IndexPause;
 	bool Pause;
@@ -22,7 +27,7 @@ public:
 	//Set thông số để vẽ 
 	void SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, int End);
 
-	void SetDataAnimation(DataAnim dataAnim[]);
+	void SetDataAnimation(DataAnimMap dataAnim);
 	void NewAnimationByIndex(int index);
 
 	int GetIndex();

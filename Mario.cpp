@@ -15,6 +15,7 @@ Mario* Mario::GetInstance()
 
 Mario::~Mario()
 {
+	delete _marioController;
 	delete _marioCollision;
 	delete _mario;
 }
@@ -24,15 +25,16 @@ void Mario::Init()
 	//Tạo Animation
 	pathPNG = MarioPNG;
 
-	Animation::DataAnim data[] = {
-		{Object::Standing,	0,	0,	0},
-		{Object::Running,	1,	2,	20},
-		{Object::Jumping,	7,	7,	0},
-	};
+	Animation::DataAnimMap data;
+	data[Object::Standing] = { 19,19 };
+	data[Object::Running] = { 2,	3 };
+	data[Object::Jumping] = { 5,	5 };
+
 	_anim = new Animation(MarioXML, MarioPNG);
 	_anim->SetDataAnimation(data);
 
 	//Tạo class xử lý va chạm
+	_marioController = new MarioController();
 	_marioCollision = new MarioCollision();
 
 	AllowDraw = true;
@@ -40,32 +42,18 @@ void Mario::Init()
 	position = D3DXVECTOR2(0, 0);
 	velocity = D3DXVECTOR2(0, 0);
 	SetState(Object::Standing);
+	oldState = Object::Dying;
 	HP = 1;
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
 {
 	//Check handler controller
-	if (key->IsKeyDown(Dik_RIGHT))
-	{
-		SetVelocityX(RunSpeed);
-		FlipFlag = false;
-		State = Running;
-	}
-	else if (key->IsKeyDown(Dik_LEFT))
-	{
-		SetVelocityX(-RunSpeed);
-		FlipFlag = true;
-		State = Running;
-	}
-	else
-	{
-		SetVelocityX(0.0f);
-		State = Standing;
-	}
+	_marioController->PlayControllerF(key);
 
 	//Check mario collision by state
-	//_marioCollision->PlayCollisionF();
+	_marioCollision->PlayCollisionF();
+
 	//Chỉnh lại vị trí sau khi xét va chạm
 	Object::Update(gameTime, key);
 
@@ -89,14 +77,6 @@ void Mario::Render(Viewport* viewport)
 	//Vẽ Mario
 	if (AllowDraw)
 	{
-		//_anim->SetData(
-		//	_anim->GetRect(),
-		//	_anim->GetCenter(),
-		//	_anim->GetPosition(),
-		//	_anim->GetScale(),
-		//	_anim->GetTransform(),
-		//	_anim->GetAngle()
-		//);
 		_anim->Render(viewport);
 	}
 }

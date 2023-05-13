@@ -25,10 +25,10 @@ protected:
 
 public:
 	Sprite();
-	Sprite(const char* pathsprite);
+	Sprite(string pathsprite);
 	~Sprite();
 
-	virtual void SetTexture(const char* pathpng);
+	virtual void SetTexture(string pathpng);
 
 	virtual float GetWidthFrame();
 	virtual float GetHeightFrame();

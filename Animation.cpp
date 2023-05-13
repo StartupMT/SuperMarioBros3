@@ -1,8 +1,8 @@
 ﻿#include "Animation.h"
 
-Animation::Animation(InfoSprite* info)
+Animation::Animation(const char* pathInfo, const char* pathPNG) :Sprite(pathPNG)
 {
-	InfoTexture = info;
+	_infoAnim = new InfoSprite(pathInfo);
 	delay = 0;
 	start = 0;
 	end = 0;
@@ -31,17 +31,9 @@ void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, 
 	end = End;
 }
 
-void Animation::SetDataAnimation(DataAnim dataList[])
+void Animation::SetDataAnimation(DataAnimMap data)
 {
-	int i = 0;
-	while (true)
-	{
-		if (dataList[i].state >= 0 && dataList[i].state < 100)
-			_dataAnim[dataList[i].state] = dataList[i];
-		else
-			break;
-		++i;
-	}
+	_dataAnim = data;
 }
 
 void Animation::NewAnimationByIndex(int index)
@@ -100,7 +92,7 @@ void Animation::SetPause(bool pause, int index)
 void Animation::Update(float gameTime)
 {
 	//Chuyển frame tiếp theo
-	if (TimeCurrent*100 >= delay )
+	if (TimeCurrent * 100 >= delay)
 	{
 		TimeCurrent = 0;
 		Index++;
@@ -121,7 +113,7 @@ void Animation::Update(float gameTime)
 	//Set rect mới
 	SetRect(GetRectByIndex(Index));
 	//Lấy center
-	center.x = (rect.right - rect.left)/2;
+	center.x = (rect.right - rect.left) / 2;
 	center.y = (rect.bottom - rect.top) / 2;
 	////Kiểm tra center flip chỉnh transform
 	transform.x = 0;

@@ -17,11 +17,9 @@ protected:
 public:
 	Map();
 	~Map();
-	InfoMap *GetInfoMap();
-	int GetData(D3DXVECTOR2 pos);
-	void SetData(D3DXVECTOR2 position, int data);
+	InfoMap* GetInfoMap();
 
 	void Update(float gameTime);
-	void Render(Viewport * view);
+	void Render(Viewport* view);
 };
 

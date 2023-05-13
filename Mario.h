@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Object.h"
 #include "MarioCollision.h"
+#include "MarioController.h"
 #include "GameDefine.h"
 
 using namespace Define;
@@ -10,6 +11,7 @@ class Mario : public Object
 private:
 	static Mario* _mario;
 protected:
+	MarioController* _marioController;
 	MarioCollision* _marioCollision;
 	const char* pathPNG;
 public:

@@ -49,15 +49,13 @@ void InfoMap::ReadXMl(const char *path)
 }
 
 
-int InfoMap::GetData(D3DXVECTOR2 position)
+int InfoMap::GetData(int w, int h)
 {
-	int w = position.x / tileWidth;
-	int h = position.y / tileHeight;
-	return data[h][w];
+	if (data[h][w] <= tileCount)
+		return data[h][w];
+	return -1;
 }
-void InfoMap::SetData(D3DXVECTOR2 position, int Data)
+void InfoMap::SetData(int w, int h, int Data)
 {
-	int w = position.x / tileWidth;
-	int h = position.y / tileHeight;
 	data[h][w] = Data;
 }

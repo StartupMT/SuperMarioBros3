@@ -32,15 +32,19 @@ void  InfoSprite::ReadXML(const char* path)
 	sprite->QueryFloatAttribute("frameh", &this->frameH);
 	//Lấy thông tin từng index
 	sprite->QueryIntAttribute("frame", &this->Frame);
-	int n;
+	int n = 0;
 	for (indexml = sprite->FirstChildElement(); indexml != NULL; indexml = indexml->NextSiblingElement())
 	{
-		indexml->QueryIntAttribute("n", &n);
+		//indexml->QueryIntAttribute("n", &n);
 		indexml->QueryFloatAttribute("x", &this->InfoFrame[n].x);
 		indexml->QueryFloatAttribute("y", &this->InfoFrame[n].y);
 		indexml->QueryFloatAttribute("w", &this->InfoFrame[n].w);
 		indexml->QueryFloatAttribute("h", &this->InfoFrame[n].h);
+		indexml->QueryFloatAttribute("frameTime", &this->InfoFrame[n].frameTime);
+		this->InfoFrame[n].stateName = indexml->Attribute("id");
+		n++;
 	}
+	int a = 1;
 }
 
 float InfoSprite::GetWidth()

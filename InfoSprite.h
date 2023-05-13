@@ -1,5 +1,6 @@
 #pragma once
 #include <d3dx9.h>
+#include "string"
 #include "TinyXML\tinyxml.h"
 class InfoSprite
 {
@@ -12,8 +13,10 @@ protected:
 		float y;
 		float w;
 		float h;
+		float frameTime;
+		std::string stateName;
 	};
-	Infoframe InfoFrame[85];
+	Infoframe InfoFrame[300];
 public:
 	InfoSprite(const char* path);
 	~InfoSprite();

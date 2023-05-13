@@ -4,10 +4,6 @@
 
 Map::Map()
 {
-}
-
-Map::Map(Graphic* graphic)
-{
 	//load tileset lên
 	info = new InfoMap(MapXML);
 	this->tileset = new TileSet(info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
@@ -30,26 +26,20 @@ InfoMap* Map::GetInfoMap()
 	return info;
 }
 
-int Map::GetData(D3DXVECTOR2 position)
+void Map::Render(Viewport* view)
 {
-	int w = position.x / info->tileWidth;
-	int h = position.y / info->tileHeight;
-	return info->data[h][w];
-}
-void Map::SetData(D3DXVECTOR2 position, int data)
-{
-	int w = position.x / info->tileWidth;
-	int h = position.y / info->tileHeight;
-	info->data[h][w] = data;
-}
+	int startH, startW, endH, endW;
+	RECT r = view->GetBoundViewport();
+	startH = r.bottom / info->tileHeight;
+	endH = r.top / info->tileHeight + 1;
+	startW = r.left / info->tileWidth;
+	endW = r.right / info->tileWidth + 1;
 
-void Map::Render(Viewport * view)
-{
-	for (int h = 0; h < info->height; h++)
-		for (int w = 0; w < info->width; w++)
+	for (int h = startH; h < endH; h++)
+		for (int w = startW; w < endW; w++)
 		{
-			int id = info->data[h][w];
-			if (id > 0 && id < 90)
+			int id = info->GetData(w, h);
+			if (id > 0)
 			{
 				D3DXVECTOR2 position(w * info->tileWidth, (h + 1) * info->tileHeight);
 				tileset->Render(view, id, position);

@@ -5,7 +5,7 @@ Sprite::Sprite()
 }
 
 //Contructor
-Sprite::Sprite(const char* pathpng)
+Sprite::Sprite(string pathpng)
 {
 	SpriteGraphic = Graphic::GetInstance();
 	Texture = SpriteGraphic->LoadTexture(pathpng, D3DCOLOR_XRGB(156, 252, 240));
@@ -21,7 +21,7 @@ Sprite::~Sprite()
 }
 
 //Load lại Texture
-void Sprite::SetTexture(const char* pathpng)
+void Sprite::SetTexture(string pathpng)
 {
 	Texture = SpriteGraphic->LoadTexture(pathpng, D3DCOLOR_XRGB(156, 252, 240));
 }
