@@ -12,14 +12,14 @@ protected:
 	int WidthMap, HeightMap;
 	TileSet* tileset;
 	D3DXVECTOR2 position;
-	InfoMap* info;
+	InfoMap *info;
 
 public:
 	Map();
 	~Map();
-	InfoMap* GetInfoMap();
+	InfoMap *GetInfoMap();
 
 	void Update(float gameTime);
-	void Render(Viewport* view);
+	void Render(Viewport * view);
 };
 

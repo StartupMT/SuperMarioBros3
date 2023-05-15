@@ -6,7 +6,7 @@ Graphic::Graphic()
 {
 }
 
-Graphic::Graphic(HWND hind, int width, int height)
+void Graphic::Init(HWND hind, int width, int height)
 {
 	this->HwndS = hind;
 	this->Width = width;

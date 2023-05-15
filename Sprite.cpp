@@ -125,7 +125,7 @@ void Sprite::SetData(RECT Rect, D3DXVECTOR2 Center, D3DXVECTOR2 Position, D3DXVE
 	this->transform = Transform;
 }
 //Vẽ sprite
-void Sprite::Update(float gameTime, Keyboard* key)
+void Sprite::Update(float gameTime)
 {
 }
 

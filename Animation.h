@@ -7,7 +7,7 @@
 class Animation : public Sprite
 {
 public:
-	struct DataAnim {
+	struct DataAnim{
 		int start, end, state;
 		int delay = 10;
 	};

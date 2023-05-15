@@ -28,7 +28,6 @@ void InfoMap::ReadXMl(const char *path)
 	child1->QueryIntAttribute("tilecount", &tileCount);
 	child1->QueryIntAttribute("columns", &tileColumns);
 	TiXmlElement* child2 = child1->NextSiblingElement();
-	layerName = (char *)child2->Attribute("name");
 	TiXmlElement* child2_1 = child2->FirstChildElement();
 	dataText = child2_1->GetText();
 	char *token;

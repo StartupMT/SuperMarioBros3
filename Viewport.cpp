@@ -77,7 +77,7 @@ D3DXVECTOR2 Viewport::GetPositionViewport(D3DXVECTOR2 Position)
 
 	D3DXVec3Transform(&posViewport, position, &mt);
 
-	return D3DXVECTOR2(posViewport.x, posViewport.y);
+	return D3DXVECTOR2((int)posViewport.x, (int)posViewport.y);
 }
 
 //Kiểm tra 1 rect có ở trong màn hình không
@@ -92,7 +92,7 @@ bool Viewport::isContains(RECT rect)
 	if (rect.top < positionWorld.y - Height)
 		return false;
 
-	return D3DXVECTOR2((int)posViewport.x, (int)posViewport.y);
+	return true;
 }
 
 //Kích thước RECT màn hình tính trong World

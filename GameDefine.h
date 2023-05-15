@@ -25,7 +25,7 @@ namespace Define
 	const char MarioPNG[] = "./Resource Files/mario_png.png";
 	const char MarioXML[] = "./Resource Files/mario_info.xml";
 
-	//Map
+		//Map
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";
 	const char MapXML[] = "./Resource Files/Map_1.tmx";
 

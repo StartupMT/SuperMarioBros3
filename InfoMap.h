@@ -13,9 +13,9 @@ protected:
 public:
 	int width, height, tileCount, tileColumns;
 	float tileWidth, tileHeight;
-	InfoMap(const char* path);
+	InfoMap(const char *path);
 	~InfoMap();
-	void ReadXMl(const char* path);
+	void ReadXMl(const char *path);
 
 	int GetData(int w, int h);
 	void SetData(int w, int h, int Data);

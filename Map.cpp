@@ -26,7 +26,7 @@ InfoMap* Map::GetInfoMap()
 	return info;
 }
 
-void Map::Render(Viewport* view)
+void Map::Render(Viewport * view)
 {
 	int startH, startW, endH, endW;
 	RECT r = view->GetBoundViewport();

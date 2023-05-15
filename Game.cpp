@@ -51,7 +51,7 @@ bool Game::InitWD()
 
 	this->Hwnd = CreateWindow(
 		this->WindowName,
-		this->WindowName,
+		this->WindowName, 
 		WS_OVERLAPPEDWINDOW, 
 		CW_USEDEFAULT, 
 		CW_USEDEFAULT, 

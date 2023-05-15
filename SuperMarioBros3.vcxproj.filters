@@ -27,6 +27,12 @@
     <Filter Include="Global">
       <UniqueIdentifier>{8047e6d6-e6c5-428b-b620-75f37bb1333d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global\GUI">
+      <UniqueIdentifier>{7b6c0f27-3d62-4719-840a-74b87e1cebe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Wall">
+      <UniqueIdentifier>{1a49f1e6-5dc6-400f-9b42-7cd7ef1ef855}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Bullet.png">
@@ -147,6 +153,12 @@
     <ClCompile Include="MarioController.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="DrawLine.cpp">
+      <Filter>Global\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Object\Wall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -206,6 +218,12 @@
     </ClInclude>
     <ClInclude Include="MarioController.h">
       <Filter>Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawLine.h">
+      <Filter>Global\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Object\Wall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

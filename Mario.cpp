@@ -26,9 +26,9 @@ void Mario::Init()
 	pathPNG = MarioPNG;
 
 	Animation::DataAnimMap data;
-	data[Object::Standing] = { 19,19 };
-	data[Object::Running] = { 2,	3 };
-	data[Object::Jumping] = { 5,	5 };
+	data[Object::Standing] =	{19,19};
+	data[Object::Running] =		{2,	3};
+	data[Object::Jumping] =		{5,	5};
 
 	_anim = new Animation(MarioXML, MarioPNG);
 	_anim->SetDataAnimation(data);

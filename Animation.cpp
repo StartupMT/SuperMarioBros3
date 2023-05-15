@@ -1,6 +1,6 @@
 ﻿#include "Animation.h"
 
-Animation::Animation(const char* pathInfo, const char* pathPNG) :Sprite(pathPNG)
+Animation::Animation(const char* pathInfo, const char* pathPNG):Sprite(pathPNG)
 {
 	_infoAnim = new InfoSprite(pathInfo);
 	delay = 0;
@@ -92,7 +92,7 @@ void Animation::SetPause(bool pause, int index)
 void Animation::Update(float gameTime)
 {
 	//Chuyển frame tiếp theo
-	if (TimeCurrent * 100 >= delay)
+	if (TimeCurrent*100 >= delay )
 	{
 		TimeCurrent = 0;
 		Index++;
@@ -113,7 +113,7 @@ void Animation::Update(float gameTime)
 	//Set rect mới
 	SetRect(GetRectByIndex(Index));
 	//Lấy center
-	center.x = (rect.right - rect.left) / 2;
+	center.x = (rect.right - rect.left)/2;
 	center.y = (rect.bottom - rect.top) / 2;
 	////Kiểm tra center flip chỉnh transform
 	transform.x = 0;
