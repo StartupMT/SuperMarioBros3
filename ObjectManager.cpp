@@ -16,12 +16,14 @@ ObjectManager* ObjectManager::GetInstance()
 ObjectManager::ObjectManager()
 {
 	viewport = new Viewport(0, 0);
+	gui = new GUI();
 }
 ObjectManager::~ObjectManager()
 {
 	delete map;
 	delete viewport;
 	delete mario;
+	delete gui;
 	for (size_t i = 0; i < _listObject.size(); i++)
 	{
 		delete _listObject.at(i);
@@ -40,7 +42,7 @@ void ObjectManager::InitDT()
 
 	//Wall
 	Wall* wall = new Wall();
-	wall->Init(Wall::normal, D3DXVECTOR2(300, 204));
+	wall->Init(Wall::normal, D3DXVECTOR2(300, 230));
 	Wall* wall1 = new Wall();
 	wall1->Init(Wall::normal, D3DXVECTOR2(200, 180));
 
@@ -85,5 +87,11 @@ void ObjectManager::Render()
 {
 	//Vẽ map
 	map->Render(viewport);
-	mario->Render(viewport);
+	//Vẽ
+	for (size_t i = 0; i < _listObject.size(); i++)
+		_listObject.at(i)->Render(viewport);
+
+	//GUI
+	gui->Render();
+
 }

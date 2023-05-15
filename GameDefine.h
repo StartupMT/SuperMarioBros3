@@ -25,19 +25,24 @@ namespace Define
 	const char MarioPNG[] = "./Resource Files/mario_png.png";
 	const char MarioXML[] = "./Resource Files/mario_info.xml";
 
-		//Map
+	//Map
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";
 	const char MapXML[] = "./Resource Files/Map_1.tmx";
 
 	//Delay 
 	const int RunDelay = 3;
 
-	//Speed
-	const float RunSpeed = 1.5f;
+	//Run
+	const float RunSpeed = 1.0f;
+	const float SlowDown = 0.20f;
+	const float MaxRun = 1.5f;
+	const float MaxSpeed = 2.0f;
+	const float MaxTimeAcc = 0.02f;
+	const int MaxSpeedCount = 50;
+
+	//Jump
 	const float JumpSpeed = 1.0f;
 	const float Gravity = 2.0f;
 	const float FallAc = 0.25f;
-
-	//Max
-	const float JumpMax = 1.0f;
+	const float MaxJump = 1.0f;
 }

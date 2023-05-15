@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Graphic.h"
 #include "Keyboard.h"
+#include "GUI.h"
 #include "Map.h"
 #include "Mario.h"
 #include "Viewport.h"
@@ -22,6 +23,7 @@ protected:
 	Mario* mario;
 	Map* map;
 
+	GUI* gui;
 	D3DXVECTOR2 posView;
 public:
 	ObjectManager();

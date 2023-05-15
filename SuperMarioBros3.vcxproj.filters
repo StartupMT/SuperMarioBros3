@@ -159,6 +159,12 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Object\Wall</Filter>
     </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Global\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawString.cpp">
+      <Filter>Global\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -224,6 +230,12 @@
     </ClInclude>
     <ClInclude Include="Wall.h">
       <Filter>Object\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Global\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawString.h">
+      <Filter>Global\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -148,8 +148,10 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="DrawLine.cpp" />
+    <ClCompile Include="DrawString.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="InfoMap.cpp" />
     <ClCompile Include="InfoSprite.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -174,9 +176,11 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="DrawLine.h" />
+    <ClInclude Include="DrawString.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="InfoMap.h" />
     <ClInclude Include="InfoSprite.h" />
     <ClInclude Include="Keyboard.h" />
