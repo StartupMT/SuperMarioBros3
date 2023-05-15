@@ -13,10 +13,16 @@ private:
 	typedef map<int, MarioControllerF> FunctionMap;
 	FunctionMap _functionMap;
 
-protected:
-	bool isAllowJump, isAllowAttack, isAllowFly, isFall;
-	float timeAttack;
+public:
+	bool isAllowJump, isAllowAttack, isAllowFly, isFall, isBake, isCount, isSpeedJump;
+	float timeAttack, timeAc;
 	float posStartJump;
+
+	float maxSpeed;
+	float accelerate, accDown;
+	float maxJump;
+	int accCount = 0;
+
 	Mario* mario;
 	Keyboard* key;
 public:
@@ -30,5 +36,6 @@ public:
 	void JumpState();
 	void AttackState();
 	void DeadState();
-	void PlayControllerF(Keyboard* key);
+	void PlayControllerF();
+	void Update(float gameTime, Keyboard* key);
 };

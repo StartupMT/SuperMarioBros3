@@ -8,8 +8,7 @@ class Animation : public Sprite
 {
 public:
 	struct DataAnim{
-		int start, end, state;
-		int delay = 10;
+		int start, end, delay = 10, state;
 	};
 	typedef map<int, DataAnim> DataAnimMap;
 

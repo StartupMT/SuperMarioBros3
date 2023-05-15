@@ -10,7 +10,14 @@ class Mario : public Object
 {
 private:
 	static Mario* _mario;
-protected:
+public:
+	enum MarioType
+	{
+		Small = 100,
+		Big = 200,
+		Raccoon = 300,
+	} _marioType;
+
 	MarioController* _marioController;
 	MarioCollision* _marioCollision;
 	const char* pathPNG;
@@ -21,7 +28,7 @@ public:
 	void Init();
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
-	void UpdateAnimation(float gameTime);
+	void UpdateAnimation();
 	void SetTexture(char* path);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);

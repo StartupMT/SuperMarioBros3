@@ -32,16 +32,14 @@ public:
 
 	enum Stateobject
 	{
-		Standing,
-		Running,
-		Jumping,
-		Attacking,
-		Sitting,
-		Dying,
+		Standing = 0,
+		Running = 10,
+		Jumping = 20,
+		Attacking = 30,
+		Sitting = 40,
+		Dying = 50,
 	};
 	Stateobject State;
-	Stateobject oldState = Stateobject::Standing;
-	Stateobject nextState = Stateobject::Standing;
 	Object();
 	~Object();
 	static tag GetTag(string name);
