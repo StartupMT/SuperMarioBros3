@@ -13,10 +13,12 @@ private:
 	FunctionMap _functionMap;
 protected:
 	Mario* mario;
+	bool isSpeed, isJump, isBake;
 public:
 	MarioCollision();
 	~MarioCollision();
 
+	void OnCollision();
 	void PlayCollisionF();
 
 	void StandCollision();

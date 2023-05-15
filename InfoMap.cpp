@@ -50,7 +50,7 @@ void InfoMap::ReadXMl(const char *path)
 
 int InfoMap::GetData(int w, int h)
 {
-	if (data[h][w] <= tileCount)
+	if (data[h][w] > 0)
 		return data[h][w];
 	return -1;
 }

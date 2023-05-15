@@ -13,6 +13,11 @@ MarioCollision::~MarioCollision()
 {
 }
 
+void MarioCollision::OnCollision()
+{
+
+}
+
 //Chạy function ứng với state mario
 void MarioCollision::PlayCollisionF()
 {

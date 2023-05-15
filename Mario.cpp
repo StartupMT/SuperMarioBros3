@@ -46,7 +46,7 @@ void Mario::Init()
 	HP = 1;
 }
 
-void Mario::Update(float gameTime, Keyboard* key)
+void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	//Check handler controller
 	_marioController->PlayControllerF(key);
@@ -54,22 +54,46 @@ void Mario::Update(float gameTime, Keyboard* key)
 	//Check mario collision by state
 	_marioCollision->PlayCollisionF();
 
-	//Chỉnh lại vị trí sau khi xét va chạm
-	Object::Update(gameTime, key);
-
 	//Update Animation
 	UpdateAnimation(gameTime);
 	oldState = State;
 }
 
+void Mario::Update(float gameTime, Keyboard* key)
+{
+	position += velocity * gameTime * 100;
+	//Object::Update(gameTime, key);
+}
+
 void Mario::UpdateAnimation(float gameTime)
 {
 	if (State != oldState)
+	{
 		_anim->NewAnimationByIndex(State);
+	}
 
-	_anim->SetPosition(D3DXVECTOR2(position.x, position.y - Height / 2));
+	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
 	_anim->Update(gameTime);
+
+	SetBound(20, 20);
+}
+
+void Mario::SetTexture(char* path)
+{
+	pathPNG = path;
+	_anim->SetTexture(pathPNG);
+}
+
+void Mario::SetBound(float width, float height)
+{
+	InfoSprite::Infoframe info = _anim->GetCurrentFrameInfo();
+	Width = info.w;
+	Height = info.h;
+	bound.left = position.x - Width / 2;
+	bound.right = bound.left + Width;
+	bound.top = position.y + Height;
+	bound.bottom = position.y;
 }
 
 void Mario::Render(Viewport* viewport)
@@ -79,10 +103,5 @@ void Mario::Render(Viewport* viewport)
 	{
 		_anim->Render(viewport);
 	}
-}
-
-void Mario::SetTexture(char* path)
-{
-	pathPNG = path;
-	_anim->SetTexture(pathPNG);
+	DrawLine::GetInstance()->DrawRect(bound);
 }

@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include <vector>
 #include "GameDefine.h"
+#include "Wall.h"
 
 using namespace Define;
 
@@ -15,6 +16,8 @@ class ObjectManager
 private:
 	static ObjectManager* _objectManager;
 protected:
+	vector <Object*> _listObject;
+
 	Viewport* viewport;
 	Mario* mario;
 	Map* map;
@@ -30,6 +33,7 @@ public:
 
 	void Update(float gameTime, Keyboard* key);
 
+	Viewport* GetViewPort();
 	//Vẽ Object lên màn hình
 	void Render();
 };

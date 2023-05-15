@@ -33,6 +33,7 @@ public:
 	int GetIndex();
 	void SetIndex(int index);
 	RECT GetRectByIndex(int index);
+	InfoSprite::Infoframe GetCurrentFrameInfo();
 	bool GetFlipFlag();
 	int GetDelay();
 	int GetStart();

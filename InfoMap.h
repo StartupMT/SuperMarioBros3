@@ -9,7 +9,6 @@ class InfoMap
 {
 protected:
 	map<int, map<int, int>> data;
-
 public:
 	int width, height, tileCount, tileColumns;
 	float tileWidth, tileHeight;

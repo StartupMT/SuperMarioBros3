@@ -5,7 +5,6 @@ Object::Object()
 {
 }
 
-
 Object::~Object()
 {
 }
@@ -189,11 +188,38 @@ bool Object::Die()
 
 void Object::Update(float gameTime, Keyboard* key)
 {
-	position += velocity *gameTime * 100;
+	position += velocity * gameTime * 100;
 }
 void Object::OnCollision(Object *obj, D3DXVECTOR2 distance)
 {
+	D3DXVECTOR2 side;
+	D3DXVECTOR2 distance = velocity * gameTime * 100;
+	RECT board = GetBoard(distance);
+	//Nếu obj trong vùng di chuyển
+	if (Collision::isCollision(board, obj->GetBound()))
+	{
+		if (!Collision::isCollision1(GetBound(), obj->GetBound()))
+		{
+			//lấy thời gian va chạm
+			float Time = Collision::CollisionAABB(GetBound(), obj->GetBound(), distance, side);
 
+			//bé hơn 1 thì có va chạm
+			if (Time < 1.0f)
+			{
+				//Chạm trục nào update rồi cho vận tốc bằng không
+				if (side.x != 0.0f)
+				{
+					position.x += distance.x * Time;
+					velocity.x = 0;
+				}
+				else if (side.y != 0.0f)
+				{
+					position.y += distance.y * Time;
+					velocity.y = 0;
+				}
+			}
+		}
+	}
 }
 void Object::Render(Viewport* viewport)
 {

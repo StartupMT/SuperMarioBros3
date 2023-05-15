@@ -19,10 +19,11 @@ public:
 	~Mario();
 
 	void Init();
+	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation(float gameTime);
-	void Render(Viewport* viewport);
 	void SetTexture(char* path);
+	void SetBound(float width, float height);
+	void Render(Viewport* viewport);
 	static Mario* GetInstance();
 };
-

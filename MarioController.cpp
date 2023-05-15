@@ -32,7 +32,7 @@ void MarioController::StandState()
 {
 	isAllowJump = true;//Cho nhảy khi đứng hoặc chạy
 	isFall = false;//cho nhảy thì không rơi
-	mario->SetVelocity(0, 0);
+	mario->SetVelocity(0, -Gravity);
 	if (key->IsKeyDown(Dik_JUMP))
 	{
 		mario->SetState(Object::Jumping);

@@ -59,6 +59,11 @@ RECT Animation::GetRectByIndex(int index)
 	return _infoAnim->GetRect(index);
 }
 
+InfoSprite::Infoframe Animation::GetCurrentFrameInfo()
+{
+	return _infoAnim->GetInfoByIndex(start);
+}
+
 bool Animation::GetFlipFlag()
 {
 	return FlipFlag;

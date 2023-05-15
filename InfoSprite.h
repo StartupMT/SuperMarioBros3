@@ -1,12 +1,11 @@
 #pragma once
 #include <d3dx9.h>
 #include "string"
+#include "map"
 #include "TinyXML\tinyxml.h"
 class InfoSprite
 {
-protected:
-	float Width, Height ,frameW , frameH;
-	int Frame;
+public:
 	struct Infoframe
 	{
 		float x;
@@ -17,6 +16,11 @@ protected:
 		std::string stateName;
 	};
 	Infoframe InfoFrame[300];
+protected:
+	float Width, Height, frameW, frameH;
+	int Frame;
+	typedef std::map<int, Infoframe> InfoFrame;
+	InfoFrame _infoFrame;
 public:
 	InfoSprite(const char* path);
 	~InfoSprite();
@@ -28,5 +32,6 @@ public:
 
 	void ReadXML(const char* path);
 	RECT GetRect(int Index);
+	Infoframe GetInfoByIndex(int index);
 };
 

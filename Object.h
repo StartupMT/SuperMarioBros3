@@ -2,7 +2,7 @@
 #include "Viewport.h"
 #include "Animation.h"
 #include "Collision.h"
-
+#include "DrawLine.h"
 
 class Object
 {
@@ -105,9 +105,7 @@ public:
 	virtual void Update(float gameTime, Keyboard* key);
 	virtual void Render(Viewport* viewport);
 	// va cham
-	virtual void OnCollision(Object *obj, D3DXVECTOR2 distance);
-	virtual void OnCollision(Object *obj) {}
-	virtual void OnCollision() {}
+	virtual void OnCollision(Object* obj, float gameTime);
 	RECT GetBoard(D3DXVECTOR2 distance);
 	virtual void SetName(string name) { this->name = name; }
 	virtual string GetName() { return name; }

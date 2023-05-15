@@ -36,12 +36,16 @@ void  InfoSprite::ReadXML(const char* path)
 	for (indexml = sprite->FirstChildElement(); indexml != NULL; indexml = indexml->NextSiblingElement())
 	{
 		//indexml->QueryIntAttribute("n", &n);
-		indexml->QueryFloatAttribute("x", &this->InfoFrame[n].x);
-		indexml->QueryFloatAttribute("y", &this->InfoFrame[n].y);
-		indexml->QueryFloatAttribute("w", &this->InfoFrame[n].w);
-		indexml->QueryFloatAttribute("h", &this->InfoFrame[n].h);
-		indexml->QueryFloatAttribute("frameTime", &this->InfoFrame[n].frameTime);
-		this->InfoFrame[n].stateName = indexml->Attribute("id");
+		float x, y, w, h, frameTime;
+		std::string stateName;
+		indexml->QueryFloatAttribute("x", &x);
+		indexml->QueryFloatAttribute("y", &y);
+		indexml->QueryFloatAttribute("w", &w);
+		indexml->QueryFloatAttribute("h", &h);
+		indexml->QueryFloatAttribute("frameTime", &frameTime);
+		stateName = indexml->Attribute("id");
+
+		this->_infoFrame[n] = { x, y, w, h, frameTime, stateName };
 		n++;
 	}
 	int a = 1;
@@ -70,9 +74,14 @@ float InfoSprite::GetFrameHeight()
 RECT InfoSprite::GetRect(int Index)
 {
 	RECT rect;
-	rect.left = InfoFrame[Index].x;	//x = IndexInfo[Index][0];
-	rect.top = InfoFrame[Index].y;		//y = IndexInfo[Index][1];
-	rect.right = rect.left + InfoFrame[Index].w;
-	rect.bottom = rect.top + InfoFrame[Index].h;
+	rect.left = _infoFrame[Index].x;	//x = IndexInfo[Index][0];
+	rect.top = _infoFrame[Index].y;		//y = IndexInfo[Index][1];
+	rect.right = rect.left + _infoFrame[Index].w;
+	rect.bottom = rect.top + _infoFrame[Index].h;
 	return rect;
+}
+
+InfoSprite::Infoframe InfoSprite::GetInfoByIndex(int index)
+{
+	return _infoFrame[index];
 }

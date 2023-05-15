@@ -15,12 +15,17 @@ ObjectManager* ObjectManager::GetInstance()
 
 ObjectManager::ObjectManager()
 {
+	viewport = new Viewport(0, 0);
 }
 ObjectManager::~ObjectManager()
 {
 	delete map;
 	delete viewport;
 	delete mario;
+	for (size_t i = 0; i < _listObject.size(); i++)
+	{
+		delete _listObject.at(i);
+	}
 }
 
 //Load Data Game
@@ -28,11 +33,20 @@ void ObjectManager::InitDT()
 {
 	//load Objecct
 	map = new Map();
-	viewport = new Viewport(0, 0);
 	//Mario bắt đầu 
 	mario = Mario::GetInstance();
 	mario->Init();
 	mario->SetPosition(D3DXVECTOR2(300, 254));
+
+	//Wall
+	Wall* wall = new Wall();
+	wall->Init(Wall::normal, D3DXVECTOR2(300, 204));
+	Wall* wall1 = new Wall();
+	wall1->Init(Wall::normal, D3DXVECTOR2(200, 180));
+
+	_listObject.push_back(mario);
+	_listObject.push_back(wall);
+	_listObject.push_back(wall1);
 
 	posView = viewport->GetPosition();
 }
@@ -40,8 +54,16 @@ void ObjectManager::InitDT()
 //Update Game
 void ObjectManager::Update(float gameTime, Keyboard* key)
 {
-	//Kiểm tra va chạm xong mới update
-	mario->Update(gameTime, key);
+	mario->BeforeUpdate(gameTime, key);
+	//Check Collision
+	for (size_t i = 0; i < _listObject.size(); i++)
+		for (size_t j = 0; j < _listObject.size(); j++)
+			if (i != j)
+				_listObject.at(i)->OnCollision(_listObject.at(j), gameTime);
+
+	//Update all Object
+	for (size_t i = 0; i < _listObject.size(); i++)
+		_listObject.at(i)->Update(gameTime, key);
 
 	//Update Viewport theo vị trí Mario
 	D3DXVECTOR2 posMario = mario->GetPosition();
@@ -51,6 +73,11 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 	{
 		mario->SetPosition(posMario);
 	}
+}
+
+Viewport* ObjectManager::GetViewPort()
+{
+	return viewport;
 }
 
 //Vẽ

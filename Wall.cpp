@@ -33,6 +33,6 @@ void Wall::Render(Viewport* viewport)
 {
 	if (AllowDraw)
 	{
-		
+		DrawLine::GetInstance()->DrawRect(GetBound());
 	}
 }
