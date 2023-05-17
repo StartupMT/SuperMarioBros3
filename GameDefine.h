@@ -24,6 +24,12 @@ namespace Define
 		//Mario
 	const char MarioPNG[] = "./Resource Files/mario_png.png";
 	const char MarioXML[] = "./Resource Files/mario_info.xml";
+		//Enemy
+	const char EnemyPNG[] = "./Resource Files/enemy_png.png";
+	const char EnemyXML[] = "./Resource Files/enemy_info.xml";
+		//Misc
+	const char MiscPNG[] = "./Resource Files/misc_png.png";
+	const char MiscXML[] = "./Resource Files/misc_info.xml";
 
 	//Map
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";

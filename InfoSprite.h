@@ -15,7 +15,6 @@ public:
 		float frameTime;
 		std::string stateName;
 	};
-	Infoframe InfoFrame[300];
 protected:
 	float Width, Height, frameW, frameH;
 	int Frame;

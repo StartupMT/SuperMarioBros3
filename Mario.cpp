@@ -37,10 +37,10 @@ void Mario::Init()
 	data[Mario::Small + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
 	//Big
 	data[Mario::Big + Object::Standing] = { 47, 47 };
-	data[Mario::Big + Object::Running] = { 2,	3 };
+	data[Mario::Big + Object::Running] = { 26,	27 };
 	data[Mario::Big + Object::Running + 1] = { 2, 3, 5 };	//Chạy nhanh
 	data[Mario::Big + Object::Running + 2] = { 6, 7, 1 };	//Trượt
-	data[Mario::Big + Object::Running + 3] = { 4, 4 };	//Thắng
+	data[Mario::Big + Object::Running + 3] = { 28, 28 };	//Thắng
 	data[Mario::Big + Object::Jumping] = { 5, 5 };
 	data[Mario::Big + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
 	//Raccoon
@@ -52,9 +52,12 @@ void Mario::Init()
 	data[Mario::Raccoon + Object::Jumping] = { 5, 5 };
 	data[Mario::Raccoon + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
 
-	//data[Mario::Small + Object::Standing] = { 19,19 };
+	data[Mario::Small + Object::Standing] = { 19 , 19 };
 
+	//_anim = new Animation(EnemyXML, EnemyPNG);
+	//_anim = new Animation(MiscXML, MiscPNG);
 	_anim = new Animation(MarioXML, MarioPNG);
+
 	_anim->SetDataAnimation(data);
 
 	//Tạo class xử lý va chạm
@@ -111,6 +114,25 @@ void Mario::SetTexture(char* path)
 {
 	pathPNG = path;
 	_anim->SetTexture(pathPNG);
+}
+
+void Mario::ChangeMarioType(MarioType marioType)
+{
+	//_marioType = marioType;
+	//if (key->IsKeyDown(DIK_A))
+	//{
+	//	this->SetBound(15, 15);
+	//}
+	//if (key->IsKeyDown(DIK_S))
+	//{
+	//	mario->_marioType = Mario::Big;
+	//	mario->SetBound(17, 25);
+	//}
+	//if (key->IsKeyDown(DIK_D))
+	//{
+	//	mario->_marioType = Mario::Raccoon;
+	//	mario->SetBound(17, 25);
+	//}
 }
 
 void Mario::SetBound(float width, float height)

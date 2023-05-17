@@ -42,10 +42,10 @@ void  InfoSprite::ReadXML(const char* path)
 		indexml->QueryFloatAttribute("y", &y);
 		indexml->QueryFloatAttribute("w", &w);
 		indexml->QueryFloatAttribute("h", &h);
-		indexml->QueryFloatAttribute("frameTime", &frameTime);
+		//indexml->QueryFloatAttribute("frameTime", &frameTime);
 		stateName = indexml->Attribute("id");
 
-		this->_infoFrame[n] = { x, y, w, h, frameTime, stateName };
+		this->_infoFrame[n] = { x, y, w, h, 100, stateName };
 		n++;
 	}
 	int a = 1;

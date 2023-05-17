@@ -30,6 +30,7 @@ public:
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation();
 	void SetTexture(char* path);
+	void ChangeMarioType(MarioType marioType);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Mario* GetInstance();

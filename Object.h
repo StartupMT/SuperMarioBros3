@@ -114,4 +114,3 @@ public:
 	}
 	virtual void New();
 };
-

@@ -42,9 +42,9 @@ void ObjectManager::InitDT()
 
 	//Wall
 	Wall* wall = new Wall();
-	wall->Init(Wall::normal, D3DXVECTOR2(300, 230));
+	wall->Init(Wall::normal, D3DXVECTOR2(300, 235));
 	Wall* wall1 = new Wall();
-	wall1->Init(Wall::normal, D3DXVECTOR2(200, 180));
+	wall1->Init(Wall::normal, D3DXVECTOR2(300+300-1500, 240));
 
 	_listObject.push_back(mario);
 	_listObject.push_back(wall);
