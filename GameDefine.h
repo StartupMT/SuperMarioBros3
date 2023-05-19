@@ -47,8 +47,9 @@ namespace Define
 	const int MaxSpeedCount = 50;
 
 	//Jump
-	const float JumpSpeed = 1.0f;
-	const float Gravity = 2.0f;
-	const float FallAc = 0.25f;
-	const float MaxJump = 1.0f;
+	const float JumpSpeed = 1.5f;
+	const float Gravity = -1.5f;
+	const float FallAc = 0.3f;
+	const float EnemyJump = 16.0f;
+	const float MaxJump = 64.0f;
 }

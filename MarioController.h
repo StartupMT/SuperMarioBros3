@@ -14,14 +14,17 @@ private:
 	FunctionMap _functionMap;
 
 public:
-	bool isAllowJump, isAllowAttack, isAllowFly, isFall, isBake, isCount, isSpeedJump;
-	float timeAttack, timeAc;
-	float posStartJump;
-
-	float maxSpeed;
-	float accelerate, accDown;
-	float maxJump;
+	//Run
+	bool isBake, isCount, isSpeed;
+	float accDown;
 	int accCount = 0;
+	//Jump
+	bool isAllowJump, isFall, isSpeedJump;
+	float posYStartJump, velYStartFall, maxJump, fallAc;
+	//Attack
+	bool isAllowAttack;
+	float timeAttack, timeAc;
+
 
 	Mario* mario;
 	Keyboard* key;
@@ -29,7 +32,6 @@ public:
 	MarioController();
 	~MarioController();
 
-	void Fall();//Rơi
 	void StandState();
 	void RunState();
 	void MoveX();

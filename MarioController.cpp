@@ -8,7 +8,6 @@ MarioController::MarioController()
 	isAllowJump = false;
 	isFall = true;
 	isAllowAttack = false;
-	isAllowFly = false;
 	timeAttack = 0.0f;
 
 	_functionMap[Object::Standing] = &MarioController::StandState;
@@ -21,18 +20,12 @@ MarioController::~MarioController()
 {
 }
 
-//Rơi
-void MarioController::Fall()
-{
-	mario->SetVelocityY(-Gravity);
-}
-
 //Trạng thái Đứng
 void MarioController::StandState()
 {
 	isAllowJump = true;//Cho nhảy khi đứng hoặc chạy
 	isFall = false;//cho nhảy thì không rơi
-	mario->SetVelocityY(-Gravity);
+	mario->SetVelocityY(Gravity);
 	if (key->IsKeyDown(Dik_JUMP))
 	{
 		mario->SetState(Object::Jumping);
@@ -55,9 +48,8 @@ void MarioController::StandState()
 void MarioController::RunState()
 {
 	isAllowJump = true;
-	isAllowFly = false;
 	isFall = false;
-	mario->SetVelocityY(-Gravity);
+	mario->SetVelocityY(Gravity);
 	if (key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT))
 	{
 		if (key->IsKeyDown(Dik_JUMP))
@@ -70,18 +62,13 @@ void MarioController::RunState()
 				isCount = true;
 		}
 	}
-	else
-	{
-		if (mario->GetVelocity().x == 0)
-			mario->SetState(Object::Standing);
-	}
 }
 
 void MarioController::MoveX()
 {
 	float speed = mario->GetVelocity().x;
 	float speedRun = key->IsKeyDown(Dik_ATTACK) ? MaxRun : RunSpeed;
-	speedRun = accCount >= MaxSpeedCount ? MaxSpeed : speedRun;
+	speedRun = isSpeed ? MaxSpeed : speedRun;
 	isBake = false;
 	if (key->IsKeyDown(Dik_RIGHT))
 	{
@@ -116,24 +103,32 @@ void MarioController::JumpState()
 {
 	if (isAllowJump)
 	{
-		isSpeedJump = accCount >= MaxSpeedCount;
-		posStartJump = mario->GetPosition().y;
-		mario->SetVelocityY(JumpSpeed);
+		isSpeedJump = isSpeed;
+		posYStartJump = mario->GetPosition().y;
+		maxJump = mario->_marioCollision->isEnemyJump ? EnemyJump : MaxJump;
+		isFall = false;
 	}
 	isAllowJump = false;
+	isCount = isSpeedJump;
+	float jumpSpeed = isSpeedJump ? JumpSpeed * 1.2 : JumpSpeed;
 
-	if (key->GIsKeyUp(Dik_JUMP) || (mario->GetPosition().y - posStartJump) >= MaxJump)
+	//Fall
+	if (!isFall && ((key->GIsKeyUp(Dik_JUMP) && maxJump >= MaxJump) || (mario->GetPosition().y - posYStartJump) >= maxJump))
+	{
 		isFall = true;
+		velYStartFall = jumpSpeed;
+	}
 
-	if (isFall && mario->GetVelocity().y == 0.0f)
+	if (isFall)
 	{
-		mario->SetState(Object::Standing);
+		velYStartFall = velYStartFall - fallAc;
+		velYStartFall = velYStartFall < -0.5 ? Gravity : velYStartFall;
+		mario->SetVelocityY(velYStartFall);
+		return;
 	}
-	else
-	{
-		Fall();
-		mario->SetState(Object::Jumping);
-	}
+
+	//JumpUP
+	mario->SetVelocityY(jumpSpeed);
 }
 
 //Trạng thái đánh
@@ -195,15 +190,16 @@ void MarioController::Update(float gameTime, Keyboard* key)
 
 	//Check acceleration
 	MoveX();
+	//Giảm tốc độ khi thắng hoặc thả phím tấn công
+	accCount = ((isBake || key->GIsKeyUp(Dik_ATTACK)) && accCount > MaxSpeedCount) ? MaxSpeedCount - 10 : accCount;
 	if (timeAc > MaxTimeAcc)
 	{
+		fallAc = FallAc;
 		accDown = SlowDown;
 		if (isCount && !isBake)
 			accCount++;
 		else
 			accCount--;
-		//Giảm tốc độ khi thắng hoặc thả phím tấn công
-		accCount = ((isBake || key->GIsKeyUp(Dik_ATTACK)) && accCount > MaxSpeedCount) ? MaxSpeedCount - 10 : accCount;
 		accCount = accCount < 0 ? 0 : (accCount > MaxSpeedCount && isCount) ? MaxSpeedCount * 1.3 : accCount;
 
 		timeAc = 0.0f;
@@ -211,6 +207,8 @@ void MarioController::Update(float gameTime, Keyboard* key)
 	else
 	{
 		accDown = 0;
+		fallAc = 0;
 		timeAc += gameTime;
 	}
+	isSpeed = accCount >= MaxSpeedCount;
 }

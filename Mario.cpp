@@ -76,21 +76,28 @@ void Mario::Init()
 
 void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 {
-	//Update Animation
-	UpdateAnimation();
-	_anim->Update(gameTime);
+	this->SetBound(Width, Height);
 
 	//Check handler controller
 	_marioController->Update(gameTime, key);
+}
 
+bool Mario::OnCollision(Object* obj, D3DXVECTOR2 side)
+{
+	_marioCollision->_obj = obj;
+	_marioCollision->_side = side;
 	//Check mario collision by state
 	_marioCollision->PlayCollisionF();
+	return false;
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
 {
-	position += velocity * gameTime * 100;
-	//Object::Update(gameTime, key);
+	//Update Animation
+	UpdateAnimation();
+	_anim->Update(gameTime);
+
+	Object::Update(gameTime, key);
 }
 
 void Mario::UpdateAnimation()
@@ -99,12 +106,12 @@ void Mario::UpdateAnimation()
 	if (State == Object::Running)
 	{
 		_state = _marioController->isBake ? 3 : abs(velocity.x) >= MaxSpeed ? 2 : abs(velocity.x) >= MaxRun ? 1 : 0;
+		State = velocity.x == 0 ? Object::Standing : State;
 	}
 	else if (State == Object::Jumping)
 		_state = _marioController->isSpeedJump;
 
 	_anim->NewAnimationByIndex(_marioType + this->State + _state);
-
 	this->SetBound(Width, Height);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);

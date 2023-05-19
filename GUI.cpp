@@ -21,5 +21,9 @@ void GUI::Render()
 	//Hiển thị Score
 	char speed[5];
 	itoa(Mario::GetInstance()->_marioController->accCount, speed, 10);
-	gui->Render(speed, rSpeed, D3DCOLOR_XRGB(255, 255, 255));
+	gui->Render(speed, { 5, 200, 40, 235 }, D3DCOLOR_XRGB(255, 255, 255));
+
+	char state[5];
+	itoa(Mario::GetInstance()->State, state, 10);
+	gui->Render(state, { 50, 200, 90, 235 }, D3DCOLOR_XRGB(255, 255, 255));
 }

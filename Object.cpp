@@ -206,13 +206,16 @@ void Object::OnCollision(Object* obj, float gameTime)
 			//bé hơn 1 thì có va chạm
 			if (Time < 1.0f)
 			{
+				if (OnCollision(obj, side))
+					return;
+
 				//Chạm trục nào update rồi cho vận tốc bằng không
-				if (side.x != 0.0f)
+				if(side.x != Collision::NONE)
 				{
 					position.x += distance.x * Time;
 					velocity.x = 0;
 				}
-				else if (side.y != 0.0f)
+				else if (side.y != Collision::NONE)
 				{
 					position.y += distance.y * Time;
 					velocity.y = 0;
@@ -221,6 +224,13 @@ void Object::OnCollision(Object* obj, float gameTime)
 		}
 	}
 }
+
+//if bằng true thì dừng
+bool Object::OnCollision(Object* obj, D3DXVECTOR2 side)
+{
+	return false;
+}
+
 void Object::Render(Viewport* viewport)
 {
 }

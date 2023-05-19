@@ -8,6 +8,15 @@ public:
 	Collision();
 	~Collision();
 
+	enum Side
+	{
+		NONE = 0,
+		LEFT = -1,
+		RIGHT = 1,
+		TOP = -1,
+		BOTTOM = 1,
+	};
+
 	static RECT GetBoard(RECT object, D3DXVECTOR2 distance);
 
 	//Kiểm tra có chạm 1 điểm và RECT

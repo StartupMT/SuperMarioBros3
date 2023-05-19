@@ -11,9 +11,12 @@ private:
 	typedef void(MarioCollision::* marioCollisionF)(void);
 	typedef map<int, marioCollisionF> FunctionMap;
 	FunctionMap _functionMap;
-protected:
+public:
 	Mario* mario;
-	bool isSpeed, isJump, isBake;
+	bool isEnemyJump = false;
+	Object* _obj;
+	D3DXVECTOR2 _side;
+
 public:
 	MarioCollision();
 	~MarioCollision();

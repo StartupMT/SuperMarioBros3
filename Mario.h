@@ -29,6 +29,7 @@ public:
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation();
+	bool OnCollision(Object* obj, D3DXVECTOR2 side);
 	void SetTexture(char* path);
 	void ChangeMarioType(MarioType marioType);
 	void SetBound(float width, float height);

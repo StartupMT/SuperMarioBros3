@@ -31,18 +31,28 @@ void MarioCollision::PlayCollisionF()
 //Va chạm khi đứng
 void MarioCollision::StandCollision()
 {
-
+	mario->State = Object::Standing;
 }
 
 //Va chạm khi chạy
 void MarioCollision::RunCollision()
 {
-
+	if (_side.x == Collision::RIGHT)
+	{
+		mario->State = Object::Standing;
+	}
 }
 
 //va chạm khi nhảy
 void MarioCollision::JumpCollision()
 {
+	if (!mario->_marioController->isFall)
+		return;
+
+	if (_side.y == Collision::BOTTOM)
+	{
+		mario->State = Object::Standing;
+	}
 
 }
 
