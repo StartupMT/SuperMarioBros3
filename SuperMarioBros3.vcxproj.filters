@@ -30,8 +30,11 @@
     <Filter Include="Global\GUI">
       <UniqueIdentifier>{7b6c0f27-3d62-4719-840a-74b87e1cebe9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Wall">
+    <Filter Include="Object\Block">
       <UniqueIdentifier>{1a49f1e6-5dc6-400f-9b42-7cd7ef1ef855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Enemy">
+      <UniqueIdentifier>{c9cadd77-1e08-4a49-9591-cdf780de2378}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,13 +160,16 @@
       <Filter>Global\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Wall.cpp">
-      <Filter>Object\Wall</Filter>
+      <Filter>Object\Block</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
       <Filter>Global\GUI</Filter>
     </ClCompile>
     <ClCompile Include="DrawString.cpp">
       <Filter>Global\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Object\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,13 +235,16 @@
       <Filter>Global\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
-      <Filter>Object\Wall</Filter>
+      <Filter>Object\Block</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
       <Filter>Global\GUI</Filter>
     </ClInclude>
     <ClInclude Include="DrawString.h">
       <Filter>Global\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Object\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

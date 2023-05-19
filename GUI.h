@@ -5,13 +5,17 @@
 
 class GUI
 {
+private:
+	static GUI* _gui;
+
 protected:
 	DrawString* gui;
-	RECT rSpeed;
-	char txtSpeed[10];
 public:
 	GUI();
 	~GUI();
+	void Render(const char* text, RECT rect);
+	void Render(int num, RECT rect);
 	void Render();
+	static GUI* GetInstance();
 };
 

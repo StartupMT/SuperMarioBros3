@@ -21,13 +21,13 @@ namespace Define
 	const int Dik_ATTACK = DIK_X;
 
 	//Path
-		//Mario
+	//Mario
 	const char MarioPNG[] = "./Resource Files/mario_png.png";
 	const char MarioXML[] = "./Resource Files/mario_info.xml";
-		//Enemy
+	//Enemy
 	const char EnemyPNG[] = "./Resource Files/enemy_png.png";
 	const char EnemyXML[] = "./Resource Files/enemy_info.xml";
-		//Misc
+	//Misc
 	const char MiscPNG[] = "./Resource Files/misc_png.png";
 	const char MiscXML[] = "./Resource Files/misc_info.xml";
 
@@ -35,10 +35,7 @@ namespace Define
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";
 	const char MapXML[] = "./Resource Files/Map_1.tmx";
 
-	//Delay 
-	const int RunDelay = 3;
-
-	//Run
+	//MarioRun
 	const float RunSpeed = 1.0f;
 	const float SlowDown = 0.20f;
 	const float MaxRun = 1.5f;
@@ -46,10 +43,14 @@ namespace Define
 	const float MaxTimeAcc = 0.02f;
 	const int MaxSpeedCount = 50;
 
-	//Jump
+	//MarioJump
 	const float JumpSpeed = 1.5f;
-	const float Gravity = -1.5f;
+	const float Gravity = -1.75f;
 	const float FallAc = 0.3f;
-	const float EnemyJump = 16.0f;
+	const float MaxEnemyJump = 16.0f;
 	const float MaxJump = 64.0f;
+
+	//EnemyAttributes
+	const float EnemySpeed = 0.5f;
+	const float EnemyJump = 32.0f;
 }
