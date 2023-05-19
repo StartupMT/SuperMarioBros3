@@ -9,7 +9,7 @@ class TileSet
 {
 protected:
 	Sprite* sprite;
-	RECT rect_tile[200];
+	RECT rect_tile[880];
 	float WidthTile, HeightTile;
 	int Id, TileColunms,TileCount;
 public:

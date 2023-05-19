@@ -53,6 +53,7 @@ void MarioCollision::JumpCollision()
 	if (_side.y == Collision::BOTTOM)
 	{
 		mario->State = Object::Standing;
+		_obj->State = Object::Dying;
 	}
 
 }

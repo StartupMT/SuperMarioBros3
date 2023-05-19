@@ -192,6 +192,8 @@ void Object::Update(float gameTime, Keyboard* key)
 }
 void Object::OnCollision(Object* obj, float gameTime)
 {
+	if (!obj->AllowDraw || !this->AllowDraw)
+		return;
 	D3DXVECTOR2 side;
 	D3DXVECTOR2 distance = velocity * gameTime * 100;
 	RECT board = GetBoard(distance);

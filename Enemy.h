@@ -12,7 +12,7 @@ public:
 		FireBalls = 400,
 	} _enemyType;
 	int _kind = 0;
-
+	float timeDead;
 public:
 	Enemy();
 	~Enemy();

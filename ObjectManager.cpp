@@ -40,7 +40,7 @@ void ObjectManager::InitDT()
 
 	//Wall
 	Wall* wall = new Wall();
-	wall->Init(Wall::normal, D3DXVECTOR2(300, 200));
+	wall->Init(Wall::normal, D3DXVECTOR2(300, 235));
 	wall->GetBound(3000, 10);
 
 	Wall* wall1 = new Wall();
@@ -53,7 +53,7 @@ void ObjectManager::InitDT()
 
 	//Enemy
 	Enemy* enemy = new Enemy();
-	enemy->Init(D3DXVECTOR2(300, 230));
+	enemy->Init(D3DXVECTOR2(300, 250));
 
 	_listObject.push_back(mario);
 	_listObject.push_back(wall);
@@ -97,7 +97,7 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	//map->Render(viewport);
+	map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < _listObject.size(); i++)
 		_listObject.at(i)->Render(viewport);

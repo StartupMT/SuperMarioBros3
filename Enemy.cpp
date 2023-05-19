@@ -77,7 +77,8 @@ void Enemy::Init(D3DXVECTOR2 pos, int kind)
 	position = pos;
 	velocity = D3DXVECTOR2(-EnemySpeed, Gravity);
 	SetState(Object::Running);
-	this->SetBound(14, 16);
+	this->SetBound(14, 15);
+	timeDead = 0;
 	HP = 1;
 }
 
@@ -107,6 +108,14 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 
 void Enemy::Update(float gameTime, Keyboard* key)
 {
+	if (State == Object::Dying)
+	{
+		this->SetBound(0, 0);
+		this->SetVelocity(0, 0);
+		timeDead += gameTime;
+		if (timeDead > 1)
+			AllowDraw = false;
+	}
 	//Update Animation
 	this->SetBound(Width, Height);
 	UpdateAnimation();
@@ -117,11 +126,6 @@ void Enemy::Update(float gameTime, Keyboard* key)
 
 void Enemy::UpdateAnimation()
 {
-	if (State == Object::Dying)
-	{
-		this->SetBound(0, 0);
-		this->SetVelocity(0, 0);
-	}
 	_anim->NewAnimationByIndex(_enemyType + this->State + _kind);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
@@ -129,8 +133,10 @@ void Enemy::UpdateAnimation()
 
 void Enemy::SetBound(float width, float height)
 {
-	Width = width;
-	Height = height;
+	InfoSprite::Infoframe info = _anim->GetCurrentFrameInfo();
+
+	Width = info.w;
+	Height = info.h;
 	bound.left = position.x - Width / 2;
 	bound.right = bound.left + Width;
 	bound.top = position.y + Height;
