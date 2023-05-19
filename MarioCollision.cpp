@@ -8,6 +8,7 @@ MarioCollision::MarioCollision()
 	_functionMap[Object::Running] = &MarioCollision::RunCollision;
 	_functionMap[Object::Jumping] = &MarioCollision::JumpCollision;
 	_functionMap[Object::Attacking] = &MarioCollision::AttackCollision;
+	_functionMap[Object::Dying] = &MarioCollision::DeadCollision;
 }
 
 MarioCollision::~MarioCollision()
@@ -58,6 +59,12 @@ void MarioCollision::JumpCollision()
 
 //va chạm khi nhảy
 void MarioCollision::AttackCollision()
+{
+
+}
+
+//va chạm khi nhảy
+void MarioCollision::DeadCollision()
 {
 
 }

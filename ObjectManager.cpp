@@ -16,14 +16,12 @@ ObjectManager* ObjectManager::GetInstance()
 ObjectManager::ObjectManager()
 {
 	viewport = new Viewport(0, 0);
-	gui = new GUI();
 }
 ObjectManager::~ObjectManager()
 {
 	delete map;
 	delete viewport;
 	delete mario;
-	delete gui;
 	for (size_t i = 0; i < _listObject.size(); i++)
 	{
 		delete _listObject.at(i);
@@ -42,13 +40,26 @@ void ObjectManager::InitDT()
 
 	//Wall
 	Wall* wall = new Wall();
-	wall->Init(Wall::normal, D3DXVECTOR2(300, 235));
+	wall->Init(Wall::normal, D3DXVECTOR2(300, 200));
+	wall->GetBound(3000, 10);
+
 	Wall* wall1 = new Wall();
-	wall1->Init(Wall::normal, D3DXVECTOR2(300+300-1500, 240));
+	wall1->Init(Wall::normal, D3DXVECTOR2(200, 250));
+	wall1->GetBound(10, 100);
+
+	Wall* wall2 = new Wall();
+	wall2->Init(Wall::normal, D3DXVECTOR2(400, 250));
+	wall2->GetBound(10, 100);
+
+	//Enemy
+	Enemy* enemy = new Enemy();
+	enemy->Init(D3DXVECTOR2(300, 230));
 
 	_listObject.push_back(mario);
 	_listObject.push_back(wall);
 	_listObject.push_back(wall1);
+	_listObject.push_back(wall2);
+	_listObject.push_back(enemy);
 
 	posView = viewport->GetPosition();
 }
@@ -86,12 +97,12 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	map->Render(viewport);
+	//map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < _listObject.size(); i++)
 		_listObject.at(i)->Render(viewport);
 
 	//GUI
-	gui->Render();
+	GUI::GetInstance()->Render();
 
 }

@@ -19,7 +19,6 @@ void Wall::Init(Type type, D3DXVECTOR2 pos)
 
 	this->_type = type;
 	position = pos;
-	GetBound(3000, 10);
 }
 
 void Wall::Update(float gameTime, Keyboard* key)

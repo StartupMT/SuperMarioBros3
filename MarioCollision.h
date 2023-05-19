@@ -28,6 +28,6 @@ public:
 	void RunCollision();
 	void JumpCollision();
 	void AttackCollision();
-
+	void DeadCollision();
 };
 

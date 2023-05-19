@@ -14,6 +14,8 @@ MarioController::MarioController()
 	_functionMap[Object::Running] = &MarioController::RunState;
 	_functionMap[Object::Jumping] = &MarioController::JumpState;
 	_functionMap[Object::Attacking] = &MarioController::AttackState;
+	_functionMap[Object::Dying] = &MarioController::DeadState;
+
 }
 
 MarioController::~MarioController()
@@ -105,7 +107,7 @@ void MarioController::JumpState()
 	{
 		isSpeedJump = isSpeed;
 		posYStartJump = mario->GetPosition().y;
-		maxJump = mario->_marioCollision->isEnemyJump ? EnemyJump : MaxJump;
+		maxJump = mario->_marioCollision->isEnemyJump ? MaxEnemyJump : MaxJump;
 		isFall = false;
 	}
 	isAllowJump = false;

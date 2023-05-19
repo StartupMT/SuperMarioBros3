@@ -1,4 +1,5 @@
 ﻿#include "Mario.h"
+#include "GameDefine.h"
 #include <math.h>
 
 Mario* Mario::_mario = nullptr;
@@ -24,8 +25,6 @@ Mario::~Mario()
 void Mario::Init()
 {
 	//Tạo Animation
-	pathPNG = MarioPNG;
-
 	Animation::DataAnimMap data;
 	//Small
 	data[Mario::Small + Object::Standing] = { 19, 19 };
@@ -82,13 +81,13 @@ void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 	_marioController->Update(gameTime, key);
 }
 
-bool Mario::OnCollision(Object* obj, D3DXVECTOR2 side)
+D3DXVECTOR2 Mario::OnCollision(Object* obj, D3DXVECTOR2 side)
 {
 	_marioCollision->_obj = obj;
 	_marioCollision->_side = side;
 	//Check mario collision by state
 	_marioCollision->PlayCollisionF();
-	return false;
+	return side;
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
@@ -115,12 +114,6 @@ void Mario::UpdateAnimation()
 	this->SetBound(Width, Height);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
-}
-
-void Mario::SetTexture(char* path)
-{
-	pathPNG = path;
-	_anim->SetTexture(pathPNG);
 }
 
 void Mario::ChangeMarioType(MarioType marioType)

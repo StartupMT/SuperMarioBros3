@@ -2,7 +2,6 @@
 #include "Object.h"
 #include "MarioCollision.h"
 #include "MarioController.h"
-#include "GameDefine.h"
 
 using namespace Define;
 
@@ -20,7 +19,7 @@ public:
 
 	MarioController* _marioController;
 	MarioCollision* _marioCollision;
-	const char* pathPNG;
+
 public:
 	Mario(); 
 	~Mario();
@@ -29,8 +28,7 @@ public:
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation();
-	bool OnCollision(Object* obj, D3DXVECTOR2 side);
-	void SetTexture(char* path);
+	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void ChangeMarioType(MarioType marioType);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);

@@ -15,6 +15,12 @@ Animation::Animation(const char* pathInfo, const char* pathPNG):Sprite(pathPNG)
 
 Animation::Animation()
 {
+	start = 0;
+	end = 0;
+	scale = D3DXVECTOR2(1, 1);
+	position = D3DXVECTOR2(0, 0);
+	FlipFlag = false;
+	angle = 0;
 }
 
 Animation::~Animation()
