@@ -157,6 +157,8 @@
     <ClCompile Include="InfoSprite.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapObject.cpp" />
+    <ClCompile Include="MapObjectGroup.cpp" />
     <ClCompile Include="MarioCollision.cpp" />
     <ClCompile Include="MarioController.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -187,6 +189,8 @@
     <ClInclude Include="InfoSprite.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapObject.h" />
+    <ClInclude Include="MapObjectGroup.h" />
     <ClInclude Include="MarioCollision.h" />
     <ClInclude Include="MarioController.h" />
     <ClInclude Include="Object.h" />

@@ -1,17 +1,21 @@
 #pragma once
 #include <d3dx9.h>
 #include "TinyXML\tinyxml.h"
+#include "MapObjectGroup.h"
 #include<string>
 #include<vector>
 #include<map>
 using namespace std;
 class InfoMap
 {
-protected:
-	map<int, map<int, int>> data;
 public:
 	int width, height, tileCount, tileColumns;
 	float tileWidth, tileHeight;
+	map<int, map<int, int>> data;
+
+
+
+public:
 	InfoMap(const char *path);
 	~InfoMap();
 	void ReadXMl(const char *path);
