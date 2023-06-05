@@ -66,13 +66,13 @@ Enemy::~Enemy()
 	delete _anim;
 }
 
-void Enemy::Init(D3DXVECTOR2 pos, int kind)
+void Enemy::Init(D3DXVECTOR2 pos, int _type, int kind)
 {
 	AllowDraw = true;
 	Tag = Object::Enemy;
 
 	_anim = GetAnimationEnemy();
-	_enemyType = Enemy::Goomba;
+	_enemyType = (Enemytype)_type;
 	_kind = kind;
 	position = pos;
 	velocity = D3DXVECTOR2(-EnemySpeed, Gravity);
@@ -84,6 +84,7 @@ void Enemy::Init(D3DXVECTOR2 pos, int kind)
 
 void Enemy::EnemyController()
 {
+	velocity.y = Gravity;
 }
 
 D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
@@ -102,12 +103,13 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 		}
 		return side;
 	}
-
-
 }
 
 void Enemy::Update(float gameTime, Keyboard* key)
 {
+	//Update Animation
+	this->SetBound(Width, Height);
+
 	if (State == Object::Dying)
 	{
 		this->SetBound(0, 0);
@@ -116,8 +118,7 @@ void Enemy::Update(float gameTime, Keyboard* key)
 		if (timeDead > 1)
 			AllowDraw = false;
 	}
-	//Update Animation
-	this->SetBound(Width, Height);
+
 	UpdateAnimation();
 	_anim->Update(gameTime);
 

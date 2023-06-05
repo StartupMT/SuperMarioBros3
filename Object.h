@@ -42,6 +42,7 @@ public:
 	Stateobject State;
 	Object();
 	~Object();
+	virtual void Init(D3DXVECTOR2 pos, int _type = 0, int kind = 0);
 	static tag GetTag(string name);
 	void SetTag(tag name);
 	Stateobject GetState();

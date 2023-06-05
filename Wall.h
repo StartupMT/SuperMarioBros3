@@ -18,7 +18,7 @@ public:
 	Wall();
 	~Wall();
 
-	void Init(Type type, D3DXVECTOR2 pos);
+	void Init(D3DXVECTOR2 pos, int type = Type::normal, int kind = 0);
 	void Update(float gameTime, Keyboard* key);
 	void Render(Viewport* viewport);
 };

@@ -3,6 +3,7 @@
 
 Object::Object()
 {
+	AllowDraw = true;
 }
 
 Object::~Object()
@@ -12,6 +13,12 @@ Object::~Object()
 void Object::New()
 {
 }
+
+void Object::Init(D3DXVECTOR2 pos, int _type, int kind)
+{
+
+}
+
 
 bool Object::GetFlipFlag()
 {
@@ -192,7 +199,7 @@ void Object::Update(float gameTime, Keyboard* key)
 }
 void Object::OnCollision(Object* obj, float gameTime)
 {
-	if (!obj->AllowDraw || !this->AllowDraw)
+	if (!obj->AllowDraw || !this->AllowDraw || !obj->State==Object::Dying || this->State ==Object::Dying)
 		return;
 	D3DXVECTOR2 side;
 	D3DXVECTOR2 distance = velocity * gameTime * 100;

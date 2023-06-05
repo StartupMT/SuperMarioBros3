@@ -17,7 +17,7 @@ public:
 	Enemy();
 	~Enemy();
 
-	void Init(D3DXVECTOR2 pos, int kind = 0);
+	void Init(D3DXVECTOR2 pos, int _type = Enemytype::Goomba, int kind = 0);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation();
 	void EnemyController();

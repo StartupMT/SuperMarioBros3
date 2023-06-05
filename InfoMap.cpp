@@ -8,6 +8,14 @@ InfoMap::InfoMap(const char *path)
 }
 InfoMap::~InfoMap()
 {
+	for (int i = 0; i < numObjectGroups; i++)
+	{
+		for (int j = 0; j < ObjectGroups.at(i)->NumOnjects; j++)
+		{
+			delete ObjectGroups.at(i)->Objects.at(j);
+		}
+		delete ObjectGroups.at(i);
+	}
 }
 
 void InfoMap::ReadXMl(const char *path)
@@ -32,7 +40,7 @@ void InfoMap::ReadXMl(const char *path)
 	dataText = child2_1->GetText();
 	char *token;
 	token = strtok((char *)(dataText), ",");
-	int row = height-1;
+	int row = height - 1;
 	int column = 0;
 	while (token != NULL)
 	{
@@ -45,6 +53,16 @@ void InfoMap::ReadXMl(const char *path)
 		}
 		token = strtok(NULL, ",");
 	}
+
+	TiXmlElement* indexml = NULL;
+	numObjectGroups = 0;
+	for (indexml = child2->NextSiblingElement(); indexml != NULL; indexml = indexml->NextSiblingElement())
+	{
+		numObjectGroups++;
+		MapObjectGroup* obj = new MapObjectGroup(indexml);
+		ObjectGroups.push_back(obj);
+	}
+	int a = 1;
 }
 
 

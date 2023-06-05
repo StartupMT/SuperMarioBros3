@@ -7,8 +7,6 @@
 #include "Collision.h"
 #include "Map.h"
 #include "Mario.h"
-#include "Wall.h"
-#include "Enemy.h"
 
 using namespace Define;
 
@@ -17,8 +15,6 @@ class ObjectManager
 private:
 	static ObjectManager* _objectManager;
 protected:
-	vector <Object*> _listObject;
-
 	Viewport* viewport;
 	Mario* mario;
 	Map* map;

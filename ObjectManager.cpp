@@ -22,10 +22,6 @@ ObjectManager::~ObjectManager()
 	delete map;
 	delete viewport;
 	delete mario;
-	for (size_t i = 0; i < _listObject.size(); i++)
-	{
-		delete _listObject.at(i);
-	}
 }
 
 //Load Data Game
@@ -38,28 +34,12 @@ void ObjectManager::InitDT()
 	mario->Init();
 	mario->SetPosition(D3DXVECTOR2(300, 254));
 
-	//Wall
-	Wall* wall = new Wall();
-	wall->Init(Wall::normal, D3DXVECTOR2(300, 235));
-	wall->GetBound(3000, 10);
-
-	Wall* wall1 = new Wall();
-	wall1->Init(Wall::normal, D3DXVECTOR2(200, 250));
-	wall1->GetBound(10, 100);
-
-	Wall* wall2 = new Wall();
-	wall2->Init(Wall::normal, D3DXVECTOR2(400, 250));
-	wall2->GetBound(10, 100);
-
 	//Enemy
 	Enemy* enemy = new Enemy();
 	enemy->Init(D3DXVECTOR2(300, 250));
 
-	_listObject.push_back(mario);
-	_listObject.push_back(wall);
-	_listObject.push_back(wall1);
-	_listObject.push_back(wall2);
-	_listObject.push_back(enemy);
+	map->ListObject.push_back(mario);
+	map->ListObject.push_back(enemy);
 
 	posView = viewport->GetPosition();
 }
@@ -69,14 +49,14 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 {
 	mario->BeforeUpdate(gameTime, key);
 	//Check Collision
-	for (size_t i = 0; i < _listObject.size(); i++)
-		for (size_t j = 0; j < _listObject.size(); j++)
+	for (size_t i = 0; i < map->ListObject.size(); i++)
+		for (size_t j = 0; j < map->ListObject.size(); j++)
 			if (i != j)
-				_listObject.at(i)->OnCollision(_listObject.at(j), gameTime);
+				map->ListObject.at(i)->OnCollision(map->ListObject.at(j), gameTime);
 
 	//Update all Object
-	for (size_t i = 0; i < _listObject.size(); i++)
-		_listObject.at(i)->Update(gameTime, key);
+	for (size_t i = 0; i < map->ListObject.size(); i++)
+		map->ListObject.at(i)->Update(gameTime, key);
 
 	//Update Viewport theo vị trí Mario
 	D3DXVECTOR2 posMario = mario->GetPosition();
@@ -99,8 +79,8 @@ void ObjectManager::Render()
 	//Vẽ map
 	map->Render(viewport);
 	//Vẽ
-	for (size_t i = 0; i < _listObject.size(); i++)
-		_listObject.at(i)->Render(viewport);
+	for (size_t i = 0; i < map->ListObject.size(); i++)
+		map->ListObject.at(i)->Render(viewport);
 
 	//GUI
 	GUI::GetInstance()->Render();

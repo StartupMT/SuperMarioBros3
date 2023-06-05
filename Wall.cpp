@@ -14,10 +14,10 @@ Wall::~Wall()
 	delete _anim;
 }
 
-void Wall::Init(Type type, D3DXVECTOR2 pos)
+void Wall::Init(D3DXVECTOR2 pos, int type, int kind)
 {
 
-	this->_type = type;
+	this->_type = (Wall::Type)type;
 	position = pos;
 }
 

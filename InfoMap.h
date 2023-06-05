@@ -13,7 +13,8 @@ public:
 	float tileWidth, tileHeight;
 	map<int, map<int, int>> data;
 
-
+	int numObjectGroups;
+	vector<MapObjectGroup*> ObjectGroups;
 
 public:
 	InfoMap(const char *path);
