@@ -1,5 +1,4 @@
 ﻿#include "Enemy.h"
-#include "GUI.h"
 
 Animation* Enemy::GetAnimationEnemy()
 {
@@ -152,5 +151,4 @@ void Enemy::Render(Viewport* viewport)
 		_anim->Render(viewport);
 	}
 	DrawLine::GetInstance()->DrawRect(bound);
-	GUI::GetInstance()->Render(100 * velocity.x, { 100, 200, 150, 235 });
 }

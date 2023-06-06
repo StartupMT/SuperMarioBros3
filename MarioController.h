@@ -19,7 +19,7 @@ public:
 	float accDown;
 	int accCount = 0;
 	//Jump
-	bool isAllowJump, isFall, isSpeedJump, isShortJump, isFly;
+	bool isAllowJump, isFall, isFallDown, isSpeedJump, isShortJump, isFly;
 	float posYStartJump, velYStartFall, maxJump, fallAc, timeFlyDown;
 	//Attack
 	bool isAllowAttack;

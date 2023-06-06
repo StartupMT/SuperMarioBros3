@@ -1,6 +1,7 @@
 ﻿#include "Mario.h"
 #include "GameDefine.h"
 #include <math.h>
+#include "GUI.h"
 
 Mario* Mario::_mario = nullptr;
 Mario::Mario()
@@ -33,25 +34,29 @@ void Mario::Init()
 	data[Mario::Small + Object::Running + 2] = { 6, 7, 1 };	//Trượt
 	data[Mario::Small + Object::Running + 3] = { 4, 4 };	//Thắng
 	data[Mario::Small + Object::Jumping] = { 5, 5 };
-	data[Mario::Small + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
+	data[Mario::Small + Object::Jumping + 1] = { 5, 5 };
+	data[Mario::Small + Object::Jumping + 2] = { 8, 8 };	//Anim bay nhanh
 	//Big
 	data[Mario::Big + Object::Standing] = { 47, 47 };
-	data[Mario::Big + Object::Running] = { 26,	27 };
-	data[Mario::Big + Object::Running + 1] = { 2, 3, 5 };	//Chạy nhanh
-	data[Mario::Big + Object::Running + 2] = { 6, 7, 1 };	//Trượt
+	data[Mario::Big + Object::Running] = { 25,	27 };
+	data[Mario::Big + Object::Running + 1] = { 25, 27, 5 };	//Chạy nhanh
+	data[Mario::Big + Object::Running + 2] = { 31, 33, 1 };	//Trượt
 	data[Mario::Big + Object::Running + 3] = { 28, 28 };	//Thắng
-	data[Mario::Big + Object::Jumping] = { 5, 5 };
-	data[Mario::Big + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
+	data[Mario::Big + Object::Jumping] = { 29, 29 };
+	data[Mario::Big + Object::Jumping + 1] = { 30, 30 };	//rơi
+	data[Mario::Big + Object::Jumping + 2] = { 34, 34 };	//Anim bay nhanh
 	//Raccoon
 	data[Mario::Raccoon + Object::Standing] = { 130, 130 };
-	data[Mario::Raccoon + Object::Running] = { 2,	3 };
-	data[Mario::Raccoon + Object::Running + 1] = { 2, 3, 5 };	//Chạy nhanh
-	data[Mario::Raccoon + Object::Running + 2] = { 6, 7, 1 };	//Trượt
-	data[Mario::Raccoon + Object::Running + 3] = { 4, 4 };	//Thắng
-	data[Mario::Raccoon + Object::Jumping] = { 5, 5 };
-	data[Mario::Raccoon + Object::Jumping + 1] = { 8, 8 };	//Anim chạy nhanh
+	data[Mario::Raccoon + Object::Running] = { 96,	98 };
+	data[Mario::Raccoon + Object::Running + 1] = { 96, 98, 5 };	//Chạy nhanh
+	data[Mario::Raccoon + Object::Running + 2] = { 108, 110, 1 };	//Trượt
+	data[Mario::Raccoon + Object::Running + 3] = { 99, 99 };	//Thắng
+	data[Mario::Raccoon + Object::Jumping] = { 106, 106 };
+	data[Mario::Raccoon + Object::Jumping + 1] = { 107, 107 };		//rơi
+	data[Mario::Raccoon + Object::Jumping + 2] = { 114, 114 };	//Anim bay nhanh
+	data[Mario::Raccoon + Object::Jumping + 3] = { 114, 116, 5 };	//Fly
 
-	data[Mario::Small + Object::Standing] = { 19 , 19 };
+	//data[Mario::Small + Object::Standing] = { 114, 116};
 
 	//_anim = new Animation(EnemyXML, EnemyPNG);
 	//_anim = new Animation(MiscXML, MiscPNG);
@@ -79,7 +84,6 @@ void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 	_marioCollision->isCollisionTop = false;
 
 	this->SetBound(Width, Height);
-
 	//Check handler controller
 	_marioController->Update(gameTime, key);
 }
@@ -103,21 +107,22 @@ void Mario::Update(float gameTime, Keyboard* key)
 
 void Mario::UpdateAnimation()
 {
-	int _state = 0;
+	_state = 0;
 	if (State == Object::Running)
 	{
 		_state = _marioController->isBake ? 3 : abs(velocity.x) >= MaxSpeed ? 2 : abs(velocity.x) >= MaxRun ? 1 : 0;
 		State = velocity.x == 0 ? Object::Standing : State;
 	}
 	else if (State == Object::Jumping)
-		_state = _marioController->isSpeedJump;
-	if (!_marioCollision->isGround && velocity.y < 0 || _marioCollision->isCollisionTop)
+	{
+		_state = _marioController->isFly ? 3 : _marioController->isSpeedJump ? 2 : _marioController->isFallDown;
+	}
+	if (!_marioCollision->isGround && velocity.y < 0 && !_marioController->isFly || _marioCollision->isCollisionTop)
 	{
 		_marioController->Fall();
 	}
 
 	_anim->NewAnimationByIndex(_marioType + this->State + _state);
-	this->SetBound(Width, Height);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
 }
@@ -160,4 +165,5 @@ void Mario::Render(Viewport* viewport)
 		_anim->Render(viewport);
 	}
 	DrawLine::GetInstance()->DrawRect(bound);
+	GUI::GetInstance()->Render(_marioType + this->State + _state, { 100, 200, 150, 235 });
 }

@@ -19,9 +19,10 @@ public:
 
 	MarioController* _marioController;
 	MarioCollision* _marioCollision;
+	int _state = 0;
 
 public:
-	Mario(); 
+	Mario();
 	~Mario();
 
 	void Init();

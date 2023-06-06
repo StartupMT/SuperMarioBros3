@@ -56,7 +56,7 @@ void MarioCollision::JumpCollision()
 
 	if (_side.y == Collision::BOTTOM)
 	{
-		mario->State = Object::Standing;
+		mario->_marioController->StandState();
 		if (_obj->Tag == Object::Enemy)
 		{
 			_obj->State = Object::Dying;

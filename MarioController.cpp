@@ -23,8 +23,10 @@ MarioController::~MarioController()
 }
 
 //Trạng thái Đứng
-void MarioController::StandState()
+void MarioController::StandState() //reset all state
 {
+	timeFlyDown = 0;
+	isFly = false;
 	isShortJump = false;
 	isAllowJump = true;//Cho nhảy khi đứng hoặc chạy
 	isFall = false;//cho nhảy thì không rơi
@@ -112,7 +114,7 @@ void MarioController::ShortJump()
 void MarioController::Fall()
 {
 	mario->SetState(Object::Jumping);
-	isAllowJump = true;
+	isAllowJump = false;
 	isFall = true;
 }
 
@@ -128,7 +130,7 @@ void MarioController::JumpState()
 	}
 
 	isAllowJump = false;
-	isCount = isSpeedJump;
+	isCount = isSpeedJump; //đếm tăng tốc
 	float jumpSpeed = isSpeedJump ? JumpSpeed * 1.2 : JumpSpeed; // nếu mà chạy nhanh thì nhảy cao hơn xí
 
 	//Fall
@@ -140,19 +142,21 @@ void MarioController::JumpState()
 
 	if (isFall)
 	{
-		bool isFallDown = velYStartFall < -0.5;//rơi tự do
+		isFallDown = velYStartFall < -0.5;//rơi tự do
 		float gravity = Gravity;
 
 		//Check Fly
 		if (isFallDown && mario->_marioType == Mario::Raccoon)
 		{
+			isCount = false; //rơi khi là chồn không giữ speed
 			if (key->GIsKeyDown(Dik_JUMP))
 			{
-				isFly = true;
 				if (isSpeed)
 					ShortJump();
-				else if (timeFlyDown == 0)
-					timeFlyDown = 1;
+				else if (timeFlyDown >= 0)
+					timeFlyDown = 3;
+
+				isFly = true;
 			}
 			//Nếu bay không đủ tốc độ thì rơi chậm
 			if (timeFlyDown > 0)
@@ -163,7 +167,7 @@ void MarioController::JumpState()
 			else
 			{
 				timeFlyDown = 0;
-				isFly = false;
+				isFly = isSpeed && isFly;
 			}
 		}
 		else isFly = false;
