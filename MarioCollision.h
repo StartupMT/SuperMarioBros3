@@ -13,9 +13,9 @@ private:
 	FunctionMap _functionMap;
 public:
 	Mario* mario;
-	bool isEnemyJump = false;
 	Object* _obj;
 	D3DXVECTOR2 _side;
+	bool isGround, isCollisionTop;
 
 public:
 	MarioCollision();

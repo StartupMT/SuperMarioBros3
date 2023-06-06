@@ -19,8 +19,8 @@ public:
 	float accDown;
 	int accCount = 0;
 	//Jump
-	bool isAllowJump, isFall, isSpeedJump;
-	float posYStartJump, velYStartFall, maxJump, fallAc;
+	bool isAllowJump, isFall, isSpeedJump, isShortJump, isFly;
+	float posYStartJump, velYStartFall, maxJump, fallAc, timeFlyDown;
 	//Attack
 	bool isAllowAttack;
 	float timeAttack, timeAc;
@@ -35,6 +35,8 @@ public:
 	void StandState();
 	void RunState();
 	void MoveX();
+	void ShortJump();
+	void Fall();
 	void JumpState();
 	void AttackState();
 	void DeadState();

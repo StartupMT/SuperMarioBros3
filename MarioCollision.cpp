@@ -17,7 +17,11 @@ MarioCollision::~MarioCollision()
 
 void MarioCollision::OnCollision()
 {
-
+	//Check mario collision by state
+	PlayCollisionF();
+	//Kiểm tra mario rơi
+	isGround = isGround || _side.y == Collision::BOTTOM;
+	isCollisionTop = isCollisionTop || _side.y == Collision::TOP;
 }
 
 //Chạy function ứng với state mario
@@ -53,9 +57,12 @@ void MarioCollision::JumpCollision()
 	if (_side.y == Collision::BOTTOM)
 	{
 		mario->State = Object::Standing;
-		_obj->State = Object::Dying;
+		if (_obj->Tag == Object::Enemy)
+		{
+			_obj->State = Object::Dying;
+			mario->_marioController->ShortJump();
+		}
 	}
-
 }
 
 //va chạm khi nhảy

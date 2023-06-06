@@ -25,6 +25,7 @@ MarioController::~MarioController()
 //Trạng thái Đứng
 void MarioController::StandState()
 {
+	isShortJump = false;
 	isAllowJump = true;//Cho nhảy khi đứng hoặc chạy
 	isFall = false;//cho nhảy thì không rơi
 	mario->SetVelocityY(Gravity);
@@ -49,6 +50,7 @@ void MarioController::StandState()
 //Trang thái chạy
 void MarioController::RunState()
 {
+	isShortJump = false;
 	isAllowJump = true;
 	isFall = false;
 	mario->SetVelocityY(Gravity);
@@ -100,6 +102,20 @@ void MarioController::MoveX()
 	mario->SetVelocityX(speed);
 }
 
+void MarioController::ShortJump()
+{
+	StandState();
+	isShortJump = true;
+	mario->SetState(Object::Jumping);
+}
+
+void MarioController::Fall()
+{
+	mario->SetState(Object::Jumping);
+	isAllowJump = true;
+	isFall = true;
+}
+
 //Trạng thái nhảy
 void MarioController::JumpState()
 {
@@ -107,12 +123,13 @@ void MarioController::JumpState()
 	{
 		isSpeedJump = isSpeed;
 		posYStartJump = mario->GetPosition().y;
-		maxJump = mario->_marioCollision->isEnemyJump ? MaxEnemyJump : MaxJump;
+		maxJump = isShortJump ? MaxEnemyJump : isFly ? 0 : MaxJump;
 		isFall = false;
 	}
+
 	isAllowJump = false;
 	isCount = isSpeedJump;
-	float jumpSpeed = isSpeedJump ? JumpSpeed * 1.2 : JumpSpeed;
+	float jumpSpeed = isSpeedJump ? JumpSpeed * 1.2 : JumpSpeed; // nếu mà chạy nhanh thì nhảy cao hơn xí
 
 	//Fall
 	if (!isFall && ((key->GIsKeyUp(Dik_JUMP) && maxJump >= MaxJump) || (mario->GetPosition().y - posYStartJump) >= maxJump))
@@ -123,8 +140,37 @@ void MarioController::JumpState()
 
 	if (isFall)
 	{
-		velYStartFall = velYStartFall - fallAc;
-		velYStartFall = velYStartFall < -0.5 ? Gravity : velYStartFall;
+		bool isFallDown = velYStartFall < -0.5;//rơi tự do
+		float gravity = Gravity;
+
+		//Check Fly
+		if (isFallDown && mario->_marioType == Mario::Raccoon)
+		{
+			if (key->GIsKeyDown(Dik_JUMP))
+			{
+				isFly = true;
+				if (isSpeed)
+					ShortJump();
+				else if (timeFlyDown == 0)
+					timeFlyDown = 1;
+			}
+			//Nếu bay không đủ tốc độ thì rơi chậm
+			if (timeFlyDown > 0)
+			{
+				gravity = gravity / 3;
+				timeFlyDown -= fallAc;
+			}
+			else
+			{
+				timeFlyDown = 0;
+				isFly = false;
+			}
+		}
+		else isFly = false;
+
+		velYStartFall -= fallAc; //trừ vận tốc sẽ nhảy nhẹ 1 đoạn
+		velYStartFall = isFallDown ? gravity : velYStartFall;
+
 		mario->SetVelocityY(velYStartFall);
 		return;
 	}

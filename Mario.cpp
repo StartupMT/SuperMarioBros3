@@ -75,6 +75,9 @@ void Mario::Init()
 
 void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 {
+	_marioCollision->isGround = false;
+	_marioCollision->isCollisionTop = false;
+
 	this->SetBound(Width, Height);
 
 	//Check handler controller
@@ -85,9 +88,8 @@ D3DXVECTOR2 Mario::OnCollision(Object* obj, D3DXVECTOR2 side)
 {
 	_marioCollision->_obj = obj;
 	_marioCollision->_side = side;
-	//Check mario collision by state
-	_marioCollision->PlayCollisionF();
-	return side;
+	_marioCollision->OnCollision();
+	return _marioCollision->_side;
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
@@ -109,6 +111,10 @@ void Mario::UpdateAnimation()
 	}
 	else if (State == Object::Jumping)
 		_state = _marioController->isSpeedJump;
+	if (!_marioCollision->isGround && velocity.y < 0 || _marioCollision->isCollisionTop)
+	{
+		_marioController->Fall();
+	}
 
 	_anim->NewAnimationByIndex(_marioType + this->State + _state);
 	this->SetBound(Width, Height);
