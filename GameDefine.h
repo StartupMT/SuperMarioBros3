@@ -41,7 +41,7 @@ namespace Define
 	const float MaxRun = 1.5f;
 	const float MaxSpeed = 2.0f;
 	const float MaxTimeAcc = 0.02f;
-	const int MaxSpeedCount = 50;
+	const int MaxSpeedCount = 30;
 
 	//MarioJump
 	const float JumpSpeed = 1.5f;

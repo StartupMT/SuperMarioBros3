@@ -7,8 +7,7 @@ MarioController::MarioController()
 	mario->SetState(Object::Standing);
 	isAllowJump = false;
 	isFall = true;
-	isAllowAttack = false;
-	timeAttack = 0.0f;
+	isAttack = false;
 
 	_functionMap[Object::Standing] = &MarioController::StandState;
 	_functionMap[Object::Running] = &MarioController::RunState;
@@ -73,18 +72,18 @@ void MarioController::RunState()
 void MarioController::MoveX()
 {
 	float speed = mario->GetVelocity().x;
-	float speedRun = key->IsKeyDown(Dik_ATTACK) ? MaxRun : RunSpeed;
+	float speedRun = (key->IsKeyDown(Dik_ATTACK) && !isAttack) ? MaxRun : RunSpeed;
 	speedRun = isSpeed ? MaxSpeed : speedRun;
 	isBake = false;
 	if (key->IsKeyDown(Dik_RIGHT))
 	{
-		isBake = speed < 0;
+		isBake = speed < 0 && mario->State == Object::Running;
 		speed = speed < RunSpeed ? speed + accDown : speedRun;
 		mario->SetFlipFlag(false);
 	}
 	else if (key->IsKeyDown(Dik_LEFT))
 	{
-		isBake = speed > 0;
+		isBake = speed > 0 && mario->State == Object::Running;
 		speed = speed > -RunSpeed ? speed - accDown : -speedRun;
 		mario->SetFlipFlag(true);
 	}
@@ -186,18 +185,16 @@ void MarioController::JumpState()
 //Trạng thái đánh
 void MarioController::AttackState()
 {
-	if (isAllowAttack)
-	{
-		mario->SetVelocity(0, 0);
-		mario->SetState(Object::Attacking);
-	}
 }
 
 //Trạng thái chêt
 void MarioController::DeadState()
 {
-	mario->SetVelocity(0, 0);
+	velYStartFall -= fallAc;
+	velYStartFall = isFallDown ? Gravity : velYStartFall;
+	mario->SetVelocity(0, velYStartFall);
 	mario->SetState(Object::Dying);
+	mario->SetBound(0, 0);
 }
 
 void MarioController::PlayControllerF()
@@ -230,15 +227,15 @@ void MarioController::Update(float gameTime, Keyboard* key)
 
 	this->PlayControllerF();
 
-	//CheckTime
-	if (timeAttack > 0.5)
+	//CheckAttack
+	if (key->GIsKeyUp(Dik_ATTACK))
 		isAllowAttack = true;
-	else
-	{
-		timeAttack += gameTime;
-		isAllowAttack = false;
-	}
 
+	if (isAllowAttack && !isAttack && key->GIsKeyDown(Dik_ATTACK) && mario->_marioType == Mario::Raccoon)
+	{
+		isAllowAttack = false;
+		isAttack = true;
+	}
 
 	//Check acceleration
 	MoveX();
@@ -252,8 +249,8 @@ void MarioController::Update(float gameTime, Keyboard* key)
 			accCount++;
 		else
 			accCount--;
-		accCount = accCount < 0 ? 0 : (accCount > MaxSpeedCount && isCount) ? MaxSpeedCount * 1.3 : accCount;
 
+		accCount = accCount < 0 ? 0 : (accCount > MaxSpeedCount && isCount) ? MaxSpeedCount + 10 : accCount;
 		timeAc = 0.0f;
 	}
 	else

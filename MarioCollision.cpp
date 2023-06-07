@@ -7,7 +7,7 @@ MarioCollision::MarioCollision()
 	_functionMap[Object::Standing] = &MarioCollision::StandCollision;
 	_functionMap[Object::Running] = &MarioCollision::RunCollision;
 	_functionMap[Object::Jumping] = &MarioCollision::JumpCollision;
-	_functionMap[Object::Attacking] = &MarioCollision::AttackCollision;
+	_functionMap[Object::Attacking] = &MarioCollision::StandCollision;
 	_functionMap[Object::Dying] = &MarioCollision::DeadCollision;
 }
 
@@ -19,9 +19,36 @@ void MarioCollision::OnCollision()
 {
 	//Check mario collision by state
 	PlayCollisionF();
+
+	//CheckAllState
+	switch (_obj->Tag)
+	{
+	case Object::Enemy:
+		CheckCollisionEnemy();
+		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
+		break;
+	case Object::Item:
+
+		break;
+	default:
+
+		break;
+	}
+
 	//Kiểm tra mario rơi
 	isGround = isGround || _side.y == Collision::BOTTOM;
 	isCollisionTop = isCollisionTop || _side.y == Collision::TOP;
+}
+
+void MarioCollision::CheckCollisionEnemy()
+{
+	if (mario->_marioType - Mario::Small < Mario::Small)
+	{
+		mario->State = Object::Dying;
+		mario->_marioController->velYStartFall = JumpSpeed;
+	}
+	else
+		mario->_marioType = (Mario::MarioType)(mario->_marioType - Mario::Small);
 }
 
 //Chạy function ứng với state mario
@@ -36,7 +63,6 @@ void MarioCollision::PlayCollisionF()
 //Va chạm khi đứng
 void MarioCollision::StandCollision()
 {
-	mario->State = Object::Standing;
 }
 
 //Va chạm khi chạy
@@ -65,10 +91,20 @@ void MarioCollision::JumpCollision()
 	}
 }
 
-//va chạm khi nhảy
-void MarioCollision::AttackCollision()
+//kiểm tra va chạm khi tấn công
+void MarioCollision::AttackCollision(Object* obj)
 {
-
+	RECT marioBound = mario->GetBound();
+	RECT rectAttack{
+		marioBound.left - 10,
+		marioBound.top - 12,
+		marioBound.right + 10,
+		marioBound.bottom
+	};
+	if (Collision::isCollision(rectAttack, obj->GetBound()))
+	{
+		obj->State = Object::Dying;
+	}
 }
 
 //va chạm khi nhảy

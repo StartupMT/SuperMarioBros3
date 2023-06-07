@@ -105,6 +105,7 @@ public:
 	virtual void Render(Viewport* viewport);
 	// va cham
 	virtual void OnCollision(Object* obj, float gameTime);
+	virtual void OnCollision(Object* obj);
 	virtual D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	RECT GetBoard(D3DXVECTOR2 distance);
 	virtual void SetName(string name) { this->name = name; }

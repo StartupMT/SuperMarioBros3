@@ -35,6 +35,7 @@ void Animation::SetFrame(D3DXVECTOR2 Position, bool Flip, int Delay, int Start, 
 	delay = Delay;
 	start = Start;
 	end = End;
+	Index = Start;
 }
 
 void Animation::SetDataAnimation(DataAnimMap data)
@@ -67,7 +68,7 @@ RECT Animation::GetRectByIndex(int index)
 
 InfoSprite::Infoframe Animation::GetCurrentFrameInfo()
 {
-	return _infoAnim->GetInfoByIndex(start);
+	return _infoAnim->GetInfoByIndex(Index);
 }
 
 bool Animation::GetFlipFlag()

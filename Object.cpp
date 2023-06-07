@@ -217,7 +217,7 @@ void Object::OnCollision(Object* obj, float gameTime)
 			{
 				side = OnCollision(obj, side);
 				//Chạm trục nào update rồi cho vận tốc bằng không
-				if(side.x != Collision::NONE)
+				if (side.x != Collision::NONE)
 				{
 					position.x += distance.x * Time;
 					velocity.x = 0;
@@ -229,7 +229,14 @@ void Object::OnCollision(Object* obj, float gameTime)
 				}
 			}
 		}
+		else OnCollision(obj);
 	}
+}
+
+//nếu lồng nhau
+void Object::OnCollision(Object* obj)
+{
+
 }
 
 //if bằng true thì dừng

@@ -1,4 +1,5 @@
 ﻿#include "Enemy.h"
+#include "Mario.h"
 
 Animation* Enemy::GetAnimationEnemy()
 {
@@ -91,7 +92,7 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 	switch (obj->Tag)
 	{
 	case Object::Player:
-		obj->State = Object::Dying;
+		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
 		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 
 	default:

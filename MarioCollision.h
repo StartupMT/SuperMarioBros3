@@ -21,13 +21,14 @@ public:
 	MarioCollision();
 	~MarioCollision();
 
+	void CheckCollisionEnemy();
 	void OnCollision();
 	void PlayCollisionF();
 
 	void StandCollision();
 	void RunCollision();
 	void JumpCollision();
-	void AttackCollision();
+	void AttackCollision(Object* _obj);
 	void DeadCollision();
 };
 

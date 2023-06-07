@@ -22,8 +22,8 @@ public:
 	bool isAllowJump, isFall, isFallDown, isSpeedJump, isShortJump, isFly;
 	float posYStartJump, velYStartFall, maxJump, fallAc, timeFlyDown;
 	//Attack
-	bool isAllowAttack;
-	float timeAttack, timeAc;
+	bool isAttack, isAllowAttack;
+	float timeAc;
 
 
 	Mario* mario;

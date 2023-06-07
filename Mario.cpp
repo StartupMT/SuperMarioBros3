@@ -34,8 +34,9 @@ void Mario::Init()
 	data[Mario::Small + Object::Running + 2] = { 6, 7, 1 };	//Trượt
 	data[Mario::Small + Object::Running + 3] = { 4, 4 };	//Thắng
 	data[Mario::Small + Object::Jumping] = { 5, 5 };
-	data[Mario::Small + Object::Jumping + 1] = { 5, 5 };
+	data[Mario::Small + Object::Jumping + 1] = { 5, 5 };	//Rơi
 	data[Mario::Small + Object::Jumping + 2] = { 8, 8 };	//Anim bay nhanh
+	data[Mario::Small + Object::Dying] = { 10, 10 };	//Chết
 	//Big
 	data[Mario::Big + Object::Standing] = { 47, 47 };
 	data[Mario::Big + Object::Running] = { 25,	27 };
@@ -55,6 +56,7 @@ void Mario::Init()
 	data[Mario::Raccoon + Object::Jumping + 1] = { 107, 107 };		//rơi
 	data[Mario::Raccoon + Object::Jumping + 2] = { 114, 114 };	//Anim bay nhanh
 	data[Mario::Raccoon + Object::Jumping + 3] = { 114, 116, 5 };	//Fly
+	data[Mario::Raccoon + Object::Attacking] = { 100, 105, 5 };	//Attack
 
 	//data[Mario::Small + Object::Standing] = { 114, 116};
 
@@ -88,12 +90,28 @@ void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 	_marioController->Update(gameTime, key);
 }
 
+void Mario::OnCollision(Object* obj, float gameTime)
+{
+	Object::OnCollision(obj, gameTime);
+	if (!this->AllowDraw || obj->State == Object::Dying || this->State == Object::Dying)
+		return;
+	if (obj->Tag == Object::Enemy && _marioController->isAttack)
+	{
+		_marioCollision->AttackCollision(obj);
+	}
+}
+
 D3DXVECTOR2 Mario::OnCollision(Object* obj, D3DXVECTOR2 side)
 {
 	_marioCollision->_obj = obj;
 	_marioCollision->_side = side;
 	_marioCollision->OnCollision();
 	return _marioCollision->_side;
+}
+
+void Mario::OnCollision(Object* obj)
+{
+
 }
 
 void Mario::Update(float gameTime, Keyboard* key)
@@ -119,10 +137,18 @@ void Mario::UpdateAnimation()
 	}
 	if (!_marioCollision->isGround && velocity.y < 0 && !_marioController->isFly || _marioCollision->isCollisionTop)
 	{
+		//if (State != Object::Dying)
+		_marioController->Fall();
+	}
+	State = _marioController->isAttack ? Object::Attacking : State;	//check anim attack
+	_anim->NewAnimationByIndex(_marioType + this->State + _state);
+
+	if (_marioController->isAttack && _anim->GetIndex() == _anim->GetEnd()) //check end anim attack
+	{
+		_marioController->isAttack = false;
 		_marioController->Fall();
 	}
 
-	_anim->NewAnimationByIndex(_marioType + this->State + _state);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
 }
