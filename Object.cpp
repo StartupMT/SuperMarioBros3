@@ -270,6 +270,10 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Enemy;
 	}
+	if (name == "Coin")
+	{
+		return tag::Item;
+	}
 	return tag::Item;
 }
 

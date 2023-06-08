@@ -13,6 +13,8 @@ Map::Map()
 	objectTag["Wall"] = Block::Wall;
 	objectTag["Koopa"] = Enemy::Koopa;
 
+	objectTag["Coin"] = Item::Coin;
+
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
 		for (int j = 0; j < info->ObjectGroups.at(i)->NumOnjects; j++)
@@ -49,7 +51,6 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	{
 	case Object::Player:
 		obj = Mario::GetInstance();
-		Mario::GetInstance()->Init();
 		obj->SetPosition(pos);
 		break;
 	case Object::Enemy:
@@ -79,34 +80,19 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			break;
 		}
 		break;
-	//case Object::Item:
-	//	switch (objectTag[_mapobject->name])
-	//	{
-	//	case Enemy::Goomba:
-	//		if (_mapobject->kind == 1) //ParaGoomba
-	//		{
-	//			//obj = new ParaGoomba();
-	//			obj = new Enemy();
-	//			break;
-	//		}
-	//		else
-	//		{
-	//			obj = new Enemy();// Enemy = Goomba
-	//			break;
-	//		}
-	//	default:
-	//		obj = new Enemy();
-	//		break;
-	//	}
-	//	break;
+	case Object::Item:
+		switch (objectTag[_mapobject->name])
+		{
+		case Item::Coin:
+		default:
+			obj = new Item();
+			break;
+		}
+		break;
 	case Object::Block:
 		switch (objectTag[_mapobject->name])
 		{
 		case Block::Wall:
-			obj = new Block(); //Wall 0
-			break;
-			//case Block::Brick:
-			//	break;
 		default:
 			obj = new Block();
 			break;

@@ -22,6 +22,7 @@ public:
 	~MarioCollision();
 
 	void CheckCollisionEnemy();
+	void CheckCollisionItem();
 	void OnCollision();
 	void PlayCollisionF();
 

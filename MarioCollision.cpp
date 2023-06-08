@@ -1,5 +1,6 @@
 ﻿#include "MarioCollision.h"
 #include "Mario.h"
+#include "map.h"
 
 MarioCollision::MarioCollision()
 {
@@ -28,7 +29,8 @@ void MarioCollision::OnCollision()
 		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
 		break;
 	case Object::Item:
-
+		CheckCollisionItem();
+		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
 		break;
 	default:
 
@@ -49,6 +51,11 @@ void MarioCollision::CheckCollisionEnemy()
 	}
 	else
 		mario->_marioType = (Mario::MarioType)(mario->_marioType - Mario::Small);
+}
+
+//Va chạm với Item
+void MarioCollision::CheckCollisionItem()
+{
 }
 
 //Chạy function ứng với state mario

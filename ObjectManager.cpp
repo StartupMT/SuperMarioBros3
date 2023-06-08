@@ -68,7 +68,7 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	//map->Render(viewport);
+	map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 		map->ListObject.at(i)->Render(viewport);
