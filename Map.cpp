@@ -1,6 +1,6 @@
 ﻿#include "Map.h"
 #include"TinyXML\tinyxml.h"
-
+#include "Mario.h"
 
 Map::Map()
 {
@@ -11,7 +11,7 @@ Map::Map()
 
 	objectTag["Goomba"] = Enemy::Goomba;
 	objectTag["Wall"] = Block::Wall;
-	// objectTag["Wall1"] = Wall::ghost;
+	objectTag["Koopa"] = Enemy::Koopa;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -47,11 +47,70 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	Object::tag tagg = Object::GetTag(_mapobject->name);
 	switch (tagg)
 	{
-	case Object::Enemy:
-		obj = new Enemy();
+	case Object::Player:
+		obj = Mario::GetInstance();
+		Mario::GetInstance()->Init();
+		obj->SetPosition(pos);
 		break;
+	case Object::Enemy:
+		switch (objectTag[_mapobject->name])
+		{
+		case Enemy::Goomba:
+			if (_mapobject->kind == 1) //ParaGoomba
+			{
+				//obj = new ParaGoomba();
+				obj = new Enemy();
+				break;
+			}
+			obj = new Enemy();// Enemy = Goomba
+			break;
+		case Enemy::Koopa:
+			if (_mapobject->kind == 1) //GreenKoopa
+			{
+				//obj = new GreenKoopa();
+				obj = new Enemy();
+				break;
+			}
+			obj = new RedKoopa(); //RedKoopa
+			break;
+		case Enemy::Plant:
+		default:
+			obj = new Enemy();
+			break;
+		}
+		break;
+	//case Object::Item:
+	//	switch (objectTag[_mapobject->name])
+	//	{
+	//	case Enemy::Goomba:
+	//		if (_mapobject->kind == 1) //ParaGoomba
+	//		{
+	//			//obj = new ParaGoomba();
+	//			obj = new Enemy();
+	//			break;
+	//		}
+	//		else
+	//		{
+	//			obj = new Enemy();// Enemy = Goomba
+	//			break;
+	//		}
+	//	default:
+	//		obj = new Enemy();
+	//		break;
+	//	}
+	//	break;
 	case Object::Block:
-		obj = new Block();
+		switch (objectTag[_mapobject->name])
+		{
+		case Block::Wall:
+			obj = new Block(); //Wall 0
+			break;
+			//case Block::Brick:
+			//	break;
+		default:
+			obj = new Block();
+			break;
+		}
 		break;
 	default:
 		obj = new Object();
@@ -62,7 +121,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	return obj;
 }
 
-void Map::Render(Viewport * view)
+void Map::Render(Viewport* view)
 {
 	int startH, startW, endH, endW;
 	RECT r = view->GetBoundViewport();

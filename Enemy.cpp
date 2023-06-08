@@ -22,7 +22,7 @@ Animation* Enemy::GetAnimationEnemy()
 
 	// Red koopa
 	data[Enemy::Koopa + Object::Standing] = { 26 , 27 };
-	data[Enemy::Koopa + Object::Running] = { 29 , 29 }; // = đánh lần 1 thụt đầu (shell)
+	data[Enemy::Koopa + Object::Running] = { 26 , 27 }; // = đánh lần 1 thụt đầu (shell)
 	data[Enemy::Koopa + Object::Jumping] = { 30 , 31 }; // = đánh lần 2 chạy ( shellrun)
 
 	// Green koopa
@@ -105,11 +105,15 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 	}
 }
 
+void Enemy::BeforeUpdate(float gameTime, Keyboard* key)
+{
+	this->SetBound(Width, Height);
+	EnemyController();
+	Object::Update(gameTime, key);
+}
 void Enemy::Update(float gameTime, Keyboard* key)
 {
 	//Update Animation
-	this->SetBound(Width, Height);
-
 	if (State == Object::Dying)
 	{
 		this->SetBound(0, 0);

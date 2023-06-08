@@ -1,5 +1,6 @@
 ﻿#include "ObjectManager.h"
 #include "string.h"
+#include "Mario.h"
 #pragma warning(disable : 4996)
 
 
@@ -21,7 +22,6 @@ ObjectManager::~ObjectManager()
 {
 	delete map;
 	delete viewport;
-	delete mario;
 }
 
 //Load Data Game
@@ -29,25 +29,16 @@ void ObjectManager::InitDT()
 {
 	//load Objecct
 	map = new Map();
-	//Mario bắt đầu 
-	mario = Mario::GetInstance();
-	mario->Init();
-	mario->SetPosition(D3DXVECTOR2(300, 254));
-
-	//Enemy
-	Enemy* enemy = new Enemy();
-	enemy->Init(D3DXVECTOR2(300, 250));
-
-	map->ListObject.push_back(mario);
-	map->ListObject.push_back(enemy);
-
 	posView = viewport->GetPosition();
 }
 
 //Update Game
 void ObjectManager::Update(float gameTime, Keyboard* key)
 {
-	mario->BeforeUpdate(gameTime, key);
+	//BeforeUpdate all Object
+	for (size_t i = 0; i < map->ListObject.size(); i++)
+		map->ListObject.at(i)->BeforeUpdate(gameTime, key);
+	
 	//Check Collision
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 		for (size_t j = 0; j < map->ListObject.size(); j++)
@@ -59,12 +50,12 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 		map->ListObject.at(i)->Update(gameTime, key);
 
 	//Update Viewport theo vị trí Mario
-	D3DXVECTOR2 posMario = mario->GetPosition();
+	D3DXVECTOR2 posMario = Mario::GetInstance()->GetPosition();
 	viewport->Update(gameTime, key, posMario);
 	//Kiểm tra xem có rơi ra Scene không
-	if (posMario != mario->GetPosition())
+	if (posMario != Mario::GetInstance()->GetPosition())
 	{
-		mario->SetPosition(posMario);
+		Mario::GetInstance()->SetPosition(posMario);
 	}
 }
 
@@ -77,7 +68,7 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	map->Render(viewport);
+	//map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 		map->ListObject.at(i)->Render(viewport);

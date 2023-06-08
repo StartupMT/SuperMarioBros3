@@ -18,7 +18,7 @@ protected:
 	RECT bound;
 	int HP = 0, Damage = 0;
 	string name;
-	int limit;
+	
 public:
 	int id;
 	int _kind;
@@ -26,7 +26,6 @@ public:
 	{
 		Block,
 		Enemy,
-		Tube,
 		Item,
 		Player,
 	}Tag;
@@ -102,6 +101,7 @@ public:
 	virtual void LockAnimation(bool lock, int index);
 
 	virtual bool Die();
+	virtual void BeforeUpdate(float gameTime, Keyboard* key);
 	virtual void Update(float gameTime, Keyboard* key);
 	virtual void Render(Viewport* viewport);
 	// va cham

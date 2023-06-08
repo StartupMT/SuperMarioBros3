@@ -39,6 +39,9 @@
     <Filter Include="Object\Item">
       <UniqueIdentifier>{19cd9b0c-180d-4280-b5fa-4704d0650efc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Enemy\Koopa">
+      <UniqueIdentifier>{d56885b2-93d9-4306-8a89-b5e9809949cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Bullet.png">
@@ -183,6 +186,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="RedKoopa.cpp">
+      <Filter>Object\Enemy\Koopa</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -266,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RedKoopa.h">
+      <Filter>Object\Enemy\Koopa</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@
 #include "Viewport.h"
 #include "Collision.h"
 #include "Map.h"
-#include "Mario.h"
 
 using namespace Define;
 
@@ -16,7 +15,6 @@ private:
 	static ObjectManager* _objectManager;
 protected:
 	Viewport* viewport;
-	Mario* mario;
 	Map* map;
 
 	D3DXVECTOR2 posView;

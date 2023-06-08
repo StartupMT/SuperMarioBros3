@@ -5,6 +5,7 @@
 #include "InfoMap.h"
 #include "Enemy.h"
 #include "Block.h"
+#include "RedKoopa.h"
 
 using namespace Define;
 
