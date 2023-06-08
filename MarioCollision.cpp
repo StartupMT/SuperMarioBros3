@@ -32,6 +32,9 @@ void MarioCollision::OnCollision()
 		CheckCollisionItem();
 		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
 		break;
+	case Object::Block:
+		CheckCollisionBlock();
+		break;
 	default:
 
 		break;
@@ -66,6 +69,27 @@ void MarioCollision::CheckCollisionItem()
 		if (mario->_score == MaxCoin)
 			mario->_live += 1;
 		break;
+	default:
+
+		break;
+	}
+}
+
+//va chạm với tường
+void MarioCollision::CheckCollisionBlock()
+{
+	Block* block = dynamic_cast<Block*>(_obj);
+
+	switch (block->_blocktype)
+	{
+	case Block::Wall:
+		if (block->_kind == 1) // nếu là tường thì xuyên qua
+		{
+			if (_side.y == Collision::BOTTOM) //đụng đáy thì có thể xuyên qua
+				_side = D3DXVECTOR2(Collision::NONE, _side.y);
+			else
+				_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
+		}
 	default:
 
 		break;

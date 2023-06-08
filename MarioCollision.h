@@ -23,6 +23,7 @@ public:
 
 	void CheckCollisionEnemy();
 	void CheckCollisionItem();
+	void CheckCollisionBlock();
 	void OnCollision();
 	void PlayCollisionF();
 
