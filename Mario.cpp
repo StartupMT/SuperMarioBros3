@@ -12,6 +12,7 @@ Mario* Mario::GetInstance()
 {
 	if (nullptr == _mario) {
 		_mario = new Mario();
+		_mario->Init();
 	}
 	return _mario;
 }
@@ -77,6 +78,7 @@ void Mario::Init()
 	position = D3DXVECTOR2(0, 0);
 	velocity = D3DXVECTOR2(0, 0);
 	SetState(Object::Standing);
+	_live = StartLive;
 	HP = 1;
 }
 
@@ -191,5 +193,12 @@ void Mario::Render(Viewport* viewport)
 		_anim->Render(viewport);
 	}
 	DrawLine::GetInstance()->DrawRect(bound);
-	GUI::GetInstance()->Render(_marioType + this->State + _state, { 100, 200, 150, 235 });
+
+	GUI::GetInstance()->Render(_marioController->accCount, { 5, 200, 40, 235 });
+
+	GUI::GetInstance()->Render("Score: ", { 90, 200, 130, 235 });
+	GUI::GetInstance()->Render(_score, { 100, 200, 150, 235 });
+
+	GUI::GetInstance()->Render("Live: ", { 150, 200, 200, 235 });
+	GUI::GetInstance()->Render(_live, { 210, 200, 220, 235 });
 }

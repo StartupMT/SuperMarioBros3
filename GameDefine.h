@@ -35,6 +35,9 @@ namespace Define
 	const char TileSetPNG[] = "./Resource Files/Tileset_map_1.png";
 	const char MapXML[] = "./Resource Files/Map_1.tmx";
 
+	//Mario
+	const int StartLive = 3;
+
 	//MarioRun
 	const float RunSpeed = 1.0f;
 	const float SlowDown = 0.20f;

@@ -56,6 +56,20 @@ void MarioCollision::CheckCollisionEnemy()
 //Va chạm với Item
 void MarioCollision::CheckCollisionItem()
 {
+	Item* item = dynamic_cast<Item*>(_obj);
+
+	switch (item->_itemtype)
+	{
+	case Item::Coin:
+		item->State = Object::Dying;
+		mario->_score += 1;
+		if (mario->_score == MaxCoin)
+			mario->_live += 1;
+		break;
+	default:
+
+		break;
+	}
 }
 
 //Chạy function ứng với state mario
