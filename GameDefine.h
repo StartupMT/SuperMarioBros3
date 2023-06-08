@@ -53,4 +53,8 @@ namespace Define
 	//EnemyAttributes
 	const float EnemySpeed = 0.5f;
 	const float EnemyJump = 32.0f;
+
+	//ItemAttributes
+	const int MaxCoin = 100;
+	const float ItemSpeed = 0.5f;
 }

@@ -10,8 +10,8 @@ Map::Map()
 	position = D3DXVECTOR2(0, 0);
 
 	objectTag["Goomba"] = Enemy::Goomba;
-	objectTag["Wall"] = Wall::normal;
-	objectTag["Wall1"] = Wall::ghost;
+	objectTag["Wall"] = Block::Wall;
+	// objectTag["Wall1"] = Wall::ghost;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -50,8 +50,8 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	case Object::Enemy:
 		obj = new Enemy();
 		break;
-	case Object::Wall:
-		obj = new Wall();
+	case Object::Block:
+		obj = new Block();
 		break;
 	default:
 		obj = new Object();

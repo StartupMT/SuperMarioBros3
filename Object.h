@@ -21,9 +21,10 @@ protected:
 	int limit;
 public:
 	int id;
+	int _kind;
 	enum tag
 	{
-		Wall,
+		Block,
 		Enemy,
 		Tube,
 		Item,

@@ -260,7 +260,7 @@ Object::tag Object::GetTag(string name)
 	}
 	if (name == "Wall")
 	{
-		return tag::Wall;
+		return tag::Block;
 	}
 	if (name == "Goomba" || name == "Koopa" || name == "Plant")
 	{

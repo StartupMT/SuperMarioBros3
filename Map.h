@@ -3,8 +3,8 @@
 #include "TileSet.h"
 #include "GameDefine.h"
 #include "InfoMap.h"
-#include "Wall.h"
 #include "Enemy.h"
+#include "Block.h"
 
 using namespace Define;
 

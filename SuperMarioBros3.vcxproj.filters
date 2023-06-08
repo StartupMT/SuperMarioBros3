@@ -36,6 +36,9 @@
     <Filter Include="Object\Enemy">
       <UniqueIdentifier>{c9cadd77-1e08-4a49-9591-cdf780de2378}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Item">
+      <UniqueIdentifier>{19cd9b0c-180d-4280-b5fa-4704d0650efc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Bullet.png">
@@ -159,7 +162,7 @@
     <ClCompile Include="DrawLine.cpp">
       <Filter>Global\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Wall.cpp">
+    <ClCompile Include="Block.cpp">
       <Filter>Object\Block</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="MapObjectGroup.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,7 +246,7 @@
     <ClInclude Include="DrawLine.h">
       <Filter>Global\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
+    <ClInclude Include="Block.h">
       <Filter>Object\Block</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
@@ -257,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="MapObjectGroup.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
