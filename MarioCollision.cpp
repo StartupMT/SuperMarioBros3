@@ -65,8 +65,8 @@ void MarioCollision::CheckCollisionItem()
 	{
 	case Item::Coin:
 		item->State = Object::Dying;
-		mario->_score += 1;
-		if (mario->_score == MaxCoin)
+		mario->_coin += 1;
+		if (mario->_coin == MaxCoin)
 			mario->_live += 1;
 		break;
 	default:
@@ -82,14 +82,7 @@ void MarioCollision::CheckCollisionBlock()
 
 	switch (block->_blocktype)
 	{
-	case Block::Wall:
-		if (block->_kind == 1) // nếu là tường thì xuyên qua
-		{
-			if (_side.y == Collision::BOTTOM) //đụng đáy thì có thể xuyên qua
-				_side = D3DXVECTOR2(Collision::NONE, _side.y);
-			else
-				_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
-		}
+	case Block::Brick:
 	default:
 
 		break;

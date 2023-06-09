@@ -109,7 +109,6 @@ void Enemy::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
 	EnemyController();
-	Object::Update(gameTime, key);
 }
 void Enemy::Update(float gameTime, Keyboard* key)
 {
@@ -133,7 +132,7 @@ void Enemy::UpdateAnimation()
 {
 	_anim->NewAnimationByIndex(_enemyType + this->State + _kind);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
-	_anim->SetFlipFlag(FlipFlag);
+	_anim->SetFlipFlag(velocity.x > 0);
 }
 
 void Enemy::SetBound(float width, float height)

@@ -1,5 +1,5 @@
 ﻿#include "Object.h"
-
+#include "Block.h"
 
 Object::Object()
 {
@@ -219,6 +219,21 @@ void Object::OnCollision(Object* obj, float gameTime)
 			//bé hơn 1 thì có va chạm
 			if (Time < 1.0f)
 			{
+				if (obj->Tag == Object::Block) //Nếu là tường đi xuyên
+				{
+					//Nếu là tường ghost
+					if (dynamic_cast<::Block*>(obj)->_blocktype == Block::Wall && obj->_kind == 1)
+					{
+						//Đụng đáy thì đi lên tường
+						if (side.y == Collision::BOTTOM)
+							side = D3DXVECTOR2(Collision::NONE, side.y);
+						else
+						{
+							side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
+							return;
+						}
+					}
+				}
 				side = OnCollision(obj, side);
 				//Chạm trục nào update rồi cho vận tốc bằng không
 				if (side.x != Collision::NONE)

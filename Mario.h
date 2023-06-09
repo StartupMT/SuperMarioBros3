@@ -21,7 +21,7 @@ public:
 	MarioCollision* _marioCollision;
 	int _state = 0;
 	RECT rect_attack;
-	int _live, _score = 0;
+	int _live, _coin = 0, _score = 0;
 
 public:
 	Mario();

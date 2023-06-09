@@ -102,6 +102,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		obj = new Object();
 		break;
 	}
+	obj->id = _mapobject->id;
 	obj->Init(pos, objectTag[_mapobject->name], _mapobject->kind);
 	obj->GetBound(_mapobject->width, _mapobject->height);
 	return obj;

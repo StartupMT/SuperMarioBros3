@@ -196,8 +196,8 @@ void Mario::Render(Viewport* viewport)
 
 	GUI::GetInstance()->Render(_marioController->accCount, { 5, 200, 40, 235 });
 
-	GUI::GetInstance()->Render("Score: ", { 90, 200, 130, 235 });
-	GUI::GetInstance()->Render(_score, { 100, 200, 150, 235 });
+	GUI::GetInstance()->Render("Coin: ", { 90, 200, 130, 235 });
+	GUI::GetInstance()->Render(_coin, { 100, 200, 150, 235 });
 
 	GUI::GetInstance()->Render("Live: ", { 150, 200, 200, 235 });
 	GUI::GetInstance()->Render(_live, { 210, 200, 220, 235 });

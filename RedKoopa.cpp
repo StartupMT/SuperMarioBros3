@@ -35,11 +35,6 @@ D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 
 	default:
-		if (side.x != Collision::NONE)
-		{
-			velocity.x = -velocity.x;
-			side.x = Collision::NONE;
-		}
 		return side;
 	}
 }
