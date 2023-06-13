@@ -19,6 +19,10 @@ D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 {
 	switch (obj->Tag)
 	{
+	case Object::Player:
+		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
+		return D3DXVECTOR2(Collision::NONE, side.y);
+
 	case Object::Block:
 		if (side.y == Collision::BOTTOM)
 		{
@@ -29,11 +33,6 @@ D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 			}
 		}
 		return side;
-
-	case Object::Player:
-		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
-		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
-
 	default:
 		return side;
 	}

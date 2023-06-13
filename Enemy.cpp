@@ -93,7 +93,7 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 	{
 	case Object::Player:
 		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
-		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
+		return D3DXVECTOR2(Collision::NONE, side.y);
 
 	default:
 		if (side.x != Collision::NONE)
@@ -122,17 +122,17 @@ void Enemy::Update(float gameTime, Keyboard* key)
 			AllowDraw = false;
 	}
 
-	UpdateAnimation();
-	_anim->Update(gameTime);
+	UpdateAnimation(gameTime);
 
 	Object::Update(gameTime, key);
 }
 
-void Enemy::UpdateAnimation()
+void Enemy::UpdateAnimation(float gameTime)
 {
 	_anim->NewAnimationByIndex(_enemyType + this->State + _kind);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(velocity.x > 0);
+	_anim->Update(gameTime);
 }
 
 void Enemy::SetBound(float width, float height)

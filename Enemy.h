@@ -19,7 +19,7 @@ public:
 	void Init(D3DXVECTOR2 pos, int _type = Enemytype::Goomba, int kind = 0);
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
-	void UpdateAnimation();
+	void UpdateAnimation(float gameTime);
 	void EnemyController();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void SetBound(float width, float height);

@@ -74,17 +74,17 @@ void Item::Update(float gameTime, Keyboard* key)
 		AllowDraw = false;
 	}
 
-	UpdateAnimation();
-	_anim->Update(gameTime);
+	UpdateAnimation(gameTime);
 
 	Object::Update(gameTime, key);
 }
 
-void Item::UpdateAnimation()
+void Item::UpdateAnimation(float gameTime)
 {
 	_anim->NewAnimationByIndex(_itemtype + this->State + _kind);
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(velocity.x > 0);
+	_anim->Update(gameTime);
 }
 
 void Item::SetBound(float width, float height)
