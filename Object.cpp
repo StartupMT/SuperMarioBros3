@@ -201,6 +201,11 @@ void Object::Update(float gameTime, Keyboard* key)
 {
 	position += velocity * gameTime * 100;
 }
+
+void Object::UpdateAnimation(float gameTime)
+{
+}
+
 void Object::OnCollision(Object* obj, float gameTime)
 {
 	if (!obj->AllowDraw || !this->AllowDraw || !obj->State==Object::Dying || this->State ==Object::Dying)

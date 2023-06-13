@@ -103,6 +103,7 @@ public:
 	virtual bool Die();
 	virtual void BeforeUpdate(float gameTime, Keyboard* key);
 	virtual void Update(float gameTime, Keyboard* key);
+	virtual void UpdateAnimation(float gameTime);
 	virtual void Render(Viewport* viewport);
 	// va cham
 	virtual void OnCollision(Object* obj, float gameTime);

@@ -35,6 +35,31 @@ void ObjectManager::InitDT()
 //Update Game
 void ObjectManager::Update(float gameTime, Keyboard* key)
 {
+	//
+	if (key->IsKeyDown(Dik_START))
+	{
+		float time = 500;
+		if (isPause)
+			StartPause(0);
+		else
+			StartPause(time);
+	}
+
+	//check Pause
+	if (isPause)
+	{
+		if (pauseTime > 0)
+			pauseTime -= gameTime;
+		else
+			isPause = false;
+
+		//Animation all Object
+		for (size_t i = 0; i < map->ListObject.size(); i++)
+			map->ListObject.at(i)->UpdateAnimation(gameTime);
+
+		return;
+	}
+
 	//BeforeUpdate all Object
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 		map->ListObject.at(i)->BeforeUpdate(gameTime, key);
@@ -57,6 +82,12 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 	{
 		Mario::GetInstance()->SetPosition(posMario);
 	}
+}
+
+void ObjectManager::StartPause(float time)
+{
+	isPause = true;
+	pauseTime = time;
 }
 
 Viewport* ObjectManager::GetViewPort()

@@ -18,6 +18,10 @@ protected:
 	Map* map;
 
 	D3DXVECTOR2 posView;
+
+	bool isPause;
+	float pauseTime;
+
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -27,7 +31,7 @@ public:
 	void InitDT();
 
 	void Update(float gameTime, Keyboard* key);
-
+	void StartPause(float time);
 	Viewport* GetViewPort();
 	//Vẽ Object lên màn hình
 	void Render();
