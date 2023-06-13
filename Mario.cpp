@@ -74,11 +74,11 @@ void Mario::Init()
 	AllowDraw = true;
 	Tag = Object::Player;
 	_marioType = Mario::Small;
-	this->SetBound(15, 15);
+	ChangeMarioType(_marioType);
 	position = D3DXVECTOR2(0, 0);
 	velocity = D3DXVECTOR2(0, 0);
 	SetState(Object::Standing);
-	_live = StartLive;
+	_life = StartLive;
 	HP = 1;
 }
 
@@ -95,7 +95,7 @@ void Mario::BeforeUpdate(float gameTime, Keyboard* key)
 void Mario::OnCollision(Object* obj, float gameTime)
 {
 	Object::OnCollision(obj, gameTime);
-	if (!this->AllowDraw || obj->State == Object::Dying || this->State == Object::Dying)
+	if (obj->State == Object::Dying || this->State == Object::Dying)
 		return;
 	if (obj->Tag == Object::Enemy && _marioController->isAttack)
 	{
@@ -119,13 +119,13 @@ void Mario::OnCollision(Object* obj)
 void Mario::Update(float gameTime, Keyboard* key)
 {
 	//Update Animation
-	UpdateAnimation();
+	UpdateAnimation(gameTime);
 	_anim->Update(gameTime);
 
 	Object::Update(gameTime, key);
 }
 
-void Mario::UpdateAnimation()
+void Mario::UpdateAnimation(float gameTime)
 {
 	_state = 0;
 	if (State == Object::Running)
@@ -137,41 +137,43 @@ void Mario::UpdateAnimation()
 	{
 		_state = _marioController->isFly ? 3 : _marioController->isSpeedJump ? 2 : _marioController->isFallDown;
 	}
+
+	//nếu đang trên không mà không có bay hoặc đụng đầu thì mario rơi
 	if (!_marioCollision->isGround && velocity.y < 0 && !_marioController->isFly || _marioCollision->isCollisionTop)
 	{
-		//if (State != Object::Dying)
-		_marioController->Fall();
+		if (State != Object::Dying)
+			_marioController->Fall();
 	}
+
+	//mếu đang tấn công thì đổi trạng thái
 	State = _marioController->isAttack ? Object::Attacking : State;	//check anim attack
 	_anim->NewAnimationByIndex(_marioType + this->State + _state);
 
 	if (_marioController->isAttack && _anim->GetIndex() == _anim->GetEnd()) //check end anim attack
 	{
 		_marioController->isAttack = false;
-		_marioController->Fall();
+		if (State != Object::Dying)
+			_marioController->Fall();
 	}
 
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(FlipFlag);
+	_anim->Update(gameTime);
 }
 
 void Mario::ChangeMarioType(MarioType marioType)
 {
-	//_marioType = marioType;
-	//if (key->IsKeyDown(DIK_A))
-	//{
-	//	this->SetBound(15, 15);
-	//}
-	//if (key->IsKeyDown(DIK_S))
-	//{
-	//	mario->_marioType = Mario::Big;
-	//	mario->SetBound(17, 25);
-	//}
-	//if (key->IsKeyDown(DIK_D))
-	//{
-	//	mario->_marioType = Mario::Raccoon;
-	//	mario->SetBound(17, 25);
-	//}
+	_marioType = marioType;
+	switch (_marioType)
+	{
+	case Mario::Big:
+	case Mario::Raccoon:
+		SetBound(17, 25);
+		break;
+	default:
+		SetBound(12, 15);
+		break;
+	}
 }
 
 void Mario::SetBound(float width, float height)
@@ -199,6 +201,6 @@ void Mario::Render(Viewport* viewport)
 	GUI::GetInstance()->Render("Coin: ", { 90, 200, 130, 235 });
 	GUI::GetInstance()->Render(_coin, { 100, 200, 150, 235 });
 
-	GUI::GetInstance()->Render("Live: ", { 150, 200, 200, 235 });
-	GUI::GetInstance()->Render(_live, { 210, 200, 220, 235 });
+	GUI::GetInstance()->Render("Life: ", { 150, 200, 200, 235 });
+	GUI::GetInstance()->Render(_life, { 210, 200, 220, 235 });
 }

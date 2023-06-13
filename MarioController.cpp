@@ -71,6 +71,13 @@ void MarioController::RunState()
 
 void MarioController::MoveX()
 {
+	//nếu chết không di chuyển
+	if (mario->State == Object::Dying)
+	{
+		mario->SetVelocityX(0);
+		return;
+	}
+
 	float speed = mario->GetVelocity().x;
 	float speedRun = (key->IsKeyDown(Dik_ATTACK) && !isAttack) ? MaxRun : RunSpeed;
 	speedRun = isSpeed ? MaxSpeed : speedRun;
@@ -191,7 +198,6 @@ void MarioController::AttackState()
 void MarioController::DeadState()
 {
 	velYStartFall -= fallAc;
-	velYStartFall = isFallDown ? Gravity : velYStartFall;
 	mario->SetVelocity(0, velYStartFall);
 	mario->SetState(Object::Dying);
 	mario->SetBound(0, 0);

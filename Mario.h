@@ -21,7 +21,7 @@ public:
 	MarioCollision* _marioCollision;
 	int _state = 0;
 	RECT rect_attack;
-	int _live, _coin = 0, _score = 0;
+	int _life, _coin = 0, _score = 0;
 
 public:
 	Mario();
@@ -30,7 +30,7 @@ public:
 	void Init();
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
-	void UpdateAnimation();
+	void UpdateAnimation(float gameTime);
 	void OnCollision(Object* obj, float gameTime);
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void OnCollision(Object* obj);

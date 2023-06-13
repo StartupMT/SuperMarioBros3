@@ -1,6 +1,7 @@
 ﻿#include "MarioCollision.h"
 #include "Mario.h"
 #include "map.h"
+#include "ObjectManager.h"
 
 MarioCollision::MarioCollision()
 {
@@ -25,7 +26,8 @@ void MarioCollision::OnCollision()
 	switch (_obj->Tag)
 	{
 	case Object::Enemy:
-		CheckCollisionEnemy();
+		if (_side.y != Collision::BOTTOM)
+			CheckCollisionEnemy();
 		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
 		break;
 	case Object::Item:
@@ -47,13 +49,19 @@ void MarioCollision::OnCollision()
 
 void MarioCollision::CheckCollisionEnemy()
 {
-	if (mario->_marioType - Mario::Small < Mario::Small)
+	if (mario->_marioType - Mario::Small < Mario::Small) //check mario có chết hay không
 	{
+		ObjectManager::GetInstance()->StartPause(1.0f);
 		mario->State = Object::Dying;
-		mario->_marioController->velYStartFall = JumpSpeed;
+		mario->_marioController->velYStartFall = JumpSpeed * 1.5;
 	}
-	else
-		mario->_marioType = (Mario::MarioType)(mario->_marioType - Mario::Small);
+	else //nếu không chết biến nhỏ
+	{
+		ObjectManager::GetInstance()->StartPause(1.5f);
+		isImmortal = true;
+		immortalTime = 3.0f;
+		mario->ChangeMarioType((Mario::MarioType)(mario->_marioType - Mario::Small));
+	}
 }
 
 //Va chạm với Item
@@ -67,7 +75,7 @@ void MarioCollision::CheckCollisionItem()
 		item->State = Object::Dying;
 		mario->_coin += 1;
 		if (mario->_coin == MaxCoin)
-			mario->_live += 1;
+			mario->_life += 1;
 		break;
 	default:
 
@@ -115,13 +123,10 @@ void MarioCollision::RunCollision()
 //va chạm khi nhảy
 void MarioCollision::JumpCollision()
 {
-	if (!mario->_marioController->isFall)
-		return;
-
 	if (_side.y == Collision::BOTTOM)
 	{
 		mario->_marioController->StandState();
-		if (_obj->Tag == Object::Enemy)
+		if (_obj->Tag == Object::Enemy)// va chạm đáy mario quái chết
 		{
 			_obj->State = Object::Dying;
 			mario->_marioController->ShortJump();
