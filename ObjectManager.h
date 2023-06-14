@@ -19,10 +19,11 @@ protected:
 
 	D3DXVECTOR2 posView;
 
-	bool isPause;
 	float pauseTime;
 
 public:
+	bool isPause;
+
 	ObjectManager();
 	~ObjectManager();
 

@@ -2,6 +2,7 @@
 #include "GameDefine.h"
 #include <math.h>
 #include "GUI.h"
+#include "ObjectManager.h"
 
 Mario* Mario::_mario = nullptr;
 Mario::Mario()
@@ -47,6 +48,8 @@ void Mario::Init()
 	data[Mario::Big + Object::Jumping] = { 29, 29 };
 	data[Mario::Big + Object::Jumping + 1] = { 30, 30 };	//rơi
 	data[Mario::Big + Object::Jumping + 2] = { 34, 34 };	//Anim bay nhanh
+	data[Mario::Big + Object::Sitting] = { 35, 35 };
+
 	//Raccoon
 	data[Mario::Raccoon + Object::Standing] = { 130, 130 };
 	data[Mario::Raccoon + Object::Running] = { 96,	98 };
@@ -58,6 +61,7 @@ void Mario::Init()
 	data[Mario::Raccoon + Object::Jumping + 2] = { 114, 114 };	//Anim bay nhanh
 	data[Mario::Raccoon + Object::Jumping + 3] = { 114, 116, 5 };	//Fly
 	data[Mario::Raccoon + Object::Attacking] = { 100, 105, 5 };	//Attack
+	data[Mario::Raccoon + Object::Sitting] = { 35, 35 };
 
 	//data[Mario::Small + Object::Standing] = { 114, 116};
 
@@ -120,7 +124,6 @@ void Mario::Update(float gameTime, Keyboard* key)
 {
 	//Update Animation
 	UpdateAnimation(gameTime);
-	_anim->Update(gameTime);
 
 	Object::Update(gameTime, key);
 }
@@ -161,12 +164,21 @@ void Mario::UpdateAnimation(float gameTime)
 	_anim->Update(gameTime);
 }
 
-void Mario::ChangeMarioType(MarioType marioType)
+void Mario::ChangeMarioType(MarioType marioType, float time)
 {
 	_marioType = marioType;
 	switch (_marioType)
 	{
+	case Mario::Small:
+		if (marioType > _marioType)
+			ObjectManager::GetInstance()->StartPause(1.0f);
+		SetBound(12, 15);
+		break;
 	case Mario::Big:
+		if (marioType < _marioType)
+			ObjectManager::GetInstance()->StartPause(1.0f);
+		SetBound(17, 25);
+		break;
 	case Mario::Raccoon:
 		SetBound(17, 25);
 		break;

@@ -50,29 +50,3 @@
     <Sprite id="spr-debris-3" x="192" y="352"  w="13" h="11"/>
 
   </Textures>
-
-  <Textures textureId="tex-fire-ball">
-    <Sprite id="spr-fire-ball-0" x="0" y="1"  w="8" h="8"/>
-    <Sprite id="spr-fire-ball-1" x="11" y="0"  w="8" h="9"/>
-    <Sprite id="spr-fire-ball-2" x="22" y="1"  w="8" h="8"/>
-    <Sprite id="spr-fire-ball-3" x="33" y="0"  w="8" h="9"/>
-  </Textures>
-
-  <Textures textureId="tex-reward">
-    <Sprite id="spr-goal-mushroom-0" x="5" y="28" w="16" h="16"/>
-    <Sprite id="spr-goal-mushroom-1" x="67" y="29" w="10" h="15"/>
-    <Sprite id="spr-goal-mushroom-2" x="111" y="28" w="1" h="16"/>
-    <Sprite id="spr-goal-flower-0" x="25" y="28" w="16" h="16"/>
-    <Sprite id="spr-goal-flower-1" x="80" y="29" w="10" h="16"/>
-    <Sprite id="spr-goal-star-0" x="45" y="27" w="16" h="16"/>
-    <Sprite id="spr-goal-star-1" x="95" y="28" w="10" h="16"/>
-  </Textures>
-    
-    <Textures textureId="tex-pipe">
-        <Sprite id="spr-pipe-1-vertical-head" x="32" y="32" w="32" h="16"/>
-        <Sprite id="spr-pipe-1-vertical-body" x="32" y="48" w="32" h="16"/>
-        <Sprite id="spr-pipe-1-horizontal-head" x="32" y="0" w="16" h="32"/>
-        <Sprite id="spr-pipe-1-horizontal-body" x="48" y="0" w="16" h="32"/>
-        <Sprite id="spr-pipe-2-vertical-head" x="192" y="32" w="32" h="16"/>
-        <Sprite id="spr-pipe-2-vertical-body" x="192" y="48" w="32" h="16"/>
-    </Textures>

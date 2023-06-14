@@ -40,6 +40,7 @@ public:
 	void JumpState();
 	void AttackState();
 	void DeadState();
+	void SitState();
 	void PlayControllerF();
 	void Update(float gameTime, Keyboard* key);
 };

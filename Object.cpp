@@ -208,7 +208,7 @@ void Object::UpdateAnimation(float gameTime)
 
 void Object::OnCollision(Object* obj, float gameTime)
 {
-	if (!obj->AllowDraw || !this->AllowDraw || !obj->State==Object::Dying || this->State ==Object::Dying)
+	if (obj->State==Object::Dying || this->State ==Object::Dying)
 		return;
 	D3DXVECTOR2 side;
 	D3DXVECTOR2 distance = velocity * gameTime * 100;

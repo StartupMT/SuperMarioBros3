@@ -14,7 +14,7 @@ MarioController::MarioController()
 	_functionMap[Object::Jumping] = &MarioController::JumpState;
 	_functionMap[Object::Attacking] = &MarioController::AttackState;
 	_functionMap[Object::Dying] = &MarioController::DeadState;
-
+	_functionMap[Object::Sitting] = &MarioController::SitState;
 }
 
 MarioController::~MarioController()
@@ -24,6 +24,7 @@ MarioController::~MarioController()
 //Trạng thái Đứng
 void MarioController::StandState() //reset all state
 {
+	mario->ChangeMarioType(mario->_marioType);
 	timeFlyDown = 0;
 	isFly = false;
 	isShortJump = false;
@@ -34,13 +35,13 @@ void MarioController::StandState() //reset all state
 	{
 		mario->SetState(Object::Jumping);
 	}
+	else if (key->IsKeyDown(DIK_DOWN) && mario->_marioType != Mario::Small)
+	{
+		mario->SetState(Object::Sitting);
+	}
 	else if (key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT))
 	{
 		mario->SetState(Object::Running);
-	}
-	else if (key->IsKeyDown(Dik_DOWN))
-	{
-		mario->SetState(Object::Sitting);
 	}
 	else
 	{
@@ -55,7 +56,11 @@ void MarioController::RunState()
 	isAllowJump = true;
 	isFall = false;
 	mario->SetVelocityY(Gravity);
-	if (key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT))
+	if (key->IsKeyDown(Dik_DOWN) && mario->_marioType != Mario::Small)
+	{
+		mario->SetState(Object::Sitting);
+	}
+	else if (key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT))
 	{
 		if (key->IsKeyDown(Dik_JUMP))
 		{
@@ -79,16 +84,16 @@ void MarioController::MoveX()
 	}
 
 	float speed = mario->GetVelocity().x;
-	float speedRun = (key->IsKeyDown(Dik_ATTACK) && !isAttack) ? MaxRun : RunSpeed;
+	float speedRun = key->IsKeyDown(Dik_ATTACK) ? MaxRun : RunSpeed;
 	speedRun = isSpeed ? MaxSpeed : speedRun;
 	isBake = false;
-	if (key->IsKeyDown(Dik_RIGHT))
+	if (key->IsKeyDown(Dik_RIGHT) && mario->State != Object::Sitting)
 	{
 		isBake = speed < 0 && mario->State == Object::Running;
 		speed = speed < RunSpeed ? speed + accDown : speedRun;
 		mario->SetFlipFlag(false);
 	}
-	else if (key->IsKeyDown(Dik_LEFT))
+	else if (key->IsKeyDown(Dik_LEFT) && mario->State != Object::Sitting)
 	{
 		isBake = speed > 0 && mario->State == Object::Running;
 		speed = speed > -RunSpeed ? speed - accDown : -speedRun;
@@ -201,6 +206,13 @@ void MarioController::DeadState()
 	mario->SetVelocity(0, velYStartFall);
 	mario->SetState(Object::Dying);
 	mario->SetBound(0, 0);
+}
+
+//Trạng thái ngồi
+void MarioController::SitState()
+{
+	StandState();
+	mario->SetBound(15, 15);
 }
 
 void MarioController::PlayControllerF()

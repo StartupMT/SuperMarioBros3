@@ -34,7 +34,7 @@ public:
 	void OnCollision(Object* obj, float gameTime);
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void OnCollision(Object* obj);
-	void ChangeMarioType(MarioType marioType);
+	void ChangeMarioType(MarioType marioType, float time = 0);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Mario* GetInstance();

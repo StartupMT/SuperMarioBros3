@@ -16,8 +16,6 @@ public:
 	Object* _obj;
 	D3DXVECTOR2 _side;
 	bool isGround, isCollisionTop;
-	bool isImmortal = false;
-	float immortalTime = 0;
 
 public:
 	MarioCollision();

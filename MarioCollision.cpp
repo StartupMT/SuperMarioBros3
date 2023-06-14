@@ -11,6 +11,7 @@ MarioCollision::MarioCollision()
 	_functionMap[Object::Jumping] = &MarioCollision::JumpCollision;
 	_functionMap[Object::Attacking] = &MarioCollision::StandCollision;
 	_functionMap[Object::Dying] = &MarioCollision::DeadCollision;
+	_functionMap[Object::Sitting] = &MarioCollision::StandCollision;
 }
 
 MarioCollision::~MarioCollision()
@@ -28,7 +29,7 @@ void MarioCollision::OnCollision()
 	case Object::Enemy:
 		if (_side.y != Collision::BOTTOM)
 			CheckCollisionEnemy();
-		_side = D3DXVECTOR2(Collision::NONE, Collision::NONE);
+		_side.x = Collision::NONE;
 		break;
 	case Object::Item:
 		CheckCollisionItem();
@@ -51,16 +52,13 @@ void MarioCollision::CheckCollisionEnemy()
 {
 	if (mario->_marioType - Mario::Small < Mario::Small) //check mario có chết hay không
 	{
-		ObjectManager::GetInstance()->StartPause(1.0f);
+		ObjectManager::GetInstance()->StartPause(0.5f);
 		mario->State = Object::Dying;
-		mario->_marioController->velYStartFall = JumpSpeed * 1.5;
+		mario->_marioController->velYStartFall = JumpSpeed * 2;
 	}
 	else //nếu không chết biến nhỏ
 	{
-		ObjectManager::GetInstance()->StartPause(1.5f);
-		isImmortal = true;
-		immortalTime = 3.0f;
-		mario->ChangeMarioType((Mario::MarioType)(mario->_marioType - Mario::Small));
+		mario->ChangeMarioType((Mario::MarioType)(mario->_marioType - Mario::Small), 3.0f);
 	}
 }
 
