@@ -22,6 +22,8 @@ public:
 	int _state = 0;
 	RECT rect_attack;
 	int _life, _coin = 0, _score = 0;
+	bool isImmortal = false;
+	float immortalTime = 0;
 
 public:
 	Mario();
@@ -34,6 +36,7 @@ public:
 	void OnCollision(Object* obj, float gameTime);
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void OnCollision(Object* obj);
+	void SetImmortal(float time);
 	void ChangeMarioType(MarioType marioType, float time = 0);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);

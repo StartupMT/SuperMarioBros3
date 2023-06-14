@@ -130,6 +130,39 @@ void Mario::Update(float gameTime, Keyboard* key)
 
 void Mario::UpdateAnimation(float gameTime)
 {
+	//check changeType
+	if (isImmortal)
+	{
+		if (immortalTime > 0)
+		{
+			AllowDraw = (int)(immortalTime / 0.1) % 2;
+			immortalTime -= gameTime;
+
+			//gamePause
+			if (ObjectManager::GetInstance()->isPause)
+			{
+				if ((int)(immortalTime / 0.1) % 2 == 1)
+				{
+					_anim->NewAnimationByIndex(Mario::Big + Object::Standing);
+					_anim->SetPosition(D3DXVECTOR2(position.x, position.y + 15 / 2));
+				}
+				else
+				{
+					_anim->NewAnimationByIndex(Mario::Small + Object::Standing);
+					_anim->SetPosition(D3DXVECTOR2(position.x, position.y + 15 / 2));
+				}
+				_anim->SetFlipFlag(FlipFlag);
+				_anim->Update(gameTime);
+				return;
+			}
+		}
+		else
+		{
+			isImmortal = false;
+			AllowDraw = true;
+		}
+	}
+
 	_state = 0;
 	if (State == Object::Running)
 	{
@@ -164,9 +197,14 @@ void Mario::UpdateAnimation(float gameTime)
 	_anim->Update(gameTime);
 }
 
+void Mario::SetImmortal(float time)
+{
+	immortalTime = time;
+	isImmortal = true;
+}
+
 void Mario::ChangeMarioType(MarioType marioType, float time)
 {
-	_marioType = marioType;
 	switch (_marioType)
 	{
 	case Mario::Small:
@@ -186,6 +224,11 @@ void Mario::ChangeMarioType(MarioType marioType, float time)
 		SetBound(12, 15);
 		break;
 	}
+
+	if (_marioType == marioType) return;
+	_marioType = marioType;
+	SetImmortal(time);
+	State = Object::Standing;
 }
 
 void Mario::SetBound(float width, float height)

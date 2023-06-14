@@ -50,6 +50,7 @@ void MarioCollision::OnCollision()
 
 void MarioCollision::CheckCollisionEnemy()
 {
+	if (mario->isImmortal) return;
 	if (mario->_marioType - Mario::Small < Mario::Small) //check mario có chết hay không
 	{
 		ObjectManager::GetInstance()->StartPause(0.5f);
