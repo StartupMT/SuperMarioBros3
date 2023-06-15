@@ -1,7 +1,7 @@
 ﻿#include "MarioCollision.h"
 #include "Mario.h"
 #include "map.h"
-#include "ObjectManager.h"
+#include "SceneManager.h"
 
 MarioCollision::MarioCollision()
 {
@@ -55,6 +55,8 @@ void MarioCollision::CheckCollisionEnemy()
 	{
 		ObjectManager::GetInstance()->StartPause(0.5f);
 		mario->State = Object::Dying;
+		mario->_life -= 1;
+		SceneManager::GetInstance()->StartEnd();
 		mario->_marioController->velYStartFall = JumpSpeed * 2;
 	}
 	else //nếu không chết biến nhỏ

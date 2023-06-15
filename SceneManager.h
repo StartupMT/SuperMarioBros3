@@ -9,6 +9,11 @@ using namespace Define;
 class SceneManager
 {
 static SceneManager* _sceneManager;
+
+public:
+	bool isEnd;
+	float endTime;
+
 public:
 	SceneManager();
 	~SceneManager();
@@ -18,6 +23,7 @@ public:
 
 	//Update Game sau khoảng thời gian gameTime
 	void Update(float gameTime, Keyboard* key);
+	void StartEnd(float time = timeEnd);
 	//Vẽ Object lên màn hình
 	void Render();
 	static SceneManager* GetInstance();

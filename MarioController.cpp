@@ -89,8 +89,8 @@ void MarioController::MoveX()
 	isBake = false;
 	if (key->IsKeyDown(Dik_RIGHT) && mario->State != Object::Sitting)
 	{
-		isBake = speed < 0 && mario->State == Object::Running;
-		speed = speed < RunSpeed ? speed + accDown : speedRun;
+		isBake = speed < 0 && mario->State == Object::Running; //kiểm tra thắng
+		speed = speed < RunSpeed ? speed + accDown : speedRun; //nếu giữ X thì tăng tốc dần còn ko thì chạy bình thường
 		mario->SetFlipFlag(false);
 	}
 	else if (key->IsKeyDown(Dik_LEFT) && mario->State != Object::Sitting)

@@ -28,9 +28,14 @@ Map::~Map()
 {
 	delete tileset;
 	delete info;
-	for (size_t i = 0; i < ListObject.size(); i++)
+	int size = ListObject.size();
+	for (size_t i = 0; i < size; i++)
 	{
+		Object* obj = ListObject.at(i);
+		if (obj->Tag == Object::Player) 
+			continue;  // không xóa mario
 		delete ListObject.at(i);
+		obj = NULL;
 	}
 }
 
@@ -51,7 +56,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	{
 	case Object::Player:
 		obj = Mario::GetInstance();
-		obj->SetPosition(pos);
+		obj->SetPositionStart(pos);
 		break;
 	case Object::Enemy:
 		switch (objectTag[_mapobject->name])
@@ -104,6 +109,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	}
 	obj->id = _mapobject->id;
 	obj->Init(pos, objectTag[_mapobject->name], _mapobject->kind);
+	obj->SetPositionStart(pos);
 	obj->GetBound(_mapobject->width, _mapobject->height);
 	return obj;
 }

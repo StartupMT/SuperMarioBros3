@@ -10,10 +10,6 @@ InfoMap::~InfoMap()
 {
 	for (int i = 0; i < numObjectGroups; i++)
 	{
-		for (int j = 0; j < ObjectGroups.at(i)->NumOnjects; j++)
-		{
-			delete ObjectGroups.at(i)->Objects.at(j);
-		}
 		delete ObjectGroups.at(i);
 	}
 }

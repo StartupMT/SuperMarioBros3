@@ -17,8 +17,6 @@ protected:
 	Viewport* viewport;
 	Map* map;
 
-	D3DXVECTOR2 posView;
-
 	float pauseTime;
 
 public:

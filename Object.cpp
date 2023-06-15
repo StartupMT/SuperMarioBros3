@@ -83,6 +83,7 @@ void Object::SetPosition(D3DXVECTOR2 Position)
 }
 void Object::SetPositionStart(D3DXVECTOR2 Position)
 {
+	position = Position;
 	positionStart = Position;
 }
 void Object::SetPositionX(float x)

@@ -37,6 +37,7 @@ namespace Define
 
 	//Mario
 	const int StartLive = 3;
+	const float timeEnd = 3;
 
 	//MarioRun
 	const float RunSpeed = 1.0f;

@@ -28,8 +28,12 @@ ObjectManager::~ObjectManager()
 void ObjectManager::InitDT()
 {
 	//load Objecct
+	if (map != nullptr)
+	{
+		delete map;
+		map = NULL;
+	}
 	map = new Map();
-	posView = viewport->GetPosition();
 }
 
 //Update Game

@@ -13,6 +13,7 @@ Mario* Mario::GetInstance()
 {
 	if (nullptr == _mario) {
 		_mario = new Mario();
+		_mario->_life = StartLive;
 		_mario->Init();
 	}
 	return _mario;
@@ -79,10 +80,9 @@ void Mario::Init()
 	Tag = Object::Player;
 	_marioType = Mario::Small;
 	ChangeMarioType(_marioType);
-	position = D3DXVECTOR2(0, 0);
+	position = positionStart;
 	velocity = D3DXVECTOR2(0, 0);
 	SetState(Object::Standing);
-	_life = StartLive;
 	HP = 1;
 }
 
@@ -203,17 +203,17 @@ void Mario::SetImmortal(float time)
 	isImmortal = true;
 }
 
-void Mario::ChangeMarioType(MarioType marioType, float time)
+void Mario::ChangeMarioType(MarioType newMarioType, float time)
 {
 	switch (_marioType)
 	{
 	case Mario::Small:
-		if (marioType > _marioType)
+		if (newMarioType > _marioType)
 			ObjectManager::GetInstance()->StartPause(1.0f);
 		SetBound(12, 15);
 		break;
 	case Mario::Big:
-		if (marioType < _marioType)
+		if (newMarioType < _marioType)
 			ObjectManager::GetInstance()->StartPause(1.0f);
 		SetBound(17, 25);
 		break;
@@ -225,8 +225,8 @@ void Mario::ChangeMarioType(MarioType marioType, float time)
 		break;
 	}
 
-	if (_marioType == marioType) return;
-	_marioType = marioType;
+	if (_marioType == newMarioType) return;
+	_marioType = newMarioType;
 	SetImmortal(time);
 	State = Object::Standing;
 }
