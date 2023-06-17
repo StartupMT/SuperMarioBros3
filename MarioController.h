@@ -15,7 +15,7 @@ private:
 
 public:
 	//Run
-	bool isBake, isCount, isSpeed;
+	bool isBake, isCount, isMaxSpeed;
 	float accDown;
 	int accCount = 0;
 	//Jump

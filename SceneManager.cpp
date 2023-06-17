@@ -42,6 +42,11 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 			isEnd = false;
 		}
 	}
+	//Nếu mario rơi hố chết
+	if (!isEnd && Mario::GetInstance()->GetPosition().y <= 200)
+	{
+		StartEnd(1);
+	}
 	ObjectManager::GetInstance()->Update(gameTime, key);
 }
 

@@ -23,6 +23,7 @@ public:
 
 	//Update Game sau khoảng thời gian gameTime
 	void Update(float gameTime, Keyboard* key);
+	void RenderBoundingBox(void);
 	void StartEnd(float time = timeEnd);
 	//Vẽ Object lên màn hình
 	void Render();
