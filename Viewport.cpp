@@ -170,4 +170,31 @@ void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2& posobject)
 	////	if (positionWorld.y > bot + GameHeight)
 	////		positionWorld.y = bot + GameHeight;
 	////}
+
+
+	//if (positionWorld.y < bot + 240 && 0 < positionWorld.x < 2800) //33 + 177 + 180 = 177 -140 = 33
+	//{
+	//	positionWorld.y = bot + 240;
+	//	if (positionWorld.y > bot + GameHeight)
+	//		positionWorld.y = bot + GameHeight;
+	//}
+
+
+
+	//if (positionWorld.y < bot + 32) //33 + 177 + 180 = 177 -140 = 33
+	//	positionWorld.y = bot + 32;
+
+
+	//if (800 < positionWorld.x < 1200)//chỗ này tới chỗ đám mây không khóa
+	//{
+	//	if (positionWorld.y < bot + GameHeight)
+	//		positionWorld.y = bot + GameHeight;
+	//}
+
+
+	////if (positionWorld.x > 1000)//chỗ này tới chỗ đám mây không khóa
+	////{
+	////	if (positionWorld.y > bot + GameHeight)
+	////		positionWorld.y = bot + GameHeight;
+	////}
 }
