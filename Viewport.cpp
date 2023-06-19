@@ -123,34 +123,34 @@ void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2& posobject)
 	else if (positionWorld.y - posobject.y >= 144)
 		positionWorld.y = posobject.y + 144;
 
-	//float bot = 180;
-	//RECT rect = GetBoundViewport();
+	float bot = 180;
+	RECT rect = GetBoundViewport();
 
-	//if (positionWorld.y < bot + 240) //33 + 177 + 180 = 177 -140 = 33
+	if (positionWorld.y < bot + 240) //33 + 177 + 180 = 177 -140 = 33
+		positionWorld.y = bot + 240;
+
+	//if (positionWorld.y < bot + 96 && 1100 > positionWorld.x > 640 ) //33 + 177 + 180 = 177 -140 = 33
+	//	positionWorld.y = bot + 96;
+
+	//if (positionWorld.y < bot + 240 && 1100 < positionWorld.x) //33 + 177 + 180 = 177 -140 = 33
 	//	positionWorld.y = bot + 240;
 
-	////if (positionWorld.y < bot + 96 && 1100 > positionWorld.x > 640 ) //33 + 177 + 180 = 177 -140 = 33
-	////	positionWorld.y = bot + 96;
+	//if (positionWorld.x < 640 && positionWorld.y < bot + 80) //33 + 177 + 180 = 177 -140 = 33
+	//	positionWorld.y = bot + 80;
 
-	////if (positionWorld.y < bot + 240 && 1100 < positionWorld.x) //33 + 177 + 180 = 177 -140 = 33
-	////	positionWorld.y = bot + 240;
+	if (0 < positionWorld.x < 800 || 2800 > positionWorld.x > 1200)//chỗ này tới chỗ đám mây không khóa
+	{
+		if(positionWorld.y > bot + GameHeight)
+			positionWorld.y = bot + GameHeight;
+	}
+	
 
-	////if (positionWorld.x < 640 && positionWorld.y < bot + 80) //33 + 177 + 180 = 177 -140 = 33
-	////	positionWorld.y = bot + 80;
-
-	//if (0 < positionWorld.x < 800 || 2800 > positionWorld.x > 1200)//chỗ này tới chỗ đám mây không khóa
+	//if (positionWorld.y < bot + 240 && 0 < positionWorld.x < 2800) //33 + 177 + 180 = 177 -140 = 33
 	//{
-	//	if(positionWorld.y > bot + GameHeight)
+	//	positionWorld.y = bot + 240;
+	//	if (positionWorld.y > bot + GameHeight)
 	//		positionWorld.y = bot + GameHeight;
 	//}
-	//
-
-	////if (positionWorld.y < bot + 240 && 0 < positionWorld.x < 2800) //33 + 177 + 180 = 177 -140 = 33
-	////{
-	////	positionWorld.y = bot + 240;
-	////	if (positionWorld.y > bot + GameHeight)
-	////		positionWorld.y = bot + GameHeight;
-	////}
 
 
 
