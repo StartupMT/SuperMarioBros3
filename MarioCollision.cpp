@@ -83,6 +83,10 @@ void MarioCollision::CheckCollisionItem(Object* _item)
 		item->State = Object::Dying;
 		mario->ChangeMarioType((Mario::MarioType)(mario->_marioType + Mario::Small), 1.0f);
 		break;
+	case Item::UpMushroom:
+		item->State = Object::Dying;
+		mario->_life++;
+		break;
 	default:
 
 		break;
@@ -98,6 +102,13 @@ void MarioCollision::CheckCollisionBlock(Object* _block)
 	switch (block->_blocktype)
 	{
 	case Block::Brick:
+			break;
+	case Block::BlockItem:
+		if (_side.y == Collision::TOP && block->State == Object::Running)
+		{
+			block->StartJump(0.0f);
+		}
+		break;
 	default:
 
 		break;

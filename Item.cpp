@@ -7,10 +7,18 @@ Animation* Item::GetAnimationItem()
 	Animation::DataAnimMap data;
 	// Coin
 	data[Item::Coin + Object::Standing] = { 0 , 5 };
+	data[Item::Coin + Object::Jumping] = { 1 , 3 };
 
 	// SuperMushroom
 	data[Item::SuperMushroom + Object::Standing] = { 6 , 6 };
-	data[Item::SuperMushroom + Object::Standing + 1] = { 8 , 8 };
+	data[Item::SuperMushroom + Object::Jumping] = { 6 , 6 };
+
+	data[Item::SuperMushroom + Object::Standing + 1] = { 8 , 8};
+	data[Item::SuperMushroom + Object::Jumping + 1] = { 8 , 8 };
+
+	// UpMushroom
+	data[Item::UpMushroom + Object::Standing] = { 7 , 7 };
+	data[Item::UpMushroom + Object::Jumping] = { 7 , 7 };
 
 	Animation* _animItem = new Animation(MiscXML, MiscPNG);
 	_animItem->SetDataAnimation(data);
@@ -43,7 +51,18 @@ void Item::Init(D3DXVECTOR2 pos, int _type, int kind)
 
 void Item::Controller()
 {
-	velocity = D3DXVECTOR2(0, 0);
+	if (velocity.y < 0)
+	{
+		if (_itemtype == Item::Coin)
+		{
+			State == Object::Dying;
+			Mario::GetInstance()->_marioCollision->CheckCollisionItem(this);
+		}
+		else
+		{
+			velocity.x = positionStart.x > position.x ? -ItemSpeed : ItemSpeed;
+		}
+	}
 }
 
 D3DXVECTOR2 Item::OnCollision(Object* obj, D3DXVECTOR2 side)

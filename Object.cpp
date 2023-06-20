@@ -284,7 +284,7 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Player;
 	}
-	if (name == "Wall")
+	if (name == "Wall" || name == "Brick" || name == "Tube" || name == "BlockItem")
 	{
 		return tag::Block;
 	}
@@ -348,7 +348,6 @@ void Object::StartJump(float speed, float gravity)
 {
 	isAllowJump = true;
 	isFall = false;
-	velocity.y = gravity;
 	this->gravity = gravity;
 	speedJump = speed;
 	State = Object::Jumping;

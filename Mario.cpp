@@ -219,10 +219,10 @@ void Mario::ChangeMarioType(MarioType newMarioType, float time)
 			ObjectManager::GetInstance()->StartPause(1.0f);
 		else if (newMarioType > _marioType)
 			time = 0;
-		SetBound(17, 25);
+		SetBound(15, 25);
 		break;
 	case Mario::Raccoon:
-		SetBound(17, 25);
+		SetBound(15, 25);
 		break;
 	default:
 		SetBound(12, 15);

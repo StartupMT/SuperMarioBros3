@@ -127,6 +127,7 @@ void MarioController::Fall()
 	mario->SetState(Object::Jumping);
 	isAllowJump = false;
 	isFall = true;
+	velYStartFall = -0.6;
 }
 
 //Trạng thái nhảy

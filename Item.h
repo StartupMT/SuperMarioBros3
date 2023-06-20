@@ -5,9 +5,9 @@ class Item : public Object
 public:
 	enum Itemtype
 	{
-		Coin = 100,
-		SuperMushroom = 200,
-		UpMushroom = 300,
+		Coin = 0,
+		SuperMushroom = 100,
+		UpMushroom = 200,
 	} _itemtype = Itemtype::Coin;
 
 	Item();
