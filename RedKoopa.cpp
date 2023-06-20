@@ -10,7 +10,7 @@ RedKoopa::~RedKoopa()
 	delete _anim;
 }
 
-void RedKoopa::EnemyController()
+void RedKoopa::Controller()
 {
 	velocity.y = Gravity;
 }

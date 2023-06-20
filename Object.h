@@ -18,7 +18,12 @@ protected:
 	RECT bound;
 	int HP = 0, Damage = 0;
 	string name;
-	
+
+public:
+	//Jump
+	bool isAllowJump = true, isFall = false;
+	float posYStartJump, velYStartFall, gravity, speedJump;
+
 public:
 	int id;
 	int _kind;
@@ -117,5 +122,6 @@ public:
 		velocity.x += x;
 		velocity.y += y;
 	}
-	virtual void New();
+	virtual void JumpState();
+	virtual void StartJump(float speed = JumpSpeed, float gravity = Gravity);
 };

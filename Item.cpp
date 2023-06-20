@@ -8,8 +8,9 @@ Animation* Item::GetAnimationItem()
 	// Coin
 	data[Item::Coin + Object::Standing] = { 0 , 5 };
 
-	// Nấm
-	data[Item::Nấm + Object::Standing] = { 0 , 0 };
+	// SuperMushroom
+	data[Item::SuperMushroom + Object::Standing] = { 6 , 6 };
+	data[Item::SuperMushroom + Object::Standing + 1] = { 8 , 8 };
 
 	Animation* _animItem = new Animation(MiscXML, MiscPNG);
 	_animItem->SetDataAnimation(data);
@@ -40,7 +41,7 @@ void Item::Init(D3DXVECTOR2 pos, int _type, int kind)
 	HP = 1;
 }
 
-void Item::ItemController()
+void Item::Controller()
 {
 	velocity = D3DXVECTOR2(0, 0);
 }
@@ -50,9 +51,15 @@ D3DXVECTOR2 Item::OnCollision(Object* obj, D3DXVECTOR2 side)
 	switch (obj->Tag)
 	{
 	case Object::Player:
-		Mario::GetInstance()->_marioCollision->CheckCollisionItem();
+		Mario::GetInstance()->_marioCollision->CheckCollisionItem(this);
 		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
-
+	case Object::Block:
+		if (side.x !=Collision::NONE)
+		{
+			velocity.x = -velocity.x;
+			side.x = Collision::NONE;
+		}
+		return side;
 	default:
 		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 	}
@@ -61,7 +68,7 @@ D3DXVECTOR2 Item::OnCollision(Object* obj, D3DXVECTOR2 side)
 void Item::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
-	ItemController();
+	Controller();
 }
 
 void Item::Update(float gameTime, Keyboard* key)

@@ -7,6 +7,6 @@ public:
 	RedKoopa();
 	~RedKoopa();
 
-	void EnemyController();
+	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 };

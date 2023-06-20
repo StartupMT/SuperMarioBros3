@@ -3,6 +3,7 @@
 
 SuperLeaf::SuperLeaf()
 {
+	StartJump(JumpSpeed, Gravity / 3);
 }
 
 SuperLeaf::~SuperLeaf()
@@ -18,6 +19,7 @@ void SuperLeaf::Controller()
 void SuperLeaf::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
+	JumpState();
 }
 
 D3DXVECTOR2 SuperLeaf::OnCollision(Object* obj, D3DXVECTOR2 side)

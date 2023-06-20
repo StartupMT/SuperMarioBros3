@@ -6,7 +6,7 @@ public:
 	enum Itemtype
 	{
 		Coin = 100,
-		Nấm = 200,
+		SuperMushroom = 200,
 	} _itemtype = Itemtype::Coin;
 
 	Item();
@@ -16,8 +16,9 @@ public:
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation(float gameTime);
-	void ItemController();
+	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
+	void OnCollision(Object* obj);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Animation* GetAnimationItem();

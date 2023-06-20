@@ -82,7 +82,7 @@ void Enemy::Init(D3DXVECTOR2 pos, int _type, int kind)
 	HP = 1;
 }
 
-void Enemy::EnemyController()
+void Enemy::Controller()
 {
 	velocity.y = Gravity;
 }
@@ -95,21 +95,31 @@ D3DXVECTOR2 Enemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
 		return D3DXVECTOR2(Collision::NONE, side.y);
 
-	default:
+	case Object::Block:
 		if (side.x != Collision::NONE)
 		{
 			velocity.x = -velocity.x;
 			side.x = Collision::NONE;
 		}
 		return side;
+
+	default:
+		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 	}
+}
+
+void Enemy::OnCollision(Object* obj)
+{
+	if (obj->Tag == Object::Player)
+		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
 }
 
 void Enemy::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
-	EnemyController();
+	Controller();
 }
+
 void Enemy::Update(float gameTime, Keyboard* key)
 {
 	//Update Animation

@@ -66,9 +66,10 @@ void MarioCollision::CheckCollisionEnemy()
 }
 
 //Va chạm với Item
-void MarioCollision::CheckCollisionItem()
+void MarioCollision::CheckCollisionItem(Object* _item)
 {
-	Item* item = dynamic_cast<Item*>(_obj);
+	if (_item == nullptr) _item = _obj;
+	Item* item = dynamic_cast<Item*>(_item);
 
 	switch (item->_itemtype)
 	{
@@ -78,6 +79,10 @@ void MarioCollision::CheckCollisionItem()
 		if (mario->_coin == MaxCoin)
 			mario->_life += 1;
 		break;
+	case Item::SuperMushroom:
+		item->State = Object::Dying;
+		mario->ChangeMarioType((Mario::MarioType)(mario->_marioType + Mario::Small), 1.0f);
+		break;
 	default:
 
 		break;
@@ -85,9 +90,10 @@ void MarioCollision::CheckCollisionItem()
 }
 
 //va chạm với tường
-void MarioCollision::CheckCollisionBlock()
+void MarioCollision::CheckCollisionBlock(Object* _block)
 {
-	Block* block = dynamic_cast<Block*>(_obj);
+	if (_block == nullptr) _block = _obj;
+	Block* block = dynamic_cast<Block*>(_block);
 
 	switch (block->_blocktype)
 	{

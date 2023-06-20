@@ -1,5 +1,6 @@
 ﻿#include "Object.h"
 #include "Block.h"
+#include "Mario.h"
 
 Object::Object()
 {
@@ -7,10 +8,6 @@ Object::Object()
 }
 
 Object::~Object()
-{
-}
-
-void Object::New()
 {
 }
 
@@ -311,4 +308,44 @@ Object::Stateobject Object::GetState()
 void Object::SetState(Stateobject _stateObject)
 {
 	State = _stateObject;
+}
+
+//Trạng thái nhảy
+void Object::JumpState()
+{
+	if (isAllowJump)
+	{
+		posYStartJump = position.y;
+		isFall = false;
+	}
+	isAllowJump = false;
+
+	//Fall
+	if (!isFall && (position.y - posYStartJump >= MaxEnemyJump))
+	{
+		isFall = true;
+		velocity.y = speedJump;
+	}
+
+	if (isFall)
+	{
+		float gravity = (Tag == Object::Item && _kind == 1) ? Gravity / 3 : Gravity;
+		float fallAc = Mario::GetInstance()->_marioController->fallAc;
+		velocity.y -= fallAc; //trừ vận tốc nhảy 1 đoạn nhẹ
+		velocity.y = velocity.y < -0.5 ? gravity : velocity.y;
+		return;
+	}
+
+	//JumpUp
+	SetVelocityY(JumpSpeed);
+}
+
+void Object::StartJump(float speed, float gravity)
+{
+	isAllowJump = true;
+	isFall = false;
+	velocity.y = gravity;
+	this->gravity = gravity;
+	speedJump = speed;
+	State = Object::Jumping;
 }

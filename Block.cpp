@@ -37,7 +37,7 @@ void Block::Init(D3DXVECTOR2 pos, int type, int kind)
 	_kind = kind;
 }
 
-void Block::BlockController()
+void Block::Controller()
 {
 }
 

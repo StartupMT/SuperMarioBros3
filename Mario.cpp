@@ -141,6 +141,7 @@ void Mario::UpdateAnimation(float gameTime)
 			//gamePause
 			if (ObjectManager::GetInstance()->isPause)
 			{
+				//xử lý nhấp nháy
 				if ((int)(immortalTime / 0.1) % 2 == 1)
 				{
 					_anim->NewAnimationByIndex(Mario::Big + Object::Standing);

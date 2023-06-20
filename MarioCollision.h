@@ -22,8 +22,8 @@ public:
 	~MarioCollision();
 
 	void CheckCollisionEnemy();
-	void CheckCollisionItem();
-	void CheckCollisionBlock();
+	void CheckCollisionItem(Object* item =nullptr);
+	void CheckCollisionBlock(Object* block = nullptr);
 	void OnCollision();
 	void PlayCollisionF();
 

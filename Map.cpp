@@ -22,6 +22,10 @@ Map::Map()
 			ListObject.push_back(CreateObject(info->ObjectGroups.at(i)->Objects.at(j)));
 		}
 	}
+
+	SuperLeaf* leaf = new SuperLeaf();
+	leaf->Init(D3DXVECTOR2(100, 300), Item::SuperMushroom, 1);
+	ListObject.push_back(leaf);
 }
 
 Map::~Map()
