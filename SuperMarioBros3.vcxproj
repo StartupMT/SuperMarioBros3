@@ -168,6 +168,7 @@
     <ClCompile Include="RedKoopa.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SuperLeaf.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />
     <ClCompile Include="TinyXML\tinyxml.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SuperLeaf.h" />
     <ClInclude Include="TileSet.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />

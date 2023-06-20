@@ -42,6 +42,9 @@
     <Filter Include="Object\Enemy\Koopa">
       <UniqueIdentifier>{d56885b2-93d9-4306-8a89-b5e9809949cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Item\Mushroom">
+      <UniqueIdentifier>{3b6f3f2a-4be3-41ee-89b0-924a42562b74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Bullet.png">
@@ -189,6 +192,9 @@
     <ClCompile Include="RedKoopa.cpp">
       <Filter>Object\Enemy\Koopa</Filter>
     </ClCompile>
+    <ClCompile Include="SuperLeaf.cpp">
+      <Filter>Object\Item\Mushroom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -275,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="RedKoopa.h">
       <Filter>Object\Enemy\Koopa</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperLeaf.h">
+      <Filter>Object\Item\Mushroom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
