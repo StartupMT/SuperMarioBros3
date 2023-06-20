@@ -7,6 +7,7 @@ public:
 	{
 		Coin = 100,
 		SuperMushroom = 200,
+		UpMushroom = 300,
 	} _itemtype = Itemtype::Coin;
 
 	Item();

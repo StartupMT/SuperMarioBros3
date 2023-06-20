@@ -65,10 +65,17 @@ D3DXVECTOR2 Item::OnCollision(Object* obj, D3DXVECTOR2 side)
 	}
 }
 
+void Item::OnCollision(Object* obj)
+{
+	if (obj->Tag == Object::Player)
+		Mario::GetInstance()->_marioCollision->CheckCollisionItem(this);
+}
+
 void Item::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
-	Controller();
+	this->Controller();
+	if (State == Object::Jumping) JumpState();
 }
 
 void Item::Update(float gameTime, Keyboard* key)

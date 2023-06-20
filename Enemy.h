@@ -23,7 +23,7 @@ public:
 	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void OnCollision(Object* obj);
-	void SetBound(float width, float height);
+	void SetBound(float width = -1, float height = -1);
 	void Render(Viewport* viewport);
 	static Animation* GetAnimationEnemy();
 };

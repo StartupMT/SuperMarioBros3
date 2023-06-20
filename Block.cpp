@@ -48,6 +48,8 @@ D3DXVECTOR2 Block::OnCollision(Object* obj, D3DXVECTOR2 side)
 
 void Block::BeforeUpdate(float gameTime, Keyboard* key)
 {
+	this->Controller();
+	if (State == Object::Jumping) JumpState();
 }
 
 void Block::Update(float gameTime, Keyboard* key)

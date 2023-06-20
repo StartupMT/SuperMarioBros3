@@ -77,7 +77,7 @@ void Enemy::Init(D3DXVECTOR2 pos, int _type, int kind)
 	position = pos;
 	velocity = D3DXVECTOR2(-EnemySpeed, Gravity);
 	SetState(Object::Running);
-	this->SetBound(14, 15);
+	this->SetBound(15, 15);
 	timeDead = 0;
 	HP = 1;
 }
@@ -117,7 +117,8 @@ void Enemy::OnCollision(Object* obj)
 void Enemy::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	this->SetBound(Width, Height);
-	Controller();
+	this->Controller();
+	if (State == Object::Jumping) JumpState();
 }
 
 void Enemy::Update(float gameTime, Keyboard* key)
@@ -151,9 +152,13 @@ void Enemy::SetBound(float width, float height)
 
 	Width = info.w;
 	Height = info.h;
-	bound.left = position.x - Width / 2;
-	bound.right = bound.left + Width;
-	bound.top = position.y + Height;
+
+	float w = width >= 0 ? width : Width;
+	float h = height >= 0 ? height : Height;
+
+	bound.left = position.x - w / 2;
+	bound.right = bound.left + w;
+	bound.top = position.y + h;
 	bound.bottom = position.y;
 }
 

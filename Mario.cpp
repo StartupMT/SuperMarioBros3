@@ -206,6 +206,7 @@ void Mario::SetImmortal(float time)
 
 void Mario::ChangeMarioType(MarioType newMarioType, float time)
 {
+	if (newMarioType > Mario::Raccoon) return;
 	switch (_marioType)
 	{
 	case Mario::Small:
@@ -216,6 +217,8 @@ void Mario::ChangeMarioType(MarioType newMarioType, float time)
 	case Mario::Big:
 		if (newMarioType < _marioType)
 			ObjectManager::GetInstance()->StartPause(1.0f);
+		else if (newMarioType > _marioType)
+			time = 0;
 		SetBound(17, 25);
 		break;
 	case Mario::Raccoon:

@@ -190,9 +190,13 @@ bool Object::Die()
 	else
 		return false;
 }
+
+void Object::Controller()
+{
+}
+
 void Object::BeforeUpdate(float gameTime, Keyboard* key)
 {
-
 }
 
 void Object::Update(float gameTime, Keyboard* key)

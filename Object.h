@@ -106,6 +106,7 @@ public:
 	virtual void LockAnimation(bool lock, int index);
 
 	virtual bool Die();
+	virtual void Controller();
 	virtual void BeforeUpdate(float gameTime, Keyboard* key);
 	virtual void Update(float gameTime, Keyboard* key);
 	virtual void UpdateAnimation(float gameTime);
