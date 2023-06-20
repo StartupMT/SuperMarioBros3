@@ -5,8 +5,12 @@ Animation* Block::GetAnimationBlock()
 {
 	//Tạo Animation
 	Animation::DataAnimMap data;
-	// Block
+	// Brick
 	data[Block::Brick + Object::Standing] = { 28 , 31 };
+	//BlockItem
+	data[Block::BlockItem + Object::Standing] = { 32 , 32 };
+	data[Block::BlockItem + Object::Running] = { 28 , 31 , 15 };
+	data[Block::BlockItem + Object::Jumping] = { 28 , 31 };
 
 	Animation* _animBlock = new Animation(MiscXML, MiscPNG);
 	_animBlock->SetDataAnimation(data);
@@ -60,8 +64,8 @@ void Block::Update(float gameTime, Keyboard* key)
 
 void Block::UpdateAnimation(float gameTime)
 {
-	_anim->NewAnimationByIndex(_blocktype + this->State + _kind);
-	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
+	_anim->NewAnimationByIndex(_blocktype + this->State);
+	_anim->SetPosition(D3DXVECTOR2(position.x, position.y));
 	_anim->SetFlipFlag(velocity.x > 0);
 	_anim->Update(gameTime);
 }
@@ -73,8 +77,8 @@ void Block::SetBound(float width, float height)
 	Height = info.h;
 	bound.left = position.x - Width / 2;
 	bound.right = bound.left + Width;
-	bound.top = position.y + Height;
-	bound.bottom = position.y;
+	bound.top = position.y + Height / 2;
+	bound.bottom = bound.top - Height;
 }
 
 void Block::Render(Viewport* viewport)

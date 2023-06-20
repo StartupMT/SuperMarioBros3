@@ -12,7 +12,6 @@ protected:
 	bool FlipFlag, AllowDraw, lock;
 	D3DXVECTOR2 position; //vị trí vẽ
 	D3DXVECTOR2 velocity;//Vector vận tốc
-	D3DXVECTOR2 positionStart;
 	D3DXVECTOR2 transform;
 	float angle;
 	RECT bound;
@@ -20,6 +19,8 @@ protected:
 	string name;
 
 public:
+	D3DXVECTOR2 positionStart;
+
 	//Jump
 	bool isAllowJump = true, isFall = false;
 	float posYStartJump, velYStartFall, gravity, speedJump;

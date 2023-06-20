@@ -94,6 +94,11 @@ void ObjectManager::StartPause(float time)
 	pauseTime = time;
 }
 
+void ObjectManager::AddObjectMap(Object* obj)
+{
+	map->ListObject.push_back(obj);
+}
+
 Viewport* ObjectManager::GetViewPort()
 {
 	return viewport;

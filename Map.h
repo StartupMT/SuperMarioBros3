@@ -4,9 +4,9 @@
 #include "GameDefine.h"
 #include "InfoMap.h"
 #include "Enemy.h"
-#include "Block.h"
 #include "RedKoopa.h"
 #include "SuperLeaf.h"
+#include "BlockItem.h"
 
 using namespace Define;
 

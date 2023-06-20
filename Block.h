@@ -12,6 +12,7 @@ public:
 		Wall = 100,
 		Brick = 200,
 		Tube = 300,
+		BlockItem = 400,
 	} _blocktype = BlockType::Wall;
 
 	Block();

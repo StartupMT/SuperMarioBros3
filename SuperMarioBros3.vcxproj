@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BlockItem.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="DrawLine.cpp" />
     <ClCompile Include="DrawString.cpp" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BlockItem.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="DrawLine.h" />
     <ClInclude Include="DrawString.h" />

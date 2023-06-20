@@ -58,7 +58,6 @@ void InfoMap::ReadXMl(const char *path)
 		MapObjectGroup* obj = new MapObjectGroup(indexml);
 		ObjectGroups.push_back(obj);
 	}
-	int a = 1;
 }
 
 

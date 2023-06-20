@@ -45,6 +45,9 @@
     <Filter Include="Object\Item\Mushroom">
       <UniqueIdentifier>{3b6f3f2a-4be3-41ee-89b0-924a42562b74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Block\BlockItem">
+      <UniqueIdentifier>{5f3851f4-558e-4012-ae69-00b9bd099c1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Bullet.png">
@@ -195,6 +198,9 @@
     <ClCompile Include="SuperLeaf.cpp">
       <Filter>Object\Item\Mushroom</Filter>
     </ClCompile>
+    <ClCompile Include="BlockItem.cpp">
+      <Filter>Object\Block\BlockItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -284,6 +290,9 @@
     </ClInclude>
     <ClInclude Include="SuperLeaf.h">
       <Filter>Object\Item\Mushroom</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockItem.h">
+      <Filter>Object\Block\BlockItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

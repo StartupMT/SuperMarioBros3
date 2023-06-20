@@ -32,6 +32,7 @@ public:
 	void Update(float gameTime, Keyboard* key);
 	void StartPause(float time);
 	Viewport* GetViewPort();
+	void AddObjectMap(Object* obj);
 	//Vẽ Object lên màn hình
 	void Render();
 };
