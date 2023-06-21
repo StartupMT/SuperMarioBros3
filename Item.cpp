@@ -10,14 +10,9 @@ Animation* Item::GetAnimationItem()
 	data[Item::Coin + Object::Jumping] = { 1 , 3 };
 
 	// SuperMushroom
-	data[Item::SuperMushroom + Object::Standing] = { 6 , 6 };
 	data[Item::SuperMushroom + Object::Jumping] = { 6 , 6 };
-
-	data[Item::SuperMushroom + Object::Standing + 1] = { 8 , 8};
 	data[Item::SuperMushroom + Object::Jumping + 1] = { 8 , 8 };
-
 	// UpMushroom
-	data[Item::UpMushroom + Object::Standing] = { 7 , 7 };
 	data[Item::UpMushroom + Object::Jumping] = { 7 , 7 };
 
 	Animation* _animItem = new Animation(MiscXML, MiscPNG);

@@ -36,7 +36,8 @@ D3DXVECTOR2 BlockItem::OnCollision(Object* obj, D3DXVECTOR2 side)
 		if (side.y == Collision::TOP && State == Object::Jumping)
 		{
 			::Item* item = dynamic_cast<::Item*>(obj);
-			item->StartJump(0.0f);
+			item->StartJump();
+			item->positionStart = position;
 		}
 		return side;
 
@@ -58,26 +59,30 @@ void BlockItem::CreateItem()
 		{
 			obj = new ::Item();
 			obj->Init(positionStart, Item::SuperMushroom, 0);
+			obj->StartJump(0.3, 9);
 		}
 		else
 		{
 			obj = new SuperLeaf();
 			obj->Init(positionStart, Item::SuperMushroom, 1);
+			obj->StartJump(JumpSpeed, MaxEnemyJump * 2, Gravity / 7);
+			obj->SetVelocityX(ItemSpeed);
 		}
 		break;
 	
 	case 2:
 		obj = new ::Item();
 		obj->Init(positionStart, Item::UpMushroom);
+		obj->StartJump(0.3, 9);
 		break;
 
 	default:
 		obj = new ::Item();
 		obj->Init(positionStart);
+		obj->StartJump(JumpSpeed * 1.3);
 		break;
 	}
 
-	obj->StartJump(0.0f);
-	obj->positionStart = Mario::GetInstance()->GetPosition();
+	obj->positionStart.x = Mario::GetInstance()->GetPosition().x;
 	ObjectManager::GetInstance()->AddObjectMap(obj);
 }

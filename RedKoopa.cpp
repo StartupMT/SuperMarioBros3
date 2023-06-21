@@ -28,9 +28,13 @@ D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 	case Object::Block:
 		if (side.y == Collision::BOTTOM)
 		{
-			if (position.x < obj->GetBound().left || position.x > obj->GetBound().right)
+			if (position.x < obj->GetBound().left)
 			{
-				velocity.x = -velocity.x;
+				velocity.x = EnemySpeed;
+			}
+			else if (position.x > obj->GetBound().right)
+			{
+				velocity.x = -EnemySpeed;
 			}
 		}
 		return side;

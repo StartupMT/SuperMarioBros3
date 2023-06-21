@@ -106,7 +106,7 @@ void MarioCollision::CheckCollisionBlock(Object* _block)
 	case Block::BlockItem:
 		if (_side.y == Collision::TOP && block->State == Object::Running)
 		{
-			block->StartJump(0.0f);
+			block->StartJump();
 		}
 		break;
 	default:

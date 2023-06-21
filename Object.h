@@ -17,13 +17,14 @@ protected:
 	RECT bound;
 	int HP = 0, Damage = 0;
 	string name;
+	float timeCollisionMin;
 
 public:
 	D3DXVECTOR2 positionStart;
 
 	//Jump
 	bool isAllowJump = true, isFall = false;
-	float posYStartJump, velYStartFall, gravity, speedJump;
+	float posYStartJump, velYStartFall, gravity, speedJump, maxJump;
 
 public:
 	int id;
@@ -125,5 +126,5 @@ public:
 		velocity.y += y;
 	}
 	virtual void JumpState();
-	virtual void StartJump(float speed = JumpSpeed, float gravity = Gravity);
+	virtual void StartJump(float speed = JumpSpeed, float max = MaxEnemyJump, float gravity = Gravity);
 };

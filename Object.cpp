@@ -201,7 +201,9 @@ void Object::BeforeUpdate(float gameTime, Keyboard* key)
 
 void Object::Update(float gameTime, Keyboard* key)
 {
+	velocity.y *= timeCollisionMin;
 	position += velocity * gameTime * 100;
+	timeCollisionMin = 1.0f;
 }
 
 void Object::UpdateAnimation(float gameTime)
@@ -248,10 +250,14 @@ void Object::OnCollision(Object* obj, float gameTime)
 					position.x += distance.x * Time;
 					velocity.x = 0;
 				}
-				else if (side.y != Collision::NONE)
+				else if (side.y == Collision::BOTTOM)
 				{
 					position.y += distance.y * Time;
 					velocity.y = 0;
+				}
+				else if (side.y != Collision::NONE)
+				{
+					timeCollisionMin = Time < timeCollisionMin ? Time : timeCollisionMin;
 				}
 			}
 		}
@@ -325,7 +331,7 @@ void Object::JumpState()
 	isAllowJump = false;
 
 	//Fall
-	if (!isFall && (position.y - posYStartJump >= MaxEnemyJump))
+	if (!isFall && (position.y - posYStartJump >= maxJump))
 	{
 		isFall = true;
 		velocity.y = speedJump;
@@ -333,7 +339,6 @@ void Object::JumpState()
 
 	if (isFall)
 	{
-		float gravity = (Tag == Object::Item && _kind == 1) ? Gravity / 3 : Gravity;
 		float fallAc = Mario::GetInstance()->_marioController->fallAc;
 		velocity.y -= fallAc; //trừ vận tốc nhảy 1 đoạn nhẹ
 		velocity.y = velocity.y < -0.5 ? gravity : velocity.y;
@@ -341,14 +346,15 @@ void Object::JumpState()
 	}
 
 	//JumpUp
-	SetVelocityY(JumpSpeed);
+	SetVelocityY(speedJump);
 }
 
-void Object::StartJump(float speed, float gravity)
+void Object::StartJump(float speed, float max,  float gravity)
 {
 	isAllowJump = true;
 	isFall = false;
 	this->gravity = gravity;
 	speedJump = speed;
+	maxJump = max;
 	State = Object::Jumping;
 }
