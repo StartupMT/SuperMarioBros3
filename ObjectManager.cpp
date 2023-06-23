@@ -78,14 +78,19 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 		map->ListObject.at(i)->Update(gameTime, key);
 
-	//Update Viewport theo vị trí Mario
+	//Check Viewport
 	D3DXVECTOR2 posMario = Mario::GetInstance()->GetPosition();
-	viewport->Update(gameTime, key, posMario);
-	//Kiểm tra xem có rơi ra Scene không
-	if (posMario != Mario::GetInstance()->GetPosition())
+	for (size_t i = 0; i < map->ListWallView.size(); i++)
 	{
-		Mario::GetInstance()->SetPosition(posMario);
+		if (Collision::isCollision(posMario.x, posMario.y, map->ListWallView[i]))
+		{
+			viewport -> _rect = map->ListWallView[i];
+			break;
+		}
 	}
+	//Update Viewport theo vị trí Mario
+	viewport->isMoveTop = Mario::GetInstance()->_marioController->isMaxSpeed;
+	viewport->Update(gameTime, key, posMario);
 }
 
 void ObjectManager::StartPause(float time)

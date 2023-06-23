@@ -111,15 +111,27 @@ RECT Viewport::GetBoundViewport()
 //Update theo 1 đối tượng
 void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2& posobject)
 {
-	//trục X
+	//position Mario
 	if (posobject.x - positionWorld.x <= 112)
 		positionWorld.x = posobject.x - 112;
 	else if (posobject.x - positionWorld.x >= 144)
 		positionWorld.x = posobject.x - 144;
 
-	//trục Y
-	if (positionWorld.y - posobject.y <= 112)
+	if (positionWorld.y - posobject.y <= 112 && isMoveTop)
 		positionWorld.y = posobject.y + 112;
 	else if (positionWorld.y - posobject.y >= 144)
 		positionWorld.y = posobject.y + 144;
+
+
+	//rect
+	RECT boundView = GetBoundViewport();
+	if (boundView.left < _left)
+		positionWorld.x = _left;
+	else if (boundView.right > _right)
+		positionWorld.y = _right - Width;
+
+	if (boundView.top > _rect.top)
+		positionWorld.y = _rect.top;
+	else if (boundView.bottom < _rect.bottom)
+		positionWorld.y = _rect.bottom + Height;
 }

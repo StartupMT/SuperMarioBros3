@@ -14,6 +14,13 @@ protected:
 	D3DXVECTOR2 positionWorld;
 	float Width;
 	float Height;
+
+public:
+	RECT _rect;
+	float _left = 0;
+	float _right = 0;
+	bool isMoveTop = false;
+
 public:
 	Viewport();
 	//x và y là tọa độ thế giới left-top

@@ -1,6 +1,7 @@
 ﻿#include "Map.h"
 #include"TinyXML\tinyxml.h"
 #include "Mario.h"
+#include "ObjectManager.h"
 
 Map::Map()
 {
@@ -19,7 +20,19 @@ Map::Map()
 	{
 		for (int j = 0; j < info->ObjectGroups.at(i)->NumOnjects; j++)
 		{
-			ListObject.push_back(CreateObject(info->ObjectGroups.at(i)->Objects.at(j)));
+			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
+			if (mapObject->name == "WallView")
+			{
+				int x = mapObject->x;
+				int y = info->height * info->tileHeight - mapObject->y - mapObject->height;
+				RECT rect = { x, y + mapObject->height, x + mapObject->width , y };
+				Viewport* viewport = ObjectManager::GetInstance()->GetViewPort();
+				viewport->_left = rect.left < viewport->_left ? rect.left : viewport->_left;
+				viewport->_right = rect.right > viewport->_right ? rect.right : viewport->_right;
+				ListWallView.push_back(rect);
+			}
+			else
+				ListObject.push_back(CreateObject(mapObject));
 		}
 	}
 }
