@@ -8,8 +8,9 @@ public:
 	{
 		Goomba = 100, //Con nấm
 		Koopa = 200, //Con rùa
-		Plant = 300,	//Cây trong tube
-		FireBalls = 400,
+		Shell = 300,
+		Plant = 400,	//Cây trong tube
+		FireBalls = 500,
 	} _enemyType;
 	float timeDead;
 public:

@@ -12,28 +12,21 @@ Animation* Enemy::GetAnimationEnemy()
 	// Red Goomba
 	data[Enemy::Goomba + Object::Standing + 1] = { 4 , 5 }; // =idle
 	data[Enemy::Goomba + Object::Running + 1] = { 6 , 7 }; // =walk 
+	data[Enemy::Goomba + Object::Jumping + 1] = { 6 , 7 }; // =walk 
 	data[Enemy::Goomba + Object::Dying + 1] = { 8 , 8 }; // =die
-
-	// Para Red Goomba
-	data[Enemy::Goomba + Object::Standing + 2] = { 14 , 15 };
-	data[Enemy::Goomba + Object::Running + 2] = { 15 , 16 };
-	data[Enemy::Goomba + Object::Jumping + 2] = { 16 , 17 };
-	data[Enemy::Goomba + Object::Dying + 2] = { 8 , 8 }; // khi die chuyen sang red goomba
 
 	// Red koopa
 	data[Enemy::Koopa + Object::Standing] = { 26 , 27 };
-	data[Enemy::Koopa + Object::Running] = { 26 , 27 }; // = đánh lần 1 thụt đầu (shell)
-	data[Enemy::Koopa + Object::Jumping] = { 30 , 31 }; // = đánh lần 2 chạy ( shellrun)
+	data[Enemy::Koopa + Object::Running] = { 26 , 27 };
+	data[Enemy::Shell + Object::Standing] = { 30 , 30 }; // = ( shell red)
+	data[Enemy::Shell + Object::Running] = { 30 , 31 }; // 
 
 	// Green koopa
 	data[Enemy::Koopa + Object::Standing + 1] = { 32 , 33 };
-	data[Enemy::Koopa + Object::Running + 1] = { 35 , 35 }; // = đánh lần 1 thụt đầu (shell)
-	data[Enemy::Koopa + Object::Jumping + 1] = { 36 , 37 }; // = đánh lần 2 chạy ( shellrun)
-
-	// Para Green koopa *
-	data[Enemy::Koopa + Object::Standing + 2] = { 38 , 38 };
-	data[Enemy::Koopa + Object::Running + 2] = { 38 , 39 };
-	data[Enemy::Koopa + Object::Jumping + 2] = { 39 , 40 };
+	data[Enemy::Koopa + Object::Running + 1] = { 32 , 33 };
+	data[Enemy::Koopa + Object::Jumping + 1] = { 38 , 40 };
+	data[Enemy::Shell + Object::Standing + 1] = { 35 , 35 }; // = ( shell red)
+	data[Enemy::Shell + Object::Running + 1] = { 36 , 37 }; //
 
 	// Piranha Plant ( cái cây màu xanh cắn)
 	data[Enemy::Plant + Object::Standing] = { 24 , 25 };

@@ -201,6 +201,9 @@
     <ClCompile Include="BlockItem.cpp">
       <Filter>Object\Block\BlockItem</Filter>
     </ClCompile>
+    <ClCompile Include="Shell.cpp">
+      <Filter>Object\Enemy\Koopa</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -293,6 +296,9 @@
     </ClInclude>
     <ClInclude Include="BlockItem.h">
       <Filter>Object\Block\BlockItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Shell.h">
+      <Filter>Object\Enemy\Koopa</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "Shell.h"
 
 class RedKoopa : public Enemy
 {
@@ -9,4 +10,5 @@ public:
 
 	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
+	void Update(float gameTime, Keyboard* key);
 };

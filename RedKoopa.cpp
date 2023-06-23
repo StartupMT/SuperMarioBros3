@@ -1,5 +1,6 @@
 #include "RedKoopa.h"
 #include "Mario.h"
+#include "ObjectManager.h"
 
 RedKoopa::RedKoopa()
 {
@@ -18,13 +19,9 @@ void RedKoopa::Controller()
 
 D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 {
-	side = D3DXVECTOR2(Collision::NONE, side.y);
+	side = Enemy::OnCollision(obj, side);
 	switch (obj->Tag)
 	{
-	case Object::Player:
-		Mario::GetInstance()->_marioCollision->CheckCollisionEnemy();
-		return side;
-
 	case Object::Block:
 		if (side.y == Collision::BOTTOM)
 		{
@@ -36,9 +33,25 @@ D3DXVECTOR2 RedKoopa::OnCollision(Object* obj, D3DXVECTOR2 side)
 			{
 				velocity.x = -EnemySpeed;
 			}
+			return side;
 		}
-		return side;
 	default:
 		return side;
+	}
+}
+
+void RedKoopa::Update(float gameTime, Keyboard* key)
+{
+	Enemy::Update(gameTime, key);
+
+	//Create Shell
+	if (State == Object::Dying && AllowDraw)
+	{
+		this->SetBound(0, 0);
+		this->SetVelocity(0, 0);
+		AllowDraw = false;
+		::Shell* shell = new ::Shell(this);
+		shell->Init(position, Enemy::Shell, _kind == 0 ? 0 : 1);
+		ObjectManager::GetInstance()->AddObjectMap(shell);
 	}
 }

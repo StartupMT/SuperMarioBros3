@@ -28,7 +28,15 @@ void MarioCollision::OnCollision()
 	{
 	case Object::Enemy:
 		if (_side.y != Collision::BOTTOM)
+		{
+			Enemy* enemy = dynamic_cast<Enemy*>(_obj);
+			if (enemy->_enemyType == Enemy::Shell && enemy->State == Object::Standing)
+			{
+				enemy->State = Object::Running;
+				break;
+			}
 			CheckCollisionEnemy();
+		}
 		_side.x = Collision::NONE;
 		break;
 	case Object::Item:
@@ -132,7 +140,7 @@ void MarioCollision::StandCollision()
 //Va chạm khi chạy
 void MarioCollision::RunCollision()
 {
-	if (_side.x == Collision::RIGHT)
+	if (_side.x != Collision::NONE)
 	{
 		mario->State = Object::Standing;
 	}

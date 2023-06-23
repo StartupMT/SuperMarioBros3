@@ -138,10 +138,7 @@
   <object id="183" x="2272" y="544.667" width="64.6667" height="16.6667"/>
   <object id="184" x="2287.33" y="527.333" width="48.6667" height="16.6667"/>
  </objectgroup>
- <objectgroup id="9" name="WallView">
-  <object id="190" x="0" y="241.333" width="878.667" height="239"/>
-  <object id="191" x="880" y="0" width="1938.67" height="480"/>
- </objectgroup>
+ <objectgroup id="9" name="WallView"/>
  <objectgroup id="4" name="BlockItem">
   <object id="148" x="176" y="352" width="16" height="16"/>
   <object id="149" x="192" y="352" width="16" height="16"/>

@@ -168,6 +168,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RedKoopa.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Shell.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SuperLeaf.cpp" />
     <ClCompile Include="TileSet.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="RedKoopa.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Shell.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SuperLeaf.h" />
     <ClInclude Include="TileSet.h" />

@@ -40,6 +40,8 @@ D3DXVECTOR2 BlockItem::OnCollision(Object* obj, D3DXVECTOR2 side)
 			item->positionStart = position;
 		}
 		return side;
+	case Object::Block:
+		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 
 	default:
 		return side;
@@ -65,8 +67,11 @@ void BlockItem::CreateItem()
 		{
 			obj = new SuperLeaf();
 			obj->Init(positionStart, Item::SuperMushroom, 1);
-			obj->StartJump(JumpSpeed, MaxEnemyJump * 2, Gravity / 7);
+			obj->StartJump(JumpSpeed * 1.2, MaxEnemyJump * 2, Gravity / 8);
 			obj->SetVelocityX(ItemSpeed);
+			obj->SetPositionStart(positionStart);
+			ObjectManager::GetInstance()->AddObjectMap(obj);
+			return;
 		}
 		break;
 	
